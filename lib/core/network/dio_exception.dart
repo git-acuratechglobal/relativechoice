@@ -26,9 +26,21 @@ class DioExceptions implements Exception {
         message = "Unable to create connection with API server";
         break;
       case DioExceptionType.badResponse:
-        final response = dioError.response?.data;
-        if (response != null && response is Map) {
-          message = dioError.response?.data?["message"];
+        final data = dioError.response?.data;
+        if (data != null && data is Map<String, dynamic>) {
+          // Handle "message"
+          if (data.containsKey("message")) {
+            message = data["message"].toString();
+          }
+
+          // Handle "errors" map
+          if (data.containsKey("errors") && data["errors"] is Map<String, dynamic>) {
+            fieldErrors = (data["errors"] as Map<String, dynamic>).map(
+                  (key, value) => MapEntry(key, (value as List).join(', ')),
+            );
+            // Optional: Set the first error message as `message` fallback
+            message ??= fieldErrors!.values.first;
+          }
           break;
         }
         message = _handleError(
@@ -51,6 +63,7 @@ class DioExceptions implements Exception {
   }
 
   String? message;
+  Map<String, String>? fieldErrors;
 
   String _handleError(int? statusCode, String? status) {
     switch (statusCode) {

@@ -21,8 +21,18 @@ class Validators {
   String? validatePassword(String? password) {
     if (password == null || password.isEmpty) {
       return "Password field can't be empty";
-    } else if (password.length < 6) {
-      return "Password must contain atleast 6 characters";
+    } else if (password.length < 8) {
+      return "Password must contain at least 8 characters";
+    }
+    return null;
+  }
+  String? confirmPassword(String? password, String ?secondPassword) {
+    if (password == null || password.isEmpty) {
+      return "Password field can't be empty";
+    } else if (password.length < 8) {
+      return "Password must contain at least 8 characters";
+    } else if (password != secondPassword) {
+      return "Passwords do not match";
     }
     return null;
   }
@@ -38,10 +48,34 @@ class Validators {
 
 String? validationFirstName(String? firstname) {
     if (firstname == null || firstname.isEmpty) {
-      return "FirstName field can't be empty";
+      return "First Name field can't be empty";
     }
     return null;
   }
+
+  String? validationZipCode(String? firstname) {
+    if (firstname == null || firstname.isEmpty) {
+      return "Zip Code field can't be empty";
+    }
+    return null;
+  }
+
+
+  String? validationLastName(String? firstname) {
+    if (firstname == null || firstname.isEmpty) {
+      return "Last Name field can't be empty";
+    }
+    return null;
+  }
+
+  String? validationUserName(String? firstname) {
+    if (firstname == null || firstname.isEmpty) {
+      return "Username field can't be empty";
+    }
+    return null;
+  }
+
+
   String? validateConfirmPassword(String? confirmPassword, String password) {
     if (confirmPassword == null || confirmPassword.isEmpty) {
       return "Confirm Password field can't be empty";

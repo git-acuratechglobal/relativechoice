@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:relative_choice/core/network/dio_client.dart';
 
+import 'dio_exception.dart';
+
 final apiClientProvider = Provider((ref) {
   final dio = ref.watch(dioProvider);
   return ApiClient( dio);
@@ -72,19 +74,19 @@ class ApiClient {
   }
 
   Future<Response> asyncGuard<Response>(
-      Future<Response> Function() apiCall) async {
+      Future<Response> Function() apiCall,
+      ) async {
     try {
       return await apiCall();
     } on DioException catch (e) {
-      final msg = e.message ?? e.error.toString();
-      throw Exception("API Error: $msg");
+      throw DioExceptions.fromDioError(e).toString();
     } on CheckedFromJsonException catch (e) {
       throw "Something went wrong! ${e.toString()}"
           .replaceAll("CheckedFromJsonException", "");
     } on FormatException catch (e) {
       throw "Unable to process data from server. reason: ${e.message}";
     } catch (e) {
-      rethrow;
+      throw e.toString();
     }
   }
 
@@ -97,3 +99,5 @@ class ApiClient {
     };
   }
 }
+
+
