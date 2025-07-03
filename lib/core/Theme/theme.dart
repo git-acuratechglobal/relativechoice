@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:relative_choice/core/extensions/extensions.dart';
 
@@ -165,3 +167,37 @@ class Themes {
     );
   }
 }
+
+
+// final themeModeProvider =
+// NotifierProvider<ThemeNotifier, ThemeMode>(ThemeNotifier.new);
+//
+// class ThemeNotifier extends Notifier<ThemeMode> {
+//   @override
+//   ThemeMode build() {
+//     ref.listenSelf((_, __) => setSystemUI());
+//     return ThemeMode.light;
+//   }
+//
+//   void setTheme(ThemeMode mode) {
+//     state = mode;
+//   }
+//
+//   void setSystemUI() {
+//     final isLight = state == ThemeMode.light;
+//
+//     SystemChrome.setSystemUIOverlayStyle(
+//       SystemUiOverlayStyle(
+//         statusBarColor: Colors.transparent, // or your custom color
+//         statusBarIconBrightness:
+//         isLight ? Brightness.dark : Brightness.light,
+//         statusBarBrightness: isLight ? Brightness.light : Brightness.dark,
+//         systemNavigationBarColor:
+//         isLight ? Colors.white : Colors.black,
+//         systemNavigationBarIconBrightness:
+//         isLight ? Brightness.dark : Brightness.light,
+//       ),
+//     );
+//   }
+// }
+

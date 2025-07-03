@@ -144,8 +144,6 @@ class _appbar2State extends State<appbar2> {
   }
 }
 
-
-
 class _LikePageTabBar extends StatefulWidget {
   final TabController tabController;
   final String label;
@@ -177,15 +175,24 @@ class _LikePageTabBarState extends State<_LikePageTabBar> {
         ),
       ),
       child: TabBar(
+        indicatorWeight: 1,
+        padding: EdgeInsets.symmetric(vertical: 2),
         indicatorColor: Colors.transparent,
         controller: widget.tabController,
+        tabAlignment: TabAlignment.fill,
+        indicator: const BoxDecoration(),
+        indicatorSize: TabBarIndicatorSize.tab,
+        labelPadding: EdgeInsets.symmetric(horizontal: 5),
         tabs: [
-          TabContainer(
-            title: widget.label,
-            style: TextStyle(
-              color: Colors.black,
+          Padding(
+            padding: const EdgeInsets.only(top: 1),
+            child: TabContainer(
+              title: widget.label,
+              style: TextStyle(
+                color: Colors.black,
+              ),
+              isSelected: selectedTab == 0,
             ),
-            isSelected: selectedTab == 0,
           ),
           TabContainer(
             title: widget.label2,

@@ -81,6 +81,7 @@ class _ExploreState extends ConsumerState<Explore> {
                                     // Color(0xFFEDFEFF),
                                   ])),
                               child: SingleChildScrollView(
+                                physics: AlwaysScrollableScrollPhysics(),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

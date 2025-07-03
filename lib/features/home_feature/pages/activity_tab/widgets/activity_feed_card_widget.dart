@@ -182,7 +182,7 @@ class _FeedCardWidgetState extends State<FeedCardWidget> {
                 Center(
                   child: InkWell(
                     onTap: () {
-                      context.navigateTo(Chatscreen());
+                      context.navigateTo(ChatScreen());
                     },
                     child: stackContainer(
                        height: 80,

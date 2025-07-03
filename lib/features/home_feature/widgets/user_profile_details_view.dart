@@ -557,7 +557,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                           ),
                                           32.verticalSpace,
                                           Text(
-                                            " Lifestyle Preferences",
+                                            "Lifestyle Preferences",
                                             style: TextStyle(
                                                 fontSize: 14.sp,
                                                 fontWeight: FontWeight.w700),

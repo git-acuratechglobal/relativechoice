@@ -21,8 +21,6 @@ class _ActiveFeedState extends ConsumerState<ActiveFeed>
   late TabController tabController;
   final CardSwiperController controller = CardSwiperController();
 
-
-
   @override
   void initState() {
     super.initState();
@@ -68,14 +66,6 @@ class _ActiveFeedState extends ConsumerState<ActiveFeed>
     );
   }
 }
-
-
-
-
-
-
-
-
 
 class appbar extends StatelessWidget {
   const appbar(
@@ -164,20 +154,32 @@ class _TabbarState extends State<Tabbar> {
         ),
       ),
       child: TabBar(
+        indicatorWeight: 1,
+        padding: EdgeInsets.symmetric(vertical: 2),
         indicatorColor: Colors.transparent,
         controller: widget.tabController,
+        tabAlignment: TabAlignment.fill,
+        indicator: const BoxDecoration(),
+        indicatorSize: TabBarIndicatorSize.tab,
+        labelPadding: EdgeInsets.symmetric(horizontal: 5),
         tabs: [
-          TabContainer(
-            title: widget.label,
-            style: TextStyle(
-              color: Colors.black,
+          Padding(
+            padding: const EdgeInsets.only(top: 1),
+            child: TabContainer(
+              title: widget.label,
+              style: TextStyle(
+                color: Colors.black,
+              ),
+              isSelected: selectedTab == 0,
             ),
-            isSelected: selectedTab == 0,
           ),
-          TabContainer(
-            title: widget.label2,
-            style: TextStyle(color: Colors.black),
-            isSelected: selectedTab == 1,
+          Padding(
+            padding: const EdgeInsets.only(top: 1),
+            child: TabContainer(
+              title: widget.label2,
+              style: TextStyle(color: Colors.black),
+              isSelected: selectedTab == 1,
+            ),
           ),
         ],
         dividerColor: Colors.transparent,
@@ -207,14 +209,14 @@ class TabContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // width: 0.5.sw,
-      height: 34.sp,
+      // height: 34.sp,
       decoration: ShapeDecoration(
         color: isSelected ? Colors.white : Colors.transparent,
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(56.sp),
             side: isSelected
                 ? BorderSide(
-                width: 1, color: Color.fromARGB(255, 240, 239, 239))
+                    width: 1, color: Color.fromARGB(255, 240, 239, 239))
                 : BorderSide(width: 1, color: Colors.transparent)),
       ),
       child: Center(
@@ -230,5 +232,3 @@ class TabContainer extends StatelessWidget {
     );
   }
 }
-
-

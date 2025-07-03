@@ -62,8 +62,8 @@ class _LikedByMeWidgetState extends ConsumerState<LikedByMeWidget> {
                                 .cancelSendRequest(userId: user.id ?? 0);
                           },
                         ),
-                        8.horizontalSpace,
-                        Chaticon(),
+                        // 8.horizontalSpace,
+                        // Chaticon(),
                       ],
                     ),
                   ),

@@ -17,11 +17,28 @@ class ZipCodeService {
   final ApiClient _client;
   ZipCodeService(this._client);
 
-  Future<bool> isRealZipCode(String zip) async {
+  // Future<bool> isRealZipCode(String zip) async {
+  //   return asyncGuard(() async {
+  //     final url = 'https://api.zippopotam.us/us/$zip';
+  //     final response = await _client.get(url);
+  //     return response.statusCode == 200;
+  //   });
+  // }
+
+  Future<bool> isValidUSZipWithGoogle(String zip) async {
+    if (zip.isEmpty || zip.contains(' ')) {
+      return false;
+    }
     return asyncGuard(() async {
-      final url = 'https://api.zippopotam.us/us/$zip';
+      const apiKey = 'AIzaSyCG4YZMnrZwDGA2sXcUF4XLQdddSL4tz5Y';
+      final url =
+          'https://maps.googleapis.com/maps/api/geocode/json?components=postal_code:$zip|country:US&key=$apiKey';
       final response = await _client.get(url);
-      return response.statusCode == 200;
+      final List<dynamic> result = response.data['results'];
+      if (result.isNotEmpty) {
+        return true;
+      }
+      return false;
     });
   }
 
@@ -86,7 +103,9 @@ class ZipCodeChecker extends _$ZipCodeChecker {
     state = const AsyncLoading();
     _debounceTimer = Timer(const Duration(milliseconds: 500), () async {
       state = await AsyncValue.guard(() async {
-        return ref.watch(zipCodeServiceProvider).isRealZipCode(zipCode);
+        return ref
+            .watch(zipCodeServiceProvider)
+            .isValidUSZipWithGoogle(zipCode);
       });
     });
   }

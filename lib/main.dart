@@ -12,7 +12,7 @@ void main() async {
   await ScreenUtil.ensureScreenSize();
   final prefs = await SharedPreferences.getInstance();
   runApp(ProviderScope(
-    overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+      overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
       child:
           //   DevicePreview(
           //   enabled: !kReleaseMode,
@@ -21,16 +21,18 @@ void main() async {
           MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // final themeMode = ref.watch(themeModeProvider);
     return ScreenUtilInit(
         designSize: Size(375, 812),
         builder: (context, child) {
           return MaterialApp(
             title: 'Relative Choice',
             theme: Themes.lightTheme,
+            // themeMode: themeMode,
             home: Splashscreen(),
             debugShowCheckedModeBanner: false,
           );

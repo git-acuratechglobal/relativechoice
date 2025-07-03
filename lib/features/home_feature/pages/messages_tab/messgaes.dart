@@ -6,7 +6,6 @@ import 'package:relative_choice/core/extensions/extensions.dart';
 import '../../widgets/bottomsheet_notification.dart';
 import 'chatScreen.dart';
 
-
 class Messages extends ConsumerStatefulWidget {
   const Messages({super.key});
   @override
@@ -15,14 +14,16 @@ class Messages extends ConsumerStatefulWidget {
 
 class _MessagesState extends ConsumerState<Messages> {
   List<String> messages = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
       extendBody: true,
       appBar: PreferredSize(
-        
-        preferredSize: Size(1.w, 50.h), child: appbar3(), ),
+        preferredSize: Size(1.w, 50.h),
+        child: _appbar3(),
+      ),
       body: Container(
         height: 1.sh,
         width: 1.sw,
@@ -58,18 +59,26 @@ class _MessagesState extends ConsumerState<Messages> {
                 child: Row(
                   children: [
                     MatchesContainer(),
-                    Flexible(
-                      child: ListView.separated(
-                          padding: EdgeInsets.symmetric(horizontal: 24),
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return MatchesContainer2();
-                          },
-                          separatorBuilder: (context, index) {
-                            return Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 10));
-                          },
-                          itemCount: 10),
+                    Expanded(
+                      child: CustomScrollView(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        slivers: [
+                          SliverPadding(
+                            padding: EdgeInsets.symmetric(horizontal: 15),
+                            sliver: SliverList.separated(
+                              itemBuilder: (BuildContext context, int index) {
+                                return MatchesContainer2();
+                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return 15.horizontalSpace;
+                              },
+                              itemCount: 10,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -81,19 +90,28 @@ class _MessagesState extends ConsumerState<Messages> {
                 width: 1.sw,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(50),
-                        topRight: Radius.circular(50)),
+                      topLeft: Radius.circular(50),
+                      topRight: Radius.circular(50),
+                    ),
                     color: Colors.white),
-                child: ListView.builder(
-                  itemBuilder: (context, indeex) {
-                    return MessageWidget('Alfredo Calzoni',
-                        'Great I will write later the exact...', '09.50');
-                  },
-                  padding: EdgeInsets.symmetric(
-                    vertical: 5,
-                  ),
-                  itemCount: 10,
-                  shrinkWrap: true,
+                child: CustomScrollView(
+                  slivers: [
+                    SliverList.separated(
+                      itemCount: 20,
+                      itemBuilder: (BuildContext context, int index) {
+                        return MessageWidget('Alfredo Calzoni',
+                            'Great I will write later the exact...', '09.50');
+                      },
+                      separatorBuilder: (BuildContext context, int index) {
+                        return Divider(
+                          height: 1,
+                          color: Color(0xFFDEDEDE),
+                          indent: 24,
+                          endIndent: 24,
+                        );
+                      },
+                    ),
+                  ],
                 ),
               ),
             )
@@ -104,15 +122,15 @@ class _MessagesState extends ConsumerState<Messages> {
   }
 }
 
-class appbar3 extends StatelessWidget {
-  const appbar3({super.key});
+class _appbar3 extends StatelessWidget {
+  const _appbar3();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: AppBar(
-         automaticallyImplyLeading: false,
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.transparent,
           title: Align(
             alignment: Alignment.topLeft,
@@ -126,9 +144,7 @@ class appbar3 extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ),
-          actions: [
-      notification()
-          ]),
+          actions: [notification()]),
     );
   }
 }
@@ -144,7 +160,7 @@ class _MatchesContainerState extends State<MatchesContainer> {
   @override
   Widget build(BuildContext context) {
     return Opacity(
-      opacity: 0.80,
+      opacity: 0.9,
       child: Container(
         width: 80.w,
         height: 92.h,
@@ -167,25 +183,27 @@ class _MatchesContainerState extends State<MatchesContainer> {
                 'asset/images/person.png',
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 37, left: 21),
-              child: Image.asset(
-                'asset/images/likematch.png',
-                height: 25.h,
-                width: 20.w,
-              ),
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                '32',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w700,
-                  height: 1.40,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'asset/images/likematch.png',
+                  height: 25.h,
+                  width: 20.w,
                 ),
-              ),
+                Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    '32',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w700,
+                      height: 1.40,
+                    ),
+                  ),
+                )
+              ],
             )
           ]),
         ),
@@ -237,54 +255,42 @@ class MessageWidget extends ConsumerStatefulWidget {
 class _MessageWidgetState extends ConsumerState<MessageWidget> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: () {
-            context.navigateTo(Chatscreen());
-          },
-          child: ListTile(
-            contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
-            leading: Image.asset(
-              'asset/images/chatperson.png',
-              height: 56,
-              width: 56,
-            ),
-            title: Text(
-              widget.name,
-              style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700),
-            ),
-            subtitle: Text(
-              widget.message,
-              style: TextStyle(
-                  color: Color(0xFF1A1819),
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w400),
-            ),
-            trailing: Column(
-              children: [
-                5.verticalSpace,
-                Image.asset(
-                  'asset/images/red23.png',
-                  width: 12.w,
-                  height: 12.h,
-                ),
-                12.verticalSpace,
-                Text(
-                  widget.time,
-                  style: TextStyle(color: Color(0xFF6C727F), fontSize: 12),
-                )
-              ],
-            ),
+    return ListTile(
+      onTap: () {
+        context.navigateTo(ChatScreen());
+      },
+      contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+      leading: Image.asset(
+        'asset/images/chatperson.png',
+        height: 56,
+        width: 56,
+      ),
+      title: Text(
+        widget.name,
+        style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700),
+      ),
+      subtitle: Text(
+        widget.message,
+        style: TextStyle(
+            color: Color(0xFF1A1819),
+            fontSize: 12.sp,
+            fontWeight: FontWeight.w400),
+      ),
+      trailing: Column(
+        children: [
+          5.verticalSpace,
+          Image.asset(
+            'asset/images/red23.png',
+            width: 12.w,
+            height: 12.h,
           ),
-        ),
-        Divider(
-          height: 1,
-          color: Color(0xFFDEDEDE),
-          indent: 24,
-          endIndent: 24,
-        )
-      ],
+          12.verticalSpace,
+          Text(
+            widget.time,
+            style: TextStyle(color: Color(0xFF6C727F), fontSize: 12),
+          )
+        ],
+      ),
     );
   }
 }
