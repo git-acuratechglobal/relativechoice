@@ -1,9 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:relative_choice/features/home_feature/pages/explore_tab/widgets/explorepopup.dart';
 import 'package:relative_choice/features/home_feature/pages/Like_tab/like.dart';
 import 'package:relative_choice/features/home_feature/pages/profile_tab/profile_screen.dart';
+import 'package:relative_choice/features/home_feature/providers/chat_provider/chat_provider.dart';
 
 import 'activity_tab/active_feed.dart';
 import 'explore_tab/explore.dart';
@@ -20,11 +22,31 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     with SingleTickerProviderStateMixin {
   int selectedIndex = 3;
   bool hasShownPopup = false;
-
+  late final AppLifecycleListener _listener;
+  late AppLifecycleState? _state;
   @override
   void initState() {
     super.initState();
     tabController = TabController(length: 5, vsync: this);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final chatNotifier = ref.read(chatNotifierProvider.notifier);
+      _state = SchedulerBinding.instance.lifecycleState;
+      _listener = AppLifecycleListener(
+        onStateChange: (state){
+          if(state==AppLifecycleState.resumed){
+            chatNotifier.updateUserStatus(isOnline: 1);
+          }else{
+            chatNotifier.updateUserStatus(isOnline: 0);
+          }
+        }
+      );
+    });
+  }
+
+  @override
+  void dispose() {
+    _listener.dispose();
+    super.dispose();
   }
 
   @override

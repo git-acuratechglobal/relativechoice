@@ -6,7 +6,7 @@ part of 'profile_onboarding_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$profileOnBoardingHash() => r'6fc7a6cf9ea4b46b43ad3f9b31d28fa3fec57e13';
+String _$profileOnBoardingHash() => r'803e09ab2a93d3d7cafe6d2b7b079253abe264f3';
 
 /// See also [ProfileOnBoarding].
 @ProviderFor(ProfileOnBoarding)

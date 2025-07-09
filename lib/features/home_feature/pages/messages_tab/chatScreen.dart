@@ -2,12 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:relative_choice/core/extensions/extensions.dart';
+import 'package:relative_choice/core/network/apiend_points.dart';
+import 'package:relative_choice/core/services/chat_service/chat_service.dart';
+import 'package:relative_choice/core/utils/appsnackbar.dart';
+import 'package:relative_choice/core/widgets/asyncwidget.dart';
 import 'package:relative_choice/core/widgets/backicon.dart';
-import 'package:relative_choice/features/home_feature/pages/messages_tab/widgets/message_bubble.dart';
+import 'package:relative_choice/core/widgets/network_image_widget.dart';
+import 'package:relative_choice/features/home_feature/models/message_model.dart';
+import 'package:relative_choice/features/home_feature/models/user_data_model.dart';
 import 'package:relative_choice/features/home_feature/pages/messages_tab/widgets/message_text_field.dart';
+import 'package:relative_choice/features/home_feature/pages/messages_tab/widgets/message_widget.dart';
+import 'package:relative_choice/features/profile_feature/providers/user_provider.dart';
+import '../../models/send_message_params.dart';
+import '../../providers/chat_provider/chat_provider.dart';
 
 class ChatScreen extends ConsumerStatefulWidget {
-  const ChatScreen({super.key});
+  const ChatScreen(
+      {super.key,
+      required this.userId,
+      this.userName = "",
+      this.userImage = ""});
+  final int userId;
+  final String userName;
+  final String userImage;
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ChatScreenState();
@@ -21,7 +38,17 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {});
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final chatId =
+      ref.read(chatServiceProvider).getChatId(widget.userId.toString());
+      ref.read(chatServiceProvider).markMessagesAsSeen(chatId);
+      ref.listenManual(chatNotifierProvider, (_, next) {
+        switch (next) {
+          case AsyncError error:
+            Utils.showSnackBar(context, error.error.toString());
+        }
+      });
+    });
   }
 
   @override
@@ -33,27 +60,70 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = ref.read(userProvider);
+    final currentUserId = user!.user!.id.toString();
+    final chatId =
+        ref.read(chatServiceProvider).getChatId(widget.userId.toString());
+    final messageData = ref.watch(messageListProvider(chatId));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_chatScrollController.hasClients) {
+        _chatScrollController.animateTo(
+          _chatScrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeOut,
+        );
+      }
+    });
+    ref.listen(
+      messageListProvider(chatId),
+      (_, next) {
+        switch (next) {
+          case AsyncData<List<MessageModel>?> data when data.value != null:
+            ref.read(chatServiceProvider).markMessagesAsSeen(chatId);
+          case AsyncError error:
+            Utils.showSnackBar(context, error.error.toString());
+        }
+      },
+    );
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom + 3.sp,
-        ),
-        child: CustomScrollView(
-          controller: _chatScrollController,
-          slivers: [
-            _ChatAppBar(userName: 'Alfredo C.'),
-            SliverList.separated(
-              itemBuilder: (BuildContext context, int index) {
-                return _messages[index];
-              },
-              separatorBuilder: (BuildContext context, int index) {
-                return 10.verticalSpace;
-              },
-              itemCount: _messages.length,
-            ),
-          ],
-        ),
-      ),
+      body: AsyncWidget(
+          value: messageData,
+          data: (messages) {
+            return AsyncWidget(
+                value: ref.watch(otherUserProvider(widget.userId.toString())),
+                data: (userData) {
+                  return Padding(
+                    padding: EdgeInsets.only(
+                      bottom: 0.008.sh,
+                    ),
+                    child: CustomScrollView(
+                      physics: AlwaysScrollableScrollPhysics(),
+                      controller: _chatScrollController,
+                      slivers: [
+                        _ChatAppBar(
+                          user: userData,
+                          currentUserId: currentUserId,
+                        ),
+                        SliverList.separated(
+                          itemBuilder: (BuildContext context, int index) {
+                            final data = messages[index];
+                            bool isOwnMessage = data.senderId == currentUserId;
+                            return MessageBubbleWidget(
+                              key: ValueKey(data),
+                              message: data,
+                              isOwnMessage: isOwnMessage,
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return 10.verticalSpace;
+                          },
+                          itemCount: messages.length,
+                        ),
+                      ],
+                    ),
+                  );
+                });
+          }),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(color: Colors.white, boxShadow: [
           BoxShadow(
@@ -66,49 +136,30 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         child: Padding(
           padding: const EdgeInsets.only(bottom: 30, top: 10),
           child: MessageTextField(
-              controller: _messageController, onSend: _sendMessage),
+            onChanged: (val) {
+              if (val.isNotEmpty) {
+                ref.read(chatNotifierProvider.notifier).updateUserTypingStatus(
+                    receiverId: widget.userId.toString());
+              }
+            },
+            controller: _messageController,
+            onSend: () => _sendMessage(currentUserId, chatId),
+          ),
         ),
       ),
     );
   }
 
-  final List<Widget> _messages = [
-    _buildTodayDivider(),
-    ChatMessageBubble(
-      text:
-          'Hi, John! I really enjoyed reading your profile. I noticed you’re looking for a sibling connection and saw that you love hiking – I’m always on the trails too! What’s one of your favorite spots? Looking forward to chatting more!',
-      isOwnMessage: false,
-    ),
-    ChatMessageBubble(
-      text:
-          'Haha truly! Nice to meet you Alfredo! What about a cup of coffee today evening? ☕️ ',
-      isOwnMessage: true,
-    ),
-    ChatMessageBubble(
-      text: 'Sure, let’s do it! 😊',
-      isOwnMessage: false,
-    ),
-    ChatMessageBubble(
-      text: "Great I will write later the exact time and place. See you soon!",
-      isOwnMessage: true,
-    ),
-  ];
-
-  void _sendMessage() {
+  void _sendMessage(String senderId, String chatId) {
     if (_messageController.text.trim().isNotEmpty) {
-      setState(() {
-        _messages.add(ChatMessageBubble(
-          text: _messageController.text.trim(),
-          isOwnMessage: true,
-        ));
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          _chatScrollController.animateTo(
-            _chatScrollController.position.maxScrollExtent,
-            duration: const Duration(milliseconds: 300),
-            curve: Curves.easeOut,
-          );
-        });
-      });
+      final msg = _messageController.text.trim();
+      final param = SendMessageParams(
+          chatId: chatId,
+          senderId: senderId,
+          receiverId: widget.userId.toString(),
+          text: msg);
+      ref.read(chatNotifierProvider.notifier).sendMessage(param: param);
+
       _messageController.clear();
     }
   }
@@ -137,8 +188,13 @@ Widget _buildTodayDivider() {
 }
 
 class _ChatAppBar extends StatelessWidget {
-  const _ChatAppBar({required this.userName});
-  final String userName;
+  const _ChatAppBar({
+    required this.user,
+    required this.currentUserId,
+  });
+  final UserDataModel user;
+  final String currentUserId;
+
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
@@ -163,10 +219,13 @@ class _ChatAppBar extends StatelessWidget {
                   },
                 ),
                 20.horizontalSpace,
-                Image.asset(
-                  'asset/images/photo.png',
+                SizedBox(
                   height: 48.h,
                   width: 48.w,
+                  child: ClipOval(
+                    child: NetworkImageWidget(
+                        imageUrl: ApiEndPoints.imageBaseUrl + user.image),
+                  ),
                 ),
                 10.horizontalSpace,
                 Expanded(
@@ -175,27 +234,44 @@ class _ChatAppBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        userName,
+                        user.name,
                         style: TextStyle(
                             fontSize: 20.sp, fontWeight: FontWeight.w800),
                       ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            'asset/images/ellipse.png',
-                            height: 6,
-                            width: 6,
-                          ),
-                          5.horizontalSpace,
-                          Text(
-                            'Onilne',
-                            style: TextStyle(
-                                color: Color(0xFF1A1819),
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400),
-                          )
-                        ],
-                      ),
+                      if (user.typingTo == currentUserId)
+                        Text(
+                          'typing....',
+                          style: TextStyle(
+                              color: Color(0xFF1A1819),
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400),
+                        )
+                      else if (user.isOnline == 0)
+                        Text(
+                          'Last seen At ${user.formateLastSeen}',
+                          style: TextStyle(
+                              color: Color(0xFF1A1819),
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w400),
+                        )
+                      else
+                        Row(
+                          children: [
+                            Image.asset(
+                              'asset/images/ellipse.png',
+                              height: 6,
+                              width: 6,
+                            ),
+                            5.horizontalSpace,
+                            Text(
+                              'Onilne',
+                              style: TextStyle(
+                                  color: Color(0xFF1A1819),
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w400),
+                            )
+                          ],
+                        ),
                     ],
                   ),
                 ),

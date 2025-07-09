@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MessageTextField extends StatelessWidget {
-  const MessageTextField({super.key,required this.controller,required this.onSend});
+  const MessageTextField({super.key,required this.controller,required this.onSend,required this.onChanged});
 final TextEditingController controller;
 final VoidCallback onSend;
+final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 5 ),
       child: TextFormField(
+        onChanged: onChanged,
         controller: controller,
         decoration: InputDecoration(
           hintStyle: TextStyle(

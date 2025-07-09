@@ -1,4 +1,4 @@
-package com.example.relative_choice
+package com.relativechoice.app
 
 import io.flutter.embedding.android.FlutterActivity
 

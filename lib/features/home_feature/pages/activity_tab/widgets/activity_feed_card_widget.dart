@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
@@ -11,13 +10,14 @@ import '../../../widgets/user_profile_details_view.dart';
 import '../../messages_tab/chatScreen.dart';
 
 class FeedCardWidget extends StatefulWidget {
- const FeedCardWidget({super.key, this.isShowing, required this.userModel});
+  const FeedCardWidget({super.key, this.isShowing, required this.userModel});
   final User userModel;
- final bool? isShowing;
+  final bool? isShowing;
 
   @override
   State<FeedCardWidget> createState() => _FeedCardWidgetState();
 }
+
 class _FeedCardWidgetState extends State<FeedCardWidget> {
   @override
   Widget build(BuildContext context) {
@@ -61,9 +61,7 @@ class _FeedCardWidgetState extends State<FeedCardWidget> {
                     ),
                   ),
                 ),
-
                 15.verticalSpace,
-
                 8.verticalSpace,
                 Container(
                   padding: EdgeInsets.only(right: 8),
@@ -165,31 +163,20 @@ class _FeedCardWidgetState extends State<FeedCardWidget> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // InkWell(
-                //   onTap: () {},
-                //   child: stackContainer(
-                //     image: Image.asset(
-                //       'asset/images/close-small.png',
-                //       height: 24.h,
-                //       width: 24.w,
-                //     ),
-                //     onTap: () {
-                //       // context.navigateTo(page)
-                //     },
-                //   ),
-                // ),
-                // 14.horizontalSpace,
                 Center(
                   child: InkWell(
                     onTap: () {
-                      context.navigateTo(ChatScreen());
+                      context.navigateTo(ChatScreen(
+                        userName: widget.userModel.fullName,
+                        userImage: widget.userModel.image,
+                        userId: widget.userModel.id ?? 0,
+                      ));
                     },
                     child: stackContainer(
-                       height: 80,
+                      height: 80,
                       width: 80,
                       image: Image.asset(
                         'asset/images/messageicon.png',
-
                       ),
                     ),
                   ),
@@ -202,18 +189,12 @@ class _FeedCardWidgetState extends State<FeedCardWidget> {
   }
 }
 
-
-
 class stackContainer extends StatefulWidget {
   final Image image;
- final  double? height;
+  final double? height;
   final double? width;
-   stackContainer({
-    super.key,
-    required this.image,
-    this.height=60,
-    this.width=60
-  });
+  stackContainer(
+      {super.key, required this.image, this.height = 60, this.width = 60});
 
   @override
   State<stackContainer> createState() => _stackContainerState();

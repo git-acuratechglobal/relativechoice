@@ -323,7 +323,7 @@ class _ChaticonState extends State<Chaticon> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.navigateTo(ChatScreen());
+        context.navigateTo(ChatScreen(userId: 0,));
       },
       child: Container(
         height: 40,

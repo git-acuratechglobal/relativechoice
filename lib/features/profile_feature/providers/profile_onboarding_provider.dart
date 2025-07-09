@@ -2,6 +2,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:relative_choice/core/services/profile_service/profile_service.dart';
 import 'package:relative_choice/features/profile_feature/profile_state/profile_state.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+import '../../../core/services/chat_service/chat_service.dart';
 part 'profile_onboarding_provider.g.dart';
 
 @riverpod
@@ -46,11 +48,11 @@ class ProfileOnBoarding extends _$ProfileOnBoarding {
         ref.read(profileServiceProvider).updatePrompt(prompt: prompt);
       }
       final user = await ref.watch(profileServiceProvider).getUserProfile();
+      await ref.read(chatServiceProvider).saveUserProfile(user.user!);
       return ProfileState(
-        profileEvent: ProfileEvent.addPrompt,
-        response: "success",
-          userModel: user
-      );
+          profileEvent: ProfileEvent.addPrompt,
+          response: "success",
+          userModel: user);
     });
   }
 

@@ -31,7 +31,8 @@ class _TransationPromptState extends ConsumerState<TransationPrompt> {
           final event = data.value?.profileEvent;
           if(event==ProfileEvent.addPrompt){
             final user = data.value?.userModel;
-            ref.read(userProvider.notifier).update((e) => user!);
+
+            ref.read(userProvider.notifier).update((e) => user);
             Utils.showSnackBar(context, data.value!.response.toString());
             ref.read(localStorageServiceProvider).clearFormSession();
             context.navigateTo(HomeScreen());
