@@ -23,19 +23,20 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   int selectedIndex = 3;
   bool hasShownPopup = false;
   late final AppLifecycleListener _listener;
-  late AppLifecycleState? _state;
   @override
   void initState() {
     super.initState();
     tabController = TabController(length: 5, vsync: this);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final chatNotifier = ref.read(chatNotifierProvider.notifier);
-      _state = SchedulerBinding.instance.lifecycleState;
+      chatNotifier.updateUserStatus(isOnline: 1);
       _listener = AppLifecycleListener(
         onStateChange: (state){
           if(state==AppLifecycleState.resumed){
+            print("===============$state==========");
             chatNotifier.updateUserStatus(isOnline: 1);
           }else{
+            print("===============$state==========");
             chatNotifier.updateUserStatus(isOnline: 0);
           }
         }

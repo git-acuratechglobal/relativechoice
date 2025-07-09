@@ -27,6 +27,18 @@ class MessageModel {
       isSeen: map['isSeen'] ?? false,
     );
   }
+
+  factory MessageModel.fromLastMessage(Map<String, dynamic> map,[String? docId]) {
+    return MessageModel(
+      id: docId??'',
+      senderId: map['senderId'] ?? '',
+      text: map['text'] ?? '',
+      timestamp: (map['timestamp'] as Timestamp).toDate(),
+      type: map['type'] ?? 'text',
+      isSeen: map['isSeen'] ?? false,
+    );
+  }
+
   factory MessageModel.createText({
     required String senderId,
     required String text,

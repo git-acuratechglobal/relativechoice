@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
 import '../../../../core/services/chat_service/chat_service.dart';
 import '../../models/chat_room_model.dart';
 import '../../models/message_model.dart';
@@ -8,18 +7,20 @@ import '../../models/send_message_params.dart';
 import '../../models/user_data_model.dart';
 part 'chat_provider.g.dart';
 
-final chatRoomsProvider = StreamProvider<List<ChatRoom>>((ref) {
+@Riverpod(keepAlive: true)
+Stream<List<ChatRoom>> chatRooms(Ref ref) {
   return ref.watch(chatServiceProvider).getChatRoomsForUser();
-});
+}
 
-final messageListProvider =
-    StreamProvider.family<List<MessageModel>, String>((ref, chatId) {
+@Riverpod(keepAlive: true)
+Stream<List<MessageModel>> messageList(Ref ref, chatId) {
   return ref.watch(chatServiceProvider).getMessages(chatId);
-});
+}
 
-final otherUserProvider =StreamProvider.family<UserDataModel,String>((ref,otherUserId) {
+@Riverpod(keepAlive: true)
+Stream<UserDataModel> otherUser(Ref ref, otherUserId) {
   return ref.watch(chatServiceProvider).getOtherUserData(otherUserId);
-});
+}
 
 @riverpod
 class ChatNotifier extends _$ChatNotifier {
@@ -36,7 +37,7 @@ class ChatNotifier extends _$ChatNotifier {
     );
     try {
       updateUserTypingStatus(receiverId: null);
-      final result = ref.read(chatServiceProvider).sendMessage(
+      final result = await ref.read(chatServiceProvider).sendMessage(
             chatId: param.chatId,
             message: message,
             participants: param.participants,

@@ -35,6 +35,8 @@ class ChatService {
           .orderBy('timestamp', descending: false);
       return messagesQuery.snapshots().map((snapshot) => snapshot.docs
           .map((doc) => MessageModel.fromMap(doc.data()))
+          .toList()
+          .reversed
           .toList());
     });
   }
@@ -124,6 +126,17 @@ class ChatService {
       for (final doc in unseenFromOther) {
         await doc.reference.update({'isSeen': true});
       }
+      if (unseenFromOther.isNotEmpty) {
+        final chatDoc = await chatDocRef.get();
+        final lastMessage = chatDoc.data()?['lastMessage'];
+
+        if (lastMessage != null && lastMessage['senderId'] != _userId) {
+          await chatDocRef.update({
+            'lastMessage.isSeen': true,
+            'lastUpdated': FieldValue.serverTimestamp(),
+          });
+        }
+      }
     });
   }
 
@@ -133,16 +146,32 @@ class ChatService {
 
       final chatRoomsQuery = _firestore
           .collection('chats')
-          .where('participants', arrayContains: _userId)
-          .orderBy('timestamp');
+          .where('participants', arrayContains: _userId);
 
       return chatRoomsQuery.snapshots().handleError((error) {
-        // Log error or handle UI fallback
         debugPrint("Firestore query error: $error");
       }).map((snapshot) {
-        return snapshot.docs
-            .map((doc) => ChatRoom.fromMap(doc.id, doc.data()))
+        final chatRooms = snapshot.docs
+            .map((doc) {
+              try {
+                return ChatRoom.fromMap(doc.id, doc.data());
+              } catch (e) {
+                debugPrint("Error parsing ChatRoom from doc ${doc.id}: $e");
+                return null;
+              }
+            })
+            .where((room) => room != null)
+            .cast<ChatRoom>()
             .toList();
+
+        chatRooms.sort((a, b) {
+          if (a.timestamp == null && b.timestamp == null) return 0;
+          if (a.timestamp == null) return 1;
+          if (b.timestamp == null) return -1;
+          return b.timestamp!.compareTo(a.timestamp!);
+        });
+
+        return chatRooms;
       });
     });
   }
@@ -191,10 +220,16 @@ class ChatService {
     try {
       yield* call();
     } on FirebaseException catch (e) {
+      // Log the error for debugging
+      debugPrint("Firestore Stream Error: ${e.code} - ${e.message}");
       throw "Firestore Stream Error: ${e.message}";
     } on FormatException catch (e) {
+      debugPrint("Invalid data format from Firestore Stream: ${e.message}");
       throw "Invalid data format from Firestore Stream. Reason: ${e.message}";
-    } catch (e) {
+    } catch (e, stackTrace) {
+      // Log unexpected errors with stack trace
+      debugPrint("Unexpected Firestore Stream error: $e");
+      debugPrint("Stack trace: $stackTrace");
       rethrow;
     }
   }

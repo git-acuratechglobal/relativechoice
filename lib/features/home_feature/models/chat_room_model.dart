@@ -21,7 +21,7 @@ class ChatRoom {
       id: id,
       participants: List<String>.from(map['participants'] ?? []),
       lastMessage: map['lastMessage'] != null
-          ? MessageModel.fromMap(map['lastMessage'])
+          ? MessageModel.fromLastMessage(map['lastMessage'])
           : null,
       timestamp: (map['timestamp'] as Timestamp?)?.toDate(),
     );

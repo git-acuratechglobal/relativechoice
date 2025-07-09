@@ -129,6 +129,7 @@ class _MessagesState extends ConsumerState<Messages> {
                                     value: userAsync,
                                     data: (userData) {
                                       return MessageWidget(
+                                        key: ValueKey(userData),
                                         user: userData,
                                         chatRoom: room,
                                       );
