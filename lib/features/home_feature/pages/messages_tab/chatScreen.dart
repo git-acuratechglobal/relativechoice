@@ -37,6 +37,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+
       final chatId =
           ref.read(chatServiceProvider).getChatId(widget.userId.toString());
       ref.read(chatServiceProvider).markMessagesAsSeen(chatId);
@@ -75,86 +76,55 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     final messageData = ref.watch(messageListProvider(chatId));
 
     return Scaffold(
-      body: AsyncWidget(
-          value: messageData,
-          data: (messages) {
-            return AsyncWidget(
-                value: ref.watch(otherUserProvider(widget.userId.toString())),
-                data: (userData) {
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: 0.06.sh,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 10),
-                        child: _ChatAppBar(
-                          user: userData,
-                          currentUserId: currentUserId,
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            bottom: 0.008.sh,
-                          ),
-                          child: ListView.separated(
-                            physics: AlwaysScrollableScrollPhysics(),
-                            reverse: true,
-                            itemBuilder: (BuildContext context, int index) {
-                              final data = messages[index];
-                              bool isOwnMessage =
-                                  data.senderId == currentUserId;
-                              return MessageBubbleWidget(
-                                key: ValueKey(data),
-                                message: data,
-                                isOwnMessage: isOwnMessage,
-                              );
-                            },
-                            separatorBuilder:
-                                (BuildContext context, int index) {
-                              return 10.verticalSpace;
-                            },
-                            itemCount: messages.length,
+      body: SafeArea(
+        child: AsyncWidget(
+            value: messageData,
+            data: (messages) {
+              return AsyncWidget(
+                  value: ref.watch(otherUserProvider(widget.userId.toString())),
+                  data: (userData) {
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 5),
+                          child: _ChatAppBar(
+                            user: userData,
+                            currentUserId: currentUserId,
                           ),
                         ),
-                      ),
-                    ],
-                  );
-                  // return Padding(
-                  //   padding: EdgeInsets.only(
-                  //     bottom: 0.008.sh,
-                  //   ),
-                  //   child: CustomScrollView(
-                  //     physics: AlwaysScrollableScrollPhysics(),
-                  //     controller: _chatScrollController,
-                  //     slivers: [
-                  //       _ChatAppBar(
-                  //         user: userData,
-                  //         currentUserId: currentUserId,
-                  //       ),
-                  //       SliverList.separated(
-                  //         itemBuilder: (BuildContext context, int index) {
-                  //           final data = messages[index];
-                  //           bool isOwnMessage = data.senderId == currentUserId;
-                  //           return MessageBubbleWidget(
-                  //             key: ValueKey(data),
-                  //             message: data,
-                  //             isOwnMessage: isOwnMessage,
-                  //           );
-                  //         },
-                  //         separatorBuilder: (BuildContext context, int index) {
-                  //           return 10.verticalSpace;
-                  //         },
-                  //         itemCount: messages.length,
-                  //       ),
-                  //     ],
-                  //   ),
-                  // );
-                });
-          }),
-      bottomNavigationBar: Container(
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              bottom: 0.11.sh,
+                            ),
+                            child: ListView.separated(
+                              physics: AlwaysScrollableScrollPhysics(),
+                              reverse: true,
+                              itemBuilder: (BuildContext context, int index) {
+                                final data = messages[index];
+                                bool isOwnMessage =
+                                    data.senderId == currentUserId;
+                                return MessageBubbleWidget(
+                                  key: ValueKey(data),
+                                  message: data,
+                                  isOwnMessage: isOwnMessage,
+                                );
+                              },
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return 10.verticalSpace;
+                              },
+                              itemCount: messages.length,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  });
+            }),
+      ),
+      bottomSheet: Container(
         decoration: BoxDecoration(color: Colors.white, boxShadow: [
           BoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.1),

@@ -20,7 +20,19 @@ final chatServiceProvider = Provider<ChatService>((ref) {
 class ChatService {
   final FirebaseFirestore _firestore;
   final String? _userId;
-  ChatService(this._firestore, this._userId);
+  ChatService(this._firestore, this._userId) {
+    _enableOfflineSupport();
+  }
+  void _enableOfflineSupport() {
+    try {
+      _firestore.settings = const Settings(
+        persistenceEnabled: true,
+        cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED,
+      );
+    } catch (e) {
+      debugPrint('Firestore settings already configured: $e');
+    }
+  }
 
   String getChatId(String userB) {
     final ids = [_userId, userB]..sort();

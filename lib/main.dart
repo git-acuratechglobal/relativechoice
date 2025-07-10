@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:relative_choice/core/services/local_storage_service/local_storage_service.dart';
@@ -28,6 +29,13 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // final themeMode = ref.watch(themeModeProvider);
+    SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        statusBarIconBrightness: Brightness.dark,
+        statusBarBrightness: Brightness.light,
+      ),
+    );
     return ScreenUtilInit(
         designSize: Size(375, 812),
         builder: (context, child) {
