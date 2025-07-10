@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,6 +22,9 @@ final chatServiceProvider = Provider<ChatService>((ref) {
 class ChatService {
   final FirebaseFirestore _firestore;
   final String? _userId;
+
+  static const int _messagesPageSize = 50;
+
   ChatService(this._firestore, this._userId) {
     _enableOfflineSupport();
   }
@@ -39,7 +44,10 @@ class ChatService {
     return ids.join('_');
   }
 
-  Stream<List<MessageModel>> getMessages(String chatId) {
+  Stream<List<MessageModel>> getMessages(
+    String chatId, {
+    int limit = _messagesPageSize,
+  }) {
     return firestoreGuardStream(() {
       final chatDocRef = _firestore.collection('chats').doc(chatId);
       final messagesQuery = chatDocRef
@@ -59,15 +67,26 @@ class ChatService {
     required List<String> participants,
   }) async {
     return firestoreGuard(() async {
+      final batch = _firestore.batch();
       final chatDocRef = _firestore.collection('chats').doc(chatId);
+      final messageRef = chatDocRef.collection('messages').doc();
 
-      await chatDocRef.collection('messages').add(message.toMap());
+      // Add message with generated ID
+      final messageData = message.toMap();
+      messageData['id'] = messageRef.id;
+      batch.set(messageRef, messageData);
 
-      await chatDocRef.set({
-        'lastMessage': message.toMap(),
+      // Update chat room with last message and metadata
+      final chatData = {
+        'lastMessage': messageData,
         'participants': participants,
         'timestamp': FieldValue.serverTimestamp(),
-      }, SetOptions(merge: true));
+      };
+
+      batch.set(chatDocRef, chatData, SetOptions(merge: true));
+
+      await batch.commit();
+      await updateUserTypingStatus();
     });
   }
 
@@ -126,6 +145,8 @@ class ChatService {
   ) async {
     return firestoreGuard(() async {
       if (_userId == null) throw Exception("userId is missing");
+      final batch = _firestore.batch();
+
       final chatDocRef = _firestore.collection('chats').doc(chatId);
       final messagesQuery = await chatDocRef
           .collection('messages')
@@ -136,19 +157,23 @@ class ChatService {
         (doc) => doc['senderId'] != _userId,
       );
       for (final doc in unseenFromOther) {
-        await doc.reference.update({'isSeen': true});
+        batch.update(doc.reference, {
+          'isSeen': true,
+          'seenAt': FieldValue.serverTimestamp(),
+        });
       }
       if (unseenFromOther.isNotEmpty) {
         final chatDoc = await chatDocRef.get();
         final lastMessage = chatDoc.data()?['lastMessage'];
 
         if (lastMessage != null && lastMessage['senderId'] != _userId) {
-          await chatDocRef.update({
+          batch.update(chatDocRef, {
             'lastMessage.isSeen': true,
             'lastUpdated': FieldValue.serverTimestamp(),
           });
         }
       }
+      await batch.commit();
     });
   }
 

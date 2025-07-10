@@ -36,7 +36,6 @@ class ChatNotifier extends _$ChatNotifier {
       text: param.text,
     );
     try {
-      updateUserTypingStatus(receiverId: null);
       final result = await ref.read(chatServiceProvider).sendMessage(
             chatId: param.chatId,
             message: message,
