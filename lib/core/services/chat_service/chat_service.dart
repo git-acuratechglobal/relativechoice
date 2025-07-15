@@ -224,7 +224,7 @@ class ChatService {
         case 0:
           await userDocRef.update({
             'isOnline': isOnline,
-            'lastSeen': DateTime.now(),
+            'lastSeen': FieldValue.serverTimestamp(),
           });
       }
     });

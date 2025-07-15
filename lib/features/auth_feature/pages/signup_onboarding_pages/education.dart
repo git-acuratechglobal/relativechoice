@@ -7,6 +7,7 @@ import 'package:relative_choice/features/auth_feature/providers/authprovider.dar
 
 import '../../../../core/widgets/customWidgets.dart';
 import '../../../../core/widgets/faith_options.dart';
+import '../sign_up_pages/sign_up_steps.dart';
 
 class Education extends ConsumerStatefulWidget {
   const Education({super.key});
@@ -110,6 +111,17 @@ class _EducationState extends ConsumerState<Education>
                 title: "Next",
               ),
             ),
+            20.verticalSpace,
+            Center(
+                child: TextButton(
+              child: Text("Skip"),
+              onPressed: () {
+                ref.read(progressBarValueProvider.notifier).state++;
+                ref.read(pageControllerProvider.notifier).state.nextPage(
+                    duration: Duration(microseconds: 500),
+                    curve: Curves.bounceIn);
+              },
+            )),
             32.verticalSpace
           ],
         ),

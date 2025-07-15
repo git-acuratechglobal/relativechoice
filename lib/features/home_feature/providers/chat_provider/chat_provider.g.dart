@@ -434,7 +434,7 @@ class _GetUserModelDataProviderElement
   String get userId => (origin as GetUserModelDataProvider).userId;
 }
 
-String _$chatNotifierHash() => r'4c35c346b52195ca93ec8cf92c3ffb88970e974d';
+String _$chatNotifierHash() => r'414ec23b46bb755df5c284c41444c41c5c29d831';
 
 /// See also [ChatNotifier].
 @ProviderFor(ChatNotifier)

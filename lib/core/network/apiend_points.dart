@@ -116,4 +116,7 @@ class ApiEndPoints {
   static const String reportUser = "report-user";
 
   static const String userShowCaseImages = "activity-feed";
+
+  static const String dailyTips = "daily-tips";
+
 }

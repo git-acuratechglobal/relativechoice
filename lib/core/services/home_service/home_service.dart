@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:relative_choice/core/network/apiend_points.dart';
 import 'package:relative_choice/core/services/auth_service/auth_service.dart';
 import 'package:relative_choice/features/profile_feature/model/user_model.dart';
+import '../../../features/home_feature/models/daily_tip_model.dart';
 import '../../network/api_client.dart';
 import '../local_storage_service/local_storage_service.dart';
 
@@ -161,6 +162,16 @@ class HomeService {
           response.data['connectionsList']['data'];
 
       return usersJsonList.map((e) => User.fromJson(e)).toList();
+    });
+  }
+
+  Future<List<DailyTipModel>> getDailyTips() async {
+    return asyncGuard(() async {
+      final response = await _client.get(ApiEndPoints.dailyTips, headers: {
+        'Authorization': "Bearer $_token",
+      });
+      final List<dynamic> jsonList = response.data['data'];
+      return jsonList.map((e) => DailyTipModel.fromJson(e)).toList();
     });
   }
 }

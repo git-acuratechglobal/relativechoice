@@ -6,6 +6,7 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:relative_choice/features/home_feature/models/daily_tip_model.dart';
 import '../../../../../core/network/apiend_points.dart';
 import '../../../../../core/widgets/asyncwidget.dart';
 import '../../../../../core/widgets/empty_widget.dart';
@@ -93,7 +94,9 @@ class _ActivityFeedTabState extends ConsumerState<ActivityFeedTab> {
                     20.verticalSpace,
 
                     //***DailyTip widget***////
-                    _DailyTipsWidget(),
+                    _DailyTipsWidget(
+                      dailyTips: activeFeed.dailyTips,
+                    ),
 
                     32.verticalSpace,
                     Padding(
@@ -142,8 +145,8 @@ class _ActivityFeedTabState extends ConsumerState<ActivityFeedTab> {
 }
 
 class _DailyTipsWidget extends StatefulWidget {
-  const _DailyTipsWidget();
-
+  const _DailyTipsWidget({required this.dailyTips});
+final List<DailyTipModel> dailyTips;
   @override
   State<_DailyTipsWidget> createState() => _DailyTipsWidgetState();
 }
@@ -153,53 +156,35 @@ class _DailyTipsWidgetState extends State<_DailyTipsWidget> {
   int currentPageIndex = 0;
   bool isForward = true;
 
-  final List<String> titles = [
-    'It’s a great day to connect!',
-    'Find someone new today!',
-    'Start a chat now!',
-  ];
-
-  final List<String> subtitles = [
-    'Message one of your matches now.',
-    'Discover exciting connections.',
-    'Don’t wait, send a message!',
-  ];
+  late Timer _timer;
 
   @override
   void initState() {
     super.initState();
-
-    Timer.periodic(const Duration(seconds: 3), (Timer timer) {
-      if (!mounted)
-        return;
-      setState(() {
-        if (isForward) {
-          if (currentPageIndex < titles.length - 1) {
-            currentPageIndex++;
-          } else {
-            isForward = false;
-            currentPageIndex--;
-          }
-        } else {
-          if (currentPageIndex > 0) {
-            currentPageIndex--;
-          } else {
-            isForward = true;
-            currentPageIndex++;
-          }
-        }
+    _startAutoScroll();
+  }
+  void _startAutoScroll() {
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      final nextPage = _pageController.page!.round() + 1;
+      if (nextPage <  widget.dailyTips.length) {
         _pageController.animateToPage(
-          currentPageIndex,
-          duration: const Duration(milliseconds: 500),
+          nextPage,
+          duration: const Duration(milliseconds: 400),
           curve: Curves.easeInOut,
         );
-      });
+      } else {
+        _pageController.animateToPage(
+          0,
+          duration: const Duration(milliseconds: 400),
+          curve: Curves.easeInOut,
+        );
+      }
     });
   }
-
   @override
   void dispose() {
     _pageController.dispose();
+    _timer.cancel();
     super.dispose();
   }
 
@@ -254,7 +239,7 @@ class _DailyTipsWidgetState extends State<_DailyTipsWidget> {
                   width: 100.w,
                   child: ListView.separated(
                     scrollDirection: Axis.horizontal,
-                    itemCount: titles.length,
+                    itemCount: widget.dailyTips.length,
                     itemBuilder: (context, index) {
                       final bool isSelected = currentPageIndex == index;
                       return AnimatedContainer(
@@ -284,7 +269,7 @@ class _DailyTipsWidgetState extends State<_DailyTipsWidget> {
                     currentPageIndex = index;
                   });
                 },
-                itemCount: titles.length,
+                itemCount: widget.dailyTips.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -293,14 +278,14 @@ class _DailyTipsWidgetState extends State<_DailyTipsWidget> {
                       children: [
                         AutoSizeText(
                           maxLines: 1,
-                          titles[index],
+                          widget.dailyTips[index].title??"",
                           style: TextStyle(
                               fontSize: 18.sp, fontWeight: FontWeight.w800),
                         ),
                         3.verticalSpace,
                         AutoSizeText(
                           maxLines: 1,
-                          subtitles[index],
+                          widget.dailyTips[index].content??"",
                           style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w500,

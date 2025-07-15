@@ -12,8 +12,12 @@ Future<ActivityTabState> activityTabData(Ref ref) async {
       await ref.watch(homeServiceProvider).getSuggestedMatchesPeoplesList();
   final usersShowCase =
       await ref.watch(homeServiceProvider).getUsersShowcaseList();
+
+  final dailyTips = await ref.watch(homeServiceProvider).getDailyTips();
+
   return ActivityTabState(
       matchedPeoplesList: matchedPeoplesData,
       suggestedMatchesList: suggestedMatchesData,
-      usersShowcaseImages: usersShowCase);
+      usersShowcaseImages: usersShowCase,
+      dailyTips: dailyTips);
 }
