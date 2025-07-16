@@ -170,7 +170,7 @@ class HomeService {
       final response = await _client.get(ApiEndPoints.dailyTips, headers: {
         'Authorization': "Bearer $_token",
       });
-      final List<dynamic> jsonList = response.data['data'];
+      final List<dynamic> jsonList = response.data['data']??[];
       return jsonList.map((e) => DailyTipModel.fromJson(e)).toList();
     });
   }

@@ -94,6 +94,7 @@ class _ActivityFeedTabState extends ConsumerState<ActivityFeedTab> {
                     20.verticalSpace,
 
                     //***DailyTip widget***////
+
                     _DailyTipsWidget(
                       dailyTips: activeFeed.dailyTips,
                     ),
@@ -260,9 +261,13 @@ class _DailyTipsWidgetState extends State<_DailyTipsWidget> {
               ],
             ),
             10.verticalSpace,
+
             AspectRatio(
               aspectRatio: 5.0,
-              child: PageView.builder(
+              child: widget.dailyTips.isEmpty?
+              Center(child: Text("No Daily Tips Available")):
+
+              PageView.builder(
                 controller: _pageController,
                 onPageChanged: (index) {
                   setState(() {
@@ -271,6 +276,7 @@ class _DailyTipsWidgetState extends State<_DailyTipsWidget> {
                 },
                 itemCount: widget.dailyTips.length,
                 itemBuilder: (context, index) {
+
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Column(
