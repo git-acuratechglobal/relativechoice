@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/intl.dart';
+import 'package:relative_choice/features/home_feature/models/user_data_model.dart';
 
+import 'blocking_status.dart';
 import 'message_model.dart';
 
 class ChatRoom {
@@ -27,7 +29,15 @@ class ChatRoom {
     );
   }
   String get formattedTime {
-    if(timestamp==null)return "";
+    if (timestamp == null) return "";
     return DateFormat('h:mm a').format(timestamp!);
   }
 }
+
+class ChatRoomState {
+  final UserDataModel otherUserModel;
+  final BlockingStatus blockingStatus;
+  ChatRoomState({required this.otherUserModel, required this.blockingStatus});
+}
+
+enum ChatMenuAction { blockUnblock, search, report }

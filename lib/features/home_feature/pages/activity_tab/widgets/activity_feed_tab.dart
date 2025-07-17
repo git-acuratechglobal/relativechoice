@@ -147,7 +147,7 @@ class _ActivityFeedTabState extends ConsumerState<ActivityFeedTab> {
 
 class _DailyTipsWidget extends StatefulWidget {
   const _DailyTipsWidget({required this.dailyTips});
-final List<DailyTipModel> dailyTips;
+  final List<DailyTipModel> dailyTips;
   @override
   State<_DailyTipsWidget> createState() => _DailyTipsWidgetState();
 }
@@ -164,10 +164,12 @@ class _DailyTipsWidgetState extends State<_DailyTipsWidget> {
     super.initState();
     _startAutoScroll();
   }
+
   void _startAutoScroll() {
+    if (widget.dailyTips.isEmpty) return;
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       final nextPage = _pageController.page!.round() + 1;
-      if (nextPage <  widget.dailyTips.length) {
+      if (nextPage < widget.dailyTips.length) {
         _pageController.animateToPage(
           nextPage,
           duration: const Duration(milliseconds: 400),
@@ -182,10 +184,14 @@ class _DailyTipsWidgetState extends State<_DailyTipsWidget> {
       }
     });
   }
+
   @override
   void dispose() {
-    _pageController.dispose();
-    _timer.cancel();
+    if (widget.dailyTips.isNotEmpty) {
+      _pageController.dispose();
+      _timer.cancel();
+    }
+
     super.dispose();
   }
 
@@ -261,48 +267,46 @@ class _DailyTipsWidgetState extends State<_DailyTipsWidget> {
               ],
             ),
             10.verticalSpace,
-
             AspectRatio(
-              aspectRatio: 5.0,
-              child: widget.dailyTips.isEmpty?
-              Center(child: Text("No Daily Tips Available")):
-
-              PageView.builder(
-                controller: _pageController,
-                onPageChanged: (index) {
-                  setState(() {
-                    currentPageIndex = index;
-                  });
-                },
-                itemCount: widget.dailyTips.length,
-                itemBuilder: (context, index) {
-
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        AutoSizeText(
-                          maxLines: 1,
-                          widget.dailyTips[index].title??"",
-                          style: TextStyle(
-                              fontSize: 18.sp, fontWeight: FontWeight.w800),
-                        ),
-                        3.verticalSpace,
-                        AutoSizeText(
-                          maxLines: 1,
-                          widget.dailyTips[index].content??"",
-                          style: TextStyle(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w500,
-                            color: const Color(0xFF777777),
+              aspectRatio: 2.3,
+              child: widget.dailyTips.isEmpty
+                  ? Center(child: Text("No Daily Tips Available"))
+                  : PageView.builder(
+                      controller: _pageController,
+                      onPageChanged: (index) {
+                        setState(() {
+                          currentPageIndex = index;
+                        });
+                      },
+                      itemCount: widget.dailyTips.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              AutoSizeText(
+                                maxLines: 1,
+                                widget.dailyTips[index].title ?? "",
+                                style: TextStyle(
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w800),
+                              ),
+                              3.verticalSpace,
+                              AutoSizeText(
+                                minFontSize: 14,
+                                widget.dailyTips[index].content ?? "",
+                                style: TextStyle(
+                                  fontSize: 14.sp,
+                                  fontWeight: FontWeight.w500,
+                                  color: const Color(0xFF777777),
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
+                        );
+                      },
                     ),
-                  );
-                },
-              ),
             ),
           ],
         ),

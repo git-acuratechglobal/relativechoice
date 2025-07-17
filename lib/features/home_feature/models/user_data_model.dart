@@ -8,6 +8,7 @@ class UserDataModel {
   final int isOnline;
   final DateTime? lastSeen;
   final String? typingTo;
+  final Map<String,bool> blockedUsers;
   UserDataModel({
     required this.id,
     required this.name,
@@ -15,6 +16,7 @@ class UserDataModel {
     required this.isOnline,
     this.lastSeen,
     this.typingTo,
+    required this.blockedUsers
   });
 
   factory UserDataModel.fromMap(Map<String, dynamic> map) {
@@ -27,6 +29,7 @@ class UserDataModel {
           ? (map['lastSeen'] as Timestamp).toDate()
           : null,
       typingTo: map['typingTo'] ?? null,
+      blockedUsers: Map<String, bool>.from(map['blockedUsers'] ?? {}),
     );
   }
   String? get formateLastSeen {
@@ -34,3 +37,5 @@ class UserDataModel {
     return DateFormat('h:mm a').format(lastSeen!);
   }
 }
+
+

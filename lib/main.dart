@@ -39,12 +39,17 @@ class MyApp extends ConsumerWidget {
     return ScreenUtilInit(
         designSize: Size(375, 812),
         builder: (context, child) {
-          return MaterialApp(
-            title: 'Relative Choice',
-            theme: Themes.lightTheme,
-            // themeMode: themeMode,
-            home: Splashscreen(),
-            debugShowCheckedModeBanner: false,
+          return GestureDetector(
+            onTap: (){
+              FocusScope.of(context).unfocus();
+            },
+            child: MaterialApp(
+              title: 'Relative Choice',
+              theme: Themes.lightTheme,
+              // themeMode: themeMode,
+              home: Splashscreen(),
+              debugShowCheckedModeBanner: false,
+            ),
           );
         });
   }

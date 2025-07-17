@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:rxdart/rxdart.dart';
 import '../../../../core/services/chat_service/chat_service.dart';
+import '../../models/blocking_status.dart';
 import '../../models/chat_room_model.dart';
 import '../../models/message_model.dart';
 import '../../models/send_message_params.dart';
@@ -18,8 +20,19 @@ Stream<List<MessageModel>> messageList(Ref ref, chatId) {
 }
 
 @Riverpod(keepAlive: true)
-Stream<UserDataModel> otherUser(Ref ref, otherUserId) {
-  return ref.watch(chatServiceProvider).getOtherUserData(otherUserId);
+Stream<ChatRoomState> chatRoomData(Ref ref, otherUserId) {
+  final chatService = ref.watch(chatServiceProvider);
+  final otherUserStream = chatService.getOtherUserData(otherUserId);
+  final blockStatusStream = chatService.getBlockingStatus(otherUserId);
+
+  return Rx.combineLatest2<UserDataModel, BlockingStatus, ChatRoomState>(
+    otherUserStream,
+    blockStatusStream,
+    (otherUser, isBlocked) => ChatRoomState(
+      otherUserModel: otherUser,
+      blockingStatus: isBlocked,
+    ),
+  );
 }
 
 @riverpod
@@ -50,8 +63,9 @@ class ChatNotifier extends _$ChatNotifier {
   Future<void> updateUserStatus({required int isOnline}) async {
     state = const AsyncLoading();
     try {
-      final result =
-          ref.read(chatServiceProvider).updateUserStatus(isOnline: isOnline);
+      final result = await ref
+          .read(chatServiceProvider)
+          .updateUserStatus(isOnline: isOnline);
       state = AsyncValue.data(result);
     } catch (e, st) {
       state = AsyncValue.error(e, st);
@@ -61,9 +75,29 @@ class ChatNotifier extends _$ChatNotifier {
   Future<void> updateUserTypingStatus({String? receiverId}) async {
     state = const AsyncLoading();
     try {
-      final result = ref
+      final result = await ref
           .read(chatServiceProvider)
           .updateUserTypingStatus(receiverId: receiverId);
+      state = AsyncValue.data(result);
+    } catch (e, st) {
+      state = AsyncValue.error(e, st);
+    }
+  }
+
+  Future<void> blockUser(String userId) async {
+    state = const AsyncLoading();
+    try {
+      final result = await ref.read(chatServiceProvider).blockUser(userId);
+      state = AsyncValue.data(result);
+    } catch (e, st) {
+      state = AsyncValue.error(e, st);
+    }
+  }
+
+  Future<void> unblockUser(String userId) async {
+    state = const AsyncLoading();
+    try {
+      final result = await ref.read(chatServiceProvider).unblockUser(userId);
       state = AsyncValue.data(result);
     } catch (e, st) {
       state = AsyncValue.error(e, st);

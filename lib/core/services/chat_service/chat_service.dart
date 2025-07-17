@@ -4,7 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:relative_choice/features/profile_feature/providers/user_provider.dart';
+import 'package:rxdart/rxdart.dart';
 
+import '../../../features/home_feature/models/blocking_status.dart';
 import '../../../features/home_feature/models/chat_room_model.dart';
 import '../../../features/home_feature/models/message_model.dart';
 import '../../../features/home_feature/models/user_data_model.dart';
@@ -24,6 +26,8 @@ class ChatService {
   final String? _userId;
 
   static const int _messagesPageSize = 50;
+
+  DocumentSnapshot? _lastDoc;
 
   ChatService(this._firestore, this._userId) {
     _enableOfflineSupport();
@@ -225,6 +229,7 @@ class ChatService {
           await userDocRef.update({
             'isOnline': isOnline,
             'lastSeen': FieldValue.serverTimestamp(),
+            'typingTo': null
           });
       }
     });
@@ -236,6 +241,77 @@ class ChatService {
       final userDocRef = _firestore.collection('users').doc(_userId);
 
       await userDocRef.update({'typingTo': receiverId});
+    });
+  }
+
+  Future<void> blockUser(String userIdToBlock) async {
+    return firestoreGuard(() async {
+      final batch = _firestore.batch();
+      final userDoc = _firestore.collection('users').doc(_userId);
+
+      // Add to blocked users
+      batch.set(
+          userDoc,
+          {
+            'blockedUsers': {userIdToBlock: true},
+          },
+          SetOptions(merge: true));
+
+      await batch.commit();
+    });
+  }
+
+  Future<void> unblockUser(String userIdToUnblock) async {
+    return firestoreGuard(() async {
+      final userDoc = _firestore.collection('users').doc(_userId);
+      await userDoc.update({
+        'blockedUsers.$userIdToUnblock': FieldValue.delete(),
+      });
+    });
+  }
+
+
+  Stream<bool> isUserBlockedByMeStream(String otherUserId) {
+    return firestoreGuardStream(() {
+      return _firestore
+          .collection('users')
+          .doc(_userId)
+          .snapshots()
+          .map((snapshot) {
+        final data = snapshot.data();
+        final blockedUsers = data?['blockedUsers'] as Map<String, dynamic>? ?? {};
+        return blockedUsers[otherUserId] == true;
+      });
+    });
+  }
+
+  Stream<bool> isMeBlockedByThemStream(String otherUserId) {
+    return firestoreGuardStream(() {
+      return _firestore
+          .collection('users')
+          .doc(otherUserId)
+          .snapshots()
+          .map((snapshot) {
+        final data = snapshot.data();
+        final blockedUsers = data?['blockedUsers'] as Map<String, dynamic>? ?? {};
+        return blockedUsers[_userId] == true;
+      });
+    });
+  }
+
+
+  Stream<BlockingStatus> getBlockingStatus(String otherUserId) {
+    return firestoreGuardStream(() {
+      return Rx.combineLatest2(
+        isUserBlockedByMeStream(otherUserId),
+        isMeBlockedByThemStream(otherUserId),
+            (bool iBlockedThem, bool theyBlockedMe) {
+          return BlockingStatus(
+            iBlockedThem: iBlockedThem,
+            theyBlockedMe: theyBlockedMe,
+          );
+        },
+      );
     });
   }
 

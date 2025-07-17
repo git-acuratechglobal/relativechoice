@@ -104,8 +104,7 @@ class _MessagesState extends ConsumerState<Messages> {
                       ),
                       color: Colors.white),
                   child: AsyncWidget(
-                      onRetry: () =>
-                          ref.refresh(chatRoomsProvider),
+                      onRetry: () => ref.refresh(chatRoomsProvider),
                       value: chatRooms,
                       data: (chatRoomsData) {
                         return CustomScrollView(
@@ -220,6 +219,8 @@ class _MessageWidgetState extends ConsumerState<MessageWidget> {
         style: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w700),
       ),
       subtitle: Text(
+        maxLines: 1,
+        overflow: TextOverflow.ellipsis,
         lastMessage?.text ?? "",
         style: TextStyle(
             color: Color(0xFF1A1819),

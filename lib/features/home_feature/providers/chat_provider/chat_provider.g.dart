@@ -173,29 +173,29 @@ class _MessageListProviderElement
   dynamic get chatId => (origin as MessageListProvider).chatId;
 }
 
-String _$otherUserHash() => r'5bbd78618d0a4f328c029a775737cfd8137e7790';
+String _$chatRoomDataHash() => r'c8597ffa468de0274a97550ce90dadb47ec7da1a';
 
-/// See also [otherUser].
-@ProviderFor(otherUser)
-const otherUserProvider = OtherUserFamily();
+/// See also [chatRoomData].
+@ProviderFor(chatRoomData)
+const chatRoomDataProvider = ChatRoomDataFamily();
 
-/// See also [otherUser].
-class OtherUserFamily extends Family<AsyncValue<UserDataModel>> {
-  /// See also [otherUser].
-  const OtherUserFamily();
+/// See also [chatRoomData].
+class ChatRoomDataFamily extends Family<AsyncValue<ChatRoomState>> {
+  /// See also [chatRoomData].
+  const ChatRoomDataFamily();
 
-  /// See also [otherUser].
-  OtherUserProvider call(
+  /// See also [chatRoomData].
+  ChatRoomDataProvider call(
     dynamic otherUserId,
   ) {
-    return OtherUserProvider(
+    return ChatRoomDataProvider(
       otherUserId,
     );
   }
 
   @override
-  OtherUserProvider getProviderOverride(
-    covariant OtherUserProvider provider,
+  ChatRoomDataProvider getProviderOverride(
+    covariant ChatRoomDataProvider provider,
   ) {
     return call(
       provider.otherUserId,
@@ -214,31 +214,32 @@ class OtherUserFamily extends Family<AsyncValue<UserDataModel>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'otherUserProvider';
+  String? get name => r'chatRoomDataProvider';
 }
 
-/// See also [otherUser].
-class OtherUserProvider extends StreamProvider<UserDataModel> {
-  /// See also [otherUser].
-  OtherUserProvider(
+/// See also [chatRoomData].
+class ChatRoomDataProvider extends StreamProvider<ChatRoomState> {
+  /// See also [chatRoomData].
+  ChatRoomDataProvider(
     dynamic otherUserId,
   ) : this._internal(
-          (ref) => otherUser(
-            ref as OtherUserRef,
+          (ref) => chatRoomData(
+            ref as ChatRoomDataRef,
             otherUserId,
           ),
-          from: otherUserProvider,
-          name: r'otherUserProvider',
+          from: chatRoomDataProvider,
+          name: r'chatRoomDataProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$otherUserHash,
-          dependencies: OtherUserFamily._dependencies,
-          allTransitiveDependencies: OtherUserFamily._allTransitiveDependencies,
+                  : _$chatRoomDataHash,
+          dependencies: ChatRoomDataFamily._dependencies,
+          allTransitiveDependencies:
+              ChatRoomDataFamily._allTransitiveDependencies,
           otherUserId: otherUserId,
         );
 
-  OtherUserProvider._internal(
+  ChatRoomDataProvider._internal(
     super._createNotifier, {
     required super.name,
     required super.dependencies,
@@ -252,12 +253,12 @@ class OtherUserProvider extends StreamProvider<UserDataModel> {
 
   @override
   Override overrideWith(
-    Stream<UserDataModel> Function(OtherUserRef provider) create,
+    Stream<ChatRoomState> Function(ChatRoomDataRef provider) create,
   ) {
     return ProviderOverride(
       origin: this,
-      override: OtherUserProvider._internal(
-        (ref) => create(ref as OtherUserRef),
+      override: ChatRoomDataProvider._internal(
+        (ref) => create(ref as ChatRoomDataRef),
         from: from,
         name: null,
         dependencies: null,
@@ -269,13 +270,13 @@ class OtherUserProvider extends StreamProvider<UserDataModel> {
   }
 
   @override
-  StreamProviderElement<UserDataModel> createElement() {
-    return _OtherUserProviderElement(this);
+  StreamProviderElement<ChatRoomState> createElement() {
+    return _ChatRoomDataProviderElement(this);
   }
 
   @override
   bool operator ==(Object other) {
-    return other is OtherUserProvider && other.otherUserId == otherUserId;
+    return other is ChatRoomDataProvider && other.otherUserId == otherUserId;
   }
 
   @override
@@ -289,17 +290,17 @@ class OtherUserProvider extends StreamProvider<UserDataModel> {
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-mixin OtherUserRef on StreamProviderRef<UserDataModel> {
+mixin ChatRoomDataRef on StreamProviderRef<ChatRoomState> {
   /// The parameter `otherUserId` of this provider.
   dynamic get otherUserId;
 }
 
-class _OtherUserProviderElement extends StreamProviderElement<UserDataModel>
-    with OtherUserRef {
-  _OtherUserProviderElement(super.provider);
+class _ChatRoomDataProviderElement extends StreamProviderElement<ChatRoomState>
+    with ChatRoomDataRef {
+  _ChatRoomDataProviderElement(super.provider);
 
   @override
-  dynamic get otherUserId => (origin as OtherUserProvider).otherUserId;
+  dynamic get otherUserId => (origin as ChatRoomDataProvider).otherUserId;
 }
 
 String _$getUserModelDataHash() => r'3d937cd9e73d2978ba3bf9dd1da4077d059263cb';
