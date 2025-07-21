@@ -352,47 +352,14 @@ class _ActiveFeedContainerState extends ConsumerState<ActiveFeedContainer> {
                 ),
               ),
               8.horizontalSpace,
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.user.fullName,
-                    style: TextStyle(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Color(0xFF1A1819)),
-                  ),
-                  // Text(
-                  //   widget.location,
-                  //   style: TextStyle(
-                  //     fontSize: 9.sp,
-                  //     fontWeight: FontWeight.w400,
-                  //     color: Color(0xFF1A1819),
-                  //   ),
-                  // )
-                ],
+
+              Text(
+                widget.user.fullName,
+                style: TextStyle(
+                    fontSize: 13.sp,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF1A1819)),
               ),
-              // Spacer(),
-              // Container(
-              //   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-              //   //width: 90.w,
-              //   height: 40.h,
-              //   decoration: BoxDecoration(
-              //       borderRadius: BorderRadius.circular(40),
-              //       color: Colors.white,
-              //       border: GradientBoxBorder(
-              //           width: 1,
-              //           gradient: LinearGradient(colors: [
-              //             Color(0xFF3EBDE5),
-              //             Color(0xFFCFEB65),
-              //           ]))),
-              //   child: Center(
-              //       child: Text(
-              //     widget.title2,
-              //     style:
-              //         TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w700),
-              //   )),
-              // ),
             ],
           ),
           10.verticalSpace,
