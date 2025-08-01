@@ -1,10 +1,15 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:relative_choice/core/extensions/extensions.dart';
+import '../../features/auth_feature/pages/welcome_screen.dart';
+import '../../main.dart';
+import '../services/local_storage_service/local_storage_service.dart';
+import '../utils/appsnackbar.dart';
 import 'apiend_points.dart';
 import 'dio_exception.dart';
 
 
-
+bool _isLoggingOut = false;
 final dioProvider = Provider<Dio>((ref) {
   final dio = Dio(
     BaseOptions(
@@ -26,10 +31,18 @@ final dioProvider = Provider<Dio>((ref) {
     requestHeader: true,
     responseHeader: false,
   ));
-
   dio.interceptors.add(
     InterceptorsWrapper(
-      onError: (e, handler) {
+      onError: (e, handler) async {
+        if (e.response?.statusCode == 401) {
+          if (_isLoggingOut) return;
+          _isLoggingOut = true;
+          final context = navigatorKey.currentContext;
+          if (context == null) return;
+          ref.read(localStorageServiceProvider).clearSession();
+          context.navigateAndRemoveUntil(WelcomeScreen());
+          Utils.showSnackBar(context, "Session expired. Please login again.");
+        }
         final message = DioExceptions.fromDioError(e);
         return handler.reject(
           DioException(requestOptions: e.requestOptions, error: message),
@@ -40,5 +53,3 @@ final dioProvider = Provider<Dio>((ref) {
 
   return dio;
 });
-
-

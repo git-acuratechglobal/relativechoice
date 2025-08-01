@@ -9,6 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'core/Theme/theme.dart';
 import 'features/auth_feature/pages/splashscreen/splashScreen.dart';
 
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -40,10 +42,11 @@ class MyApp extends ConsumerWidget {
         designSize: Size(375, 812),
         builder: (context, child) {
           return GestureDetector(
-            onTap: (){
+            onTap: () {
               FocusScope.of(context).unfocus();
             },
             child: MaterialApp(
+              navigatorKey: navigatorKey,
               title: 'Relative Choice',
               theme: Themes.lightTheme,
               // themeMode: themeMode,
