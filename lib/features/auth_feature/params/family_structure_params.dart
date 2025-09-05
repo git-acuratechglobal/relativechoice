@@ -23,7 +23,7 @@ class FamilyStructure with _$FamilyStructure {
 class FamilyStructureParams extends _$FamilyStructureParams {
   @override
   FamilyStructure build() {
-    return FamilyStructure();
+    return const FamilyStructure();
   }
 
   void update(FamilyStructure Function(FamilyStructure? p) updateParam) {

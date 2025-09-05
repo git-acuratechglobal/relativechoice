@@ -35,19 +35,19 @@ class FlagMessagePopup extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(8),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: Color.fromRGBO(0, 0, 0, 0.1),
-                        offset: const Offset(0, -4),
+                        offset: Offset(0, -4),
                         blurRadius: 8,
                         spreadRadius: 2,
                       ),
                     ]),
                 child: Row(
                   children: [
-                    Icon(Icons.flag_rounded),
+                    const Icon(Icons.flag_rounded),
                     05.horizontalSpace,
-                    Text(
+                    const Text(
                       'Flag this message',
                       style:
                           TextStyle(fontSize: 13, fontWeight: FontWeight.w400),

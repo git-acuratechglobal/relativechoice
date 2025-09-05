@@ -40,10 +40,10 @@ class _SuggestedContainerState extends State<SuggestedContainer> {
           child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Color(0xFFF4FCFF),
+                color: const Color(0xFFF4FCFF),
                 border: GradientBoxBorder(
                     width: 2.w,
-                    gradient: LinearGradient(colors: [
+                    gradient: const LinearGradient(colors: [
                       Color(0xFF3EBDE5),
                       Color(0xFFCFEB65),
                     ]))),
@@ -57,7 +57,7 @@ class _SuggestedContainerState extends State<SuggestedContainer> {
                     child: Container(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12, vertical: 4),
-                      decoration: ShapeDecoration(
+                      decoration: const ShapeDecoration(
                         color: Color(0xFF57C05C),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.only(
@@ -112,7 +112,7 @@ class _SuggestedContainerState extends State<SuggestedContainer> {
                           style: TextStyle(
                             fontSize: 11.sp,
                             fontWeight: FontWeight.w400,
-                            color: Color(0xFF1A1819),
+                            color: const Color(0xFF1A1819),
                           ),
                         ),
                       ),
@@ -127,10 +127,10 @@ class _SuggestedContainerState extends State<SuggestedContainer> {
                               fontSize: 15.sp, fontWeight: FontWeight.w700),
                         ),
                         Container(
-                          margin: EdgeInsets.only(left: 3),
+                          margin: const EdgeInsets.only(left: 3),
                           width: 6,
                           height: 6,
-                          decoration: ShapeDecoration(
+                          decoration: const ShapeDecoration(
                             color: Color(0xFF12E398),
                             shape: OvalBorder(),
                           ),
@@ -177,7 +177,7 @@ class _LikedislikeIcon2State extends State<LikedislikeIcon2> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: Colors.white,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Colors.black12,
                   blurRadius: 10,
@@ -199,8 +199,8 @@ class _LikedislikeIcon2State extends State<LikedislikeIcon2> {
             width: 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
-              color: Color(0xFF005FF2),
-              boxShadow: [
+              color: const Color(0xFF005FF2),
+              boxShadow: const [
                 BoxShadow(
                   color: Colors.black12,
                   blurRadius: 10,
@@ -226,7 +226,7 @@ class _LikedislikeIcon2State extends State<LikedislikeIcon2> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: Colors.white,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Colors.black12,
                   blurRadius: 10,
@@ -269,7 +269,7 @@ class _LikedislikeIconState extends State<LikedislikeIcon> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: Colors.white,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Colors.black12,
                   blurRadius: 10,
@@ -292,7 +292,7 @@ class _LikedislikeIconState extends State<LikedislikeIcon> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: Colors.white,
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Colors.black12,
                   blurRadius: 10,
@@ -323,7 +323,7 @@ class _ChaticonState extends State<Chaticon> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.navigateTo(ChatScreen(userId: 0,));
+        context.navigateTo(const ChatScreen(userId: 0,));
       },
       child: Container(
         height: 40,
@@ -333,7 +333,7 @@ class _ChaticonState extends State<Chaticon> {
             borderRadius: BorderRadius.circular(16),
           ),
           color: Colors.white,
-          shadows: [
+          shadows: const [
             BoxShadow(
               color: Color(0x1E000000),
               blurRadius: 8,
@@ -354,7 +354,7 @@ class _ChaticonState extends State<Chaticon> {
               'Chat',
               textAlign: TextAlign.center,
               style: TextStyle(
-                color: Color(0xFF57C05C),
+                color: const Color(0xFF57C05C),
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w700,
               ),
@@ -379,7 +379,7 @@ class CrossButton extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
           color: Colors.white,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black12,
               blurRadius: 10,

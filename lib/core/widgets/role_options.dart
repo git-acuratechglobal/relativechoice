@@ -57,9 +57,9 @@ class _RoleOptionsState extends ConsumerState<RoleOptions> {
                 child: Container(
                   width: 327,
                   height: 116,
-                  child: Center(
+                  child: const Center(
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      padding: EdgeInsets.symmetric(horizontal: 15),
                       child: Text(
                         'Adult children must be 18 years or older to join independently of a family unit. Children under 18 are only matched as part of a family unit.',
                         style: TextStyle(
@@ -78,7 +78,7 @@ class _RoleOptionsState extends ConsumerState<RoleOptions> {
         );
       },
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.zero,
     );
   }
@@ -103,7 +103,7 @@ class _DistanceOptionsState extends State<DistanceOptions> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         padding: EdgeInsets.zero,
         itemCount: distance.length,
@@ -131,7 +131,7 @@ class _DistanceOptionsState extends State<DistanceOptions> {
                 ),
                 Text(
                   distance[index],
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black, fontWeight: FontWeight.w500),
                 ),
               ],

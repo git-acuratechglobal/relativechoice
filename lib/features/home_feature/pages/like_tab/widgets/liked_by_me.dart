@@ -26,9 +26,9 @@ class _LikedByMeWidgetState extends ConsumerState<LikedByMeWidget> {
         if (widget.likedByMeList.isNotEmpty)
           GridView.builder(
             padding: EdgeInsets.zero,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               childAspectRatio: 0.72,
               crossAxisCount: 2,
               crossAxisSpacing: 14,
@@ -74,7 +74,7 @@ class _LikedByMeWidgetState extends ConsumerState<LikedByMeWidget> {
         else
           Center(
             child: Padding(
-              padding: EdgeInsets.only(top: 30),
+              padding: const EdgeInsets.only(top: 30),
               child: EmptyWidget(
                   message: "No Peoples Found!",
                   onPressed: () => ref.refresh(getLikedUserListProvider)),

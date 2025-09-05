@@ -30,7 +30,7 @@ class _FaithPerferencesState extends ConsumerState<FaithPerferences>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: 'Faith Perferences ',
               text2:
                   "Great job so far! Now, let us know about the faiths you'd feel comfortable connecting with in your chosen family. Choose the options that best reflect your preferences, or select 'Open to All."),
@@ -49,7 +49,7 @@ class _FaithPerferencesState extends ConsumerState<FaithPerferences>
             name: 'Faith Perferences',
           ),
           24.verticalSpace,
-          Divider(
+          const Divider(
             color: Color(0xFFF7F7F7),
             thickness: 8,
           ),

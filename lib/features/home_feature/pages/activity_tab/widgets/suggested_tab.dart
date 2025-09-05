@@ -49,15 +49,16 @@ class _SuggestedTabState extends ConsumerState<SuggestedTab> {
   ];
   @override
   Widget build(BuildContext context) {
-    final isConnectionLoadingState=ref.watch(connectionNotifierProvider).isLoading;
+    final isConnectionLoadingState =
+        ref.watch(connectionNotifierProvider).isLoading;
     return Stack(
       children: [
         Scaffold(
           body: RefreshIndicator(
-            color: Color(0xFFCFEB65),
+            color: const Color(0xFFCFEB65),
             onRefresh: () async => ref.refresh(activityTabDataProvider),
             child: SingleChildScrollView(
-              physics: AlwaysScrollableScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(),
               child: AsyncWidget(
                   value: ref.watch(activityTabDataProvider),
                   data: (data) {
@@ -73,14 +74,14 @@ class _SuggestedTabState extends ConsumerState<SuggestedTab> {
                             ),
                           )
                         : RefreshIndicator(
-                            color: Color(0xFFCFEB65),
+                            color: const Color(0xFFCFEB65),
                             onRefresh: () async =>
                                 ref.refresh(activityTabDataProvider),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 24, vertical: 10),
                                   child: Text.rich(
                                     TextSpan(
@@ -95,7 +96,7 @@ class _SuggestedTabState extends ConsumerState<SuggestedTab> {
                                         TextSpan(
                                           text: '${suggestedData.length}',
                                           style: TextStyle(
-                                            color: Color(0xFF005FF2),
+                                            color: const Color(0xFF005FF2),
                                             fontSize: 20.sp,
                                             fontWeight: FontWeight.w800,
                                           ),
@@ -105,19 +106,20 @@ class _SuggestedTabState extends ConsumerState<SuggestedTab> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 24, vertical: 10),
                                   child: GridView.builder(
-                                      physics: NeverScrollableScrollPhysics(),
-                                      padding: EdgeInsets.only(top: 24),
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      padding: const EdgeInsets.only(top: 24),
                                       shrinkWrap: true,
                                       gridDelegate:
                                           SliverGridDelegateWithFixedCrossAxisCount(
-                                        childAspectRatio: 0.72,
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 14,
-                                        mainAxisSpacing: 30,
-                                      ),
+                                              // childAspectRatio: 0.72,
+                                              crossAxisCount: 2,
+                                              crossAxisSpacing: 14,
+                                              mainAxisSpacing: 30,
+                                              mainAxisExtent: 0.28.sh),
                                       itemCount: suggestedData.length,
                                       itemBuilder: (context, index) {
                                         var suggestion = suggestedData[index];
@@ -125,35 +127,43 @@ class _SuggestedTabState extends ConsumerState<SuggestedTab> {
                                           onTap: () {
                                             context.navigateTo(UserProfile(
                                               userId: suggestion.id ?? 0,
-                                              matchedScore: suggestion.roundedAverageScore,
+                                              matchedScore: suggestion
+                                                  .roundedAverageScore,
                                             ));
                                           },
                                           child: SuggestedContainer(
                                             title: suggestion.fullName,
                                             imagePath: suggestion.image,
                                             subtitle: "3.0 mi away",
-                                            text: "${suggestion.roundedAverageScore}% Match",
+                                            text:
+                                                "${suggestion.roundedAverageScore}% Match",
                                             widget: LikedislikeIcon2(
                                               onHeartIconTap: () {
                                                 ref
-                                                    .read(connectionNotifierProvider
-                                                        .notifier)
+                                                    .read(
+                                                        connectionNotifierProvider
+                                                            .notifier)
                                                     .sendConnectionRequest(
-                                                        userId: suggestion.id ?? 0);
+                                                        userId:
+                                                            suggestion.id ?? 0);
                                               },
                                               onCrossIconTap: () {
                                                 ref
-                                                    .read(connectionNotifierProvider
-                                                        .notifier)
+                                                    .read(
+                                                        connectionNotifierProvider
+                                                            .notifier)
                                                     .removeFromSuggestion(
-                                                        userId: suggestion.id ?? 0);
+                                                        userId:
+                                                            suggestion.id ?? 0);
                                               },
                                               onMayBeIconTap: () {
                                                 ref
-                                                    .read(connectionNotifierProvider
-                                                    .notifier)
+                                                    .read(
+                                                        connectionNotifierProvider
+                                                            .notifier)
                                                     .addToMayBeList(
-                                                    userId: suggestion.id ?? 0);
+                                                        userId:
+                                                            suggestion.id ?? 0);
                                               },
                                             ),
                                           ),
@@ -169,7 +179,7 @@ class _SuggestedTabState extends ConsumerState<SuggestedTab> {
             ),
           ),
         ),
-        if(isConnectionLoadingState) PageLoadingWidget()
+        if (isConnectionLoadingState) const PageLoadingWidget()
       ],
     );
   }

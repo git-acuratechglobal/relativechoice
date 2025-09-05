@@ -14,7 +14,7 @@ class _BellIconState extends ConsumerState<BellIcon> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -24,7 +24,7 @@ class _BellIconState extends ConsumerState<BellIcon> {
                   onPressed: () {
                     context.pop();
                   },
-                  icon: BackIcon()),
+                  icon: const BackIcon()),
               Expanded(
                 child: Center(
                   child: Text(
@@ -41,7 +41,7 @@ class _BellIconState extends ConsumerState<BellIcon> {
           36.verticalSpace,
           Row(
             children: [
-              Expanded(
+              const Expanded(
                 child: Divider(color: Color(0xFFE8E6EA), thickness: 1),
               ),
               15.horizontalSpace,
@@ -49,13 +49,13 @@ class _BellIconState extends ConsumerState<BellIcon> {
                 'Today',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: Color(0xFF6C727F),
+                  color: const Color(0xFF6C727F),
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w400,
                 ),
               ),
               15.horizontalSpace,
-              Expanded(
+              const Expanded(
                 child: Divider(color: Color(0xFFE8E6EA), thickness: 1),
               ),
             ],
@@ -112,7 +112,7 @@ class _BellIconState extends ConsumerState<BellIcon> {
                   Text(
                     title,
                     style: TextStyle(
-                      color: Color(0xFF1A1819),
+                      color: const Color(0xFF1A1819),
                       fontSize: 16.sp,
                       fontWeight: FontWeight.w700,
                     ),
@@ -120,7 +120,7 @@ class _BellIconState extends ConsumerState<BellIcon> {
                   Text(
                     message,
                     style: TextStyle(
-                      color: Color(0xFF1A1819),
+                      color: const Color(0xFF1A1819),
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
                       //overflow: TextOverflow.visible
@@ -130,7 +130,7 @@ class _BellIconState extends ConsumerState<BellIcon> {
                   Text(
                     time,
                     style: TextStyle(
-                      color: Color(0xFF6C727F),
+                      color: const Color(0xFF6C727F),
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
                     ),
@@ -142,7 +142,7 @@ class _BellIconState extends ConsumerState<BellIcon> {
         ),
         20.verticalSpace,
         Divider(
-          color: Color(0xFFE8E6EA),
+          color: const Color(0xFFE8E6EA),
           thickness: 1.h,
         )
       ],

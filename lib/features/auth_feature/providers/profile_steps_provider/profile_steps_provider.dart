@@ -10,7 +10,7 @@ class UpdateProfileSteps extends _$UpdateProfileSteps {
   }
 
   Future<void> updateProfileSteps({ String ?steps}) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     state = await AsyncValue.guard(() {
       return ref.watch(authServiceProvider).updateProfileSteps(steps: steps);
     });

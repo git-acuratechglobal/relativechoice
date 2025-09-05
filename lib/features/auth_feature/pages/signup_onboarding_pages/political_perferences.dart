@@ -25,12 +25,12 @@ class _PoliticalPerferencesState extends ConsumerState<PoliticalPerferences>
   Widget build(BuildContext context) {
     super.build(context);
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: 'Political Preferences ',
               text2:
                   "So, we need to talk politics—just a bit! People seek family connections in many ways, and for some, sharing similar political views helps with finding common ground. Let us know if this matters to you."),
@@ -49,7 +49,7 @@ class _PoliticalPerferencesState extends ConsumerState<PoliticalPerferences>
             name: 'Options',
           ),
           24.verticalSpace,
-          Divider(
+          const Divider(
             color: Color(0xFFF7F7F7),
             thickness: 8,
           ),
@@ -72,7 +72,7 @@ class _PoliticalPerferencesState extends ConsumerState<PoliticalPerferences>
                   text:
                       'Please note this information will appear on your public profile. Content must be respectful and follow ',
                   style: TextStyle(
-                    color: Color(0xFF777777),
+                    color: const Color(0xFF777777),
                     fontSize: 12.sp,
                     fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.w500,
@@ -81,7 +81,7 @@ class _PoliticalPerferencesState extends ConsumerState<PoliticalPerferences>
                 TextSpan(
                   text: 'Community Guidelines.',
                   style: TextStyle(
-                    color: Color(0xFF005FF2),
+                    color: const Color(0xFF005FF2),
                     fontSize: 12.sp,
                     fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.w700,

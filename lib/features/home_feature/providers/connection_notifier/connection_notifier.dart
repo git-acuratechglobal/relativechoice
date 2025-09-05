@@ -14,7 +14,7 @@ class ConnectionNotifier extends _$ConnectionNotifier {
   }
 
   Future<void> sendConnectionRequest({required int userId}) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final data = await ref
           .watch(homeServiceProvider)
@@ -28,7 +28,7 @@ class ConnectionNotifier extends _$ConnectionNotifier {
 
 
   Future<void> cancelSendRequest({required int userId}) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final data = await ref
           .watch(homeServiceProvider)
@@ -41,7 +41,7 @@ class ConnectionNotifier extends _$ConnectionNotifier {
   }
 
   Future<void> acceptConnectionRequest({required int userId}) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final data = await ref
           .watch(homeServiceProvider)
@@ -54,7 +54,7 @@ class ConnectionNotifier extends _$ConnectionNotifier {
   }
 
   Future<void> deleteConnectionRequest({required int userId}) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final data = await ref
           .watch(homeServiceProvider)
@@ -66,7 +66,7 @@ class ConnectionNotifier extends _$ConnectionNotifier {
   }
 
   Future<void> removeFromSuggestion({required int userId}) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final data = await ref
           .watch(homeServiceProvider)
@@ -80,7 +80,7 @@ class ConnectionNotifier extends _$ConnectionNotifier {
 
 
   Future<void> addToMayBeList({required int userId}) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final data = await ref
           .watch(homeServiceProvider)

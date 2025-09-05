@@ -30,77 +30,77 @@ import '../../features/profile_feature/pages/story.dart';
 class Common {
   static List<(Widget, Color)>  stepPageList(usertype){
 return [
-    (   Personal_Information(),
-     Color(0xFFF6FFF4),
+    (   const Personal_Information(),
+     const Color(0xFFF6FFF4),
     
       
     ),
     (
-      FamilyStructureScreen(),
-    Color(0XFFF4FCFF),
+      const FamilyStructureScreen(),
+    const Color(0XFFF4FCFF),
     ),
-   if(usertype != 'Individual' && usertype != 'Single Parent') (AdditionalScreen(), Colors.white),
+   if(usertype != 'Individual' && usertype != 'Single Parent') (const AdditionalScreen(), Colors.white),
 
-    if(usertype != 'Individual' && usertype != 'Couple') (AdditionalScreen2(), Colors.white),
+    if(usertype != 'Individual' && usertype != 'Couple') (const AdditionalScreen2(), Colors.white),
     (
-      Education(),
-      Color(0xFFF6FFF4),
+      const Education(),
+      const Color(0xFFF6FFF4),
     ),
     (
-      PrimaryAccount(),
-      Color(0XFFF4FCFF),
+      const PrimaryAccount(),
+      const Color(0XFFF4FCFF),
     ),
   if(usertype != 'Individual' && usertype != 'Single Parent')  (
-      PartnerFaith(),
+      const PartnerFaith(),
       Colors.white,
     ),
-    (RaceEthnicity(), 
-     Color(0xFFF6FFF4),
+    (const RaceEthnicity(), 
+     const Color(0xFFF6FFF4),
     ),
-    if(usertype != 'Individual' && usertype != 'Single Parent')(RaceEthnicityPartner(), 
-     Color(0XFFF4FCFF),
+    if(usertype != 'Individual' && usertype != 'Single Parent')(const RaceEthnicityPartner(), 
+     const Color(0XFFF4FCFF),
     ),
-    if(usertype != 'Individual'&& usertype != 'Couple')(RaceEthnicityChildren(), Colors.white),
+    if(usertype != 'Individual'&& usertype != 'Couple')(const RaceEthnicityChildren(), Colors.white),
     (
-      Politics(),
-      Color(0xFFF6FFF4),
+      const Politics(),
+      const Color(0xFFF6FFF4),
     ),
-   if(usertype != 'Individual' && usertype != 'Single Parent') (PartnerPolitics(), 
-    Color(0XFFF4FCFF),
+   if(usertype != 'Individual' && usertype != 'Single Parent') (const PartnerPolitics(), 
+    const Color(0XFFF4FCFF),
     ),
     (
-      PersonalLifestyle(),
+      const PersonalLifestyle(),
       Colors.white,
     ),
     (
-      Pets(),
-      Color(0xFFF6FFF4),
+      const Pets(),
+      const Color(0xFFF6FFF4),
     ),
   ];
   }  
   static List<(Widget, Color)> stepPageList2 = [
     (
-      RoleSought(),
-      Color(0xFFF6FFF4),
+      const RoleSought(),
+      const Color(0xFFF6FFF4),
     ),
     (
-      RolesFullfill(),
-      Color(0XFFF4FCFF),
+      const RolesFullfill(),
+      const Color(0XFFF4FCFF),
     ),
-    (InvolvementScreen(), Colors.white),
+    (const InvolvementScreen(), Colors.white),
     (
-      Distance(),
-      Color(0xFFF6FFF4),
+      const Distance(),
+      const Color(0xFFF6FFF4),
     ),
-    (FaithPerferences(), Color(0XFFF4FCFF)),
-    (RaceEthnicity2(), Colors.white),
+    (const FaithPerferences(), const Color(0XFFF4FCFF)),
+    (const RaceEthnicity2(), Colors.white),
     (
-      PoliticalPerferences(),
-      Color(0xFFF6FFF4),
+      const PoliticalPerferences(),
+      const Color(0xFFF6FFF4),
     ),
     (
-      LifestylePerference(),
-      Color(0XFFF4FCFF),
+      const LifestylePerference(),
+      const Color(0XFFF4FCFF),
     ),
   ];
 
@@ -185,12 +185,12 @@ return [
 
   static List<(Widget, Color)> stepPageList3 = [
     (
-      ProfilePicture(),
-      Color(0xFFF6FFF4),
+      const ProfilePicture(),
+      const Color(0xFFF6FFF4),
     ),
-    (Story(), Color(0xFFF4FCFF)),
-    (ReadyToUpload(),Colors.white),
-    (PhotoUpload(),Color(0xFFF6FFF4),)
+    (const Story(), const Color(0xFFF4FCFF)),
+    (const ReadyToUpload(),Colors.white),
+    (const PhotoUpload(),const Color(0xFFF6FFF4),)
   ];
 
   List<String> roleoptions = [

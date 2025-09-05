@@ -22,12 +22,12 @@ class _InvolvementScreenState extends ConsumerState<InvolvementScreen> with Auto
   Widget build(BuildContext context) {
     super.build(context);
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: 'Involvement ',
               text2:
                   "How involved do you hope to be with your chosen family? Select all that apply to let others know the type of connection you're open to."),
@@ -40,7 +40,7 @@ class _InvolvementScreenState extends ConsumerState<InvolvementScreen> with Auto
             },
           ),
           24.verticalSpace,
-          Divider(
+          const Divider(
             color: Color(0xFFF7F7F7),
             thickness: 8,
           ),
@@ -53,7 +53,7 @@ class _InvolvementScreenState extends ConsumerState<InvolvementScreen> with Auto
           Text('Looking for something specific? Let us know!',
               style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w800)),
           TextFormField(
-            decoration: InputDecoration(
+            decoration: const InputDecoration(
                 hintStyle: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
@@ -84,7 +84,7 @@ class _InvolvementScreenState extends ConsumerState<InvolvementScreen> with Auto
             decoration: InputDecoration(
               hintText: "Any specific details you want to add...",
               hintStyle: TextStyle(
-                color: Color(0xFF777777),
+                color: const Color(0xFF777777),
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
               ),
@@ -107,8 +107,8 @@ class _InvolvementScreenState extends ConsumerState<InvolvementScreen> with Auto
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
-                color: Color(0xFFFFFFFF),
-                shadows: [
+                color: const Color(0xFFFFFFFF),
+                shadows: const [
                   BoxShadow(
                     color: Color.fromARGB(255, 239, 237, 237),
                     blurRadius: 14,
@@ -126,14 +126,14 @@ class _InvolvementScreenState extends ConsumerState<InvolvementScreen> with Auto
                         TextSpan(
                             text: "Please Note: ",
                             style: TextStyle(
-                                color: Color(0xFF57C05C),
+                                color: const Color(0xFF57C05C),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w800)),
                         TextSpan(
                             text:
                                 "The algorithm cannot match based on this, but their response will appear on their profile. ",
                             style: TextStyle(
-                                color: Color(0xFF777777),
+                                color: const Color(0xFF777777),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w500)),
                       ],
@@ -144,7 +144,7 @@ class _InvolvementScreenState extends ConsumerState<InvolvementScreen> with Auto
             ),
           ),
           32.verticalSpace,
-          CommonText(),
+          const CommonText(),
           32.verticalSpace,
           PrimaryButton(
               isLoading: ref.watch(authNotifierProvider).isLoading,

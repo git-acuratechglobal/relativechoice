@@ -18,7 +18,7 @@ class _RoleOptionsFilterState extends ConsumerState<RoleOptionsFilter> {
     return ListView.builder(
       itemCount: Common().roleoptions.length,
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.zero,
       itemBuilder: (context, index) {
         final role = Common().roleoptions[index];

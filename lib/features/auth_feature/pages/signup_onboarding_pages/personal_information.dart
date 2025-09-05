@@ -77,18 +77,18 @@ class _Personal_InformationState extends ConsumerState<Personal_Information>
         FocusScope.of(context).unfocus();
       },
       child: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Form(
           key: _key,
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             16.verticalSpace,
-            CustomText(
+            const CustomText(
                 text: 'Personal Information',
                 text2: 'Please add your personal information below'),
             24.verticalSpace,
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
               height: 206.h,
               //  width: 327.w,
               decoration: ShapeDecoration(
@@ -96,7 +96,7 @@ class _Personal_InformationState extends ConsumerState<Personal_Information>
                     borderRadius: BorderRadius.circular(20),
                   ),
                   color: Colors.white,
-                  shadows: [
+                  shadows: const [
                     BoxShadow(
                       color: Color(0x0C000000),
                       blurRadius: 14,
@@ -109,7 +109,7 @@ class _Personal_InformationState extends ConsumerState<Personal_Information>
                   TextSpan(
                     text: 'Please Note : ',
                     style: TextStyle(
-                      color: Color(0xFF57C05C),
+                      color: const Color(0xFF57C05C),
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w700,
                     ),
@@ -118,7 +118,7 @@ class _Personal_InformationState extends ConsumerState<Personal_Information>
                     text:
                         ' For the safety of the community and everyone within it, including you, we require your real first and last name during account creation. This information will remain private and will not be visible on your profile. Instead, you’ll choose a username that will be displayed publicly. If your circumstances change—such as marriage, divorce, or a name change—you can update your real name later in your account settings.',
                     style: TextStyle(
-                      color: Color(0xFF777777),
+                      color: const Color(0xFF777777),
                       fontSize: 12.h,
                       fontWeight: FontWeight.w400,
                     ),
@@ -152,7 +152,7 @@ class _Personal_InformationState extends ConsumerState<Personal_Information>
                 style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF777777),
+                    color: const Color(0xFF777777),
                     fontStyle: FontStyle.italic)),
             24.verticalSpace,
             CoustomText(
@@ -177,7 +177,7 @@ class _Personal_InformationState extends ConsumerState<Personal_Information>
                 style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF777777),
+                    color: const Color(0xFF777777),
                     fontStyle: FontStyle.italic)),
             24.verticalSpace,
             CoustomText(
@@ -202,7 +202,7 @@ class _Personal_InformationState extends ConsumerState<Personal_Information>
                 style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF777777),
+                    color: const Color(0xFF777777),
                     fontStyle: FontStyle.italic)),
             24.verticalSpace,
             ZipCodeField(
@@ -214,7 +214,7 @@ class _Personal_InformationState extends ConsumerState<Personal_Information>
                 style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF777777),
+                    color: const Color(0xFF777777),
                     fontStyle: FontStyle.italic)),
             24.verticalSpace,
             FormField<String>(
@@ -236,7 +236,7 @@ class _Personal_InformationState extends ConsumerState<Personal_Information>
                           fontSize: 14.sp, fontWeight: FontWeight.w800),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: 24),
+                      padding: const EdgeInsets.only(right: 24),
                       child: Row(
                         children: [
                           8.verticalSpace,
@@ -315,10 +315,10 @@ class _Personal_InformationState extends ConsumerState<Personal_Information>
                 style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF777777),
+                    color: const Color(0xFF777777),
                     fontStyle: FontStyle.italic)),
             32.verticalSpace,
-            CommonText(),
+            const CommonText(),
             32.verticalSpace,
             PrimaryButton(
               isLoading: ref.watch(authNotifierProvider).isLoading,

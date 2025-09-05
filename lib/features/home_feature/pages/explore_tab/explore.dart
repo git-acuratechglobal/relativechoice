@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -55,7 +54,7 @@ class _ExploreState extends ConsumerState<Explore> {
       children: [
         Scaffold(
             body: RefreshIndicator(
-                color: Color(0xFFCFEB65),
+                color: const Color(0xFFCFEB65),
                 onRefresh: () async {
                   ref.invalidate(getSuggestedMatchesPeoplesListProvider);
                 },
@@ -71,7 +70,7 @@ class _ExploreState extends ConsumerState<Explore> {
                             return Container(
                               // height: 1.sh,
                               width: 1.sw,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   gradient: LinearGradient(
                                       begin: Alignment.centerLeft,
                                       end: Alignment.centerRight,
@@ -81,7 +80,7 @@ class _ExploreState extends ConsumerState<Explore> {
                                     // Color(0xFFEDFEFF),
                                   ])),
                               child: SingleChildScrollView(
-                                physics: AlwaysScrollableScrollPhysics(),
+                                physics: const AlwaysScrollableScrollPhysics(),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -92,19 +91,20 @@ class _ExploreState extends ConsumerState<Explore> {
                                               userProfile.user?.address ?? "",
                                         )),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                           horizontal: 24, vertical: 10),
                                       child: TextField(
                                         cursorColor: Colors.black,
                                         decoration: InputDecoration(
                                           filled: true,
                                           fillColor: Colors.white,
-                                          contentPadding: EdgeInsets.symmetric(
-                                              vertical: 16),
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 16),
                                           hintText: 'Search....',
-                                          hintStyle: TextStyle(
+                                          hintStyle: const TextStyle(
                                               color: Color(0xFF7777777)),
-                                          prefixIcon: Icon(Icons.search,
+                                          prefixIcon: const Icon(Icons.search,
                                               color: Color(0xFF7777777)),
                                           border: OutlineInputBorder(
                                             borderRadius:
@@ -118,8 +118,8 @@ class _ExploreState extends ConsumerState<Explore> {
                                     ),
                                     10.verticalSpace,
                                     Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 24),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 24),
                                       child: Text(
                                         'Suggested matches',
                                         style: TextStyle(
@@ -132,13 +132,14 @@ class _ExploreState extends ConsumerState<Explore> {
                                     10.verticalSpace,
                                     if (matchingPeople
                                         .sortedByUserScore.isEmpty)
-                                      Center(child: Text("No peoples found"))
+                                      const Center(
+                                          child: Text("No peoples found"))
                                     else
                                       SizedBox(
                                         height: 170,
                                         child: ListView.separated(
                                           separatorBuilder: (context, index) {
-                                            return Padding(
+                                            return const Padding(
                                                 padding: EdgeInsets.symmetric(
                                                     horizontal: 10));
                                           },
@@ -169,23 +170,24 @@ class _ExploreState extends ConsumerState<Explore> {
                                           itemCount: matchingPeople
                                               .sortedByUserScore.length,
                                           shrinkWrap: true,
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 24, right: 24),
                                         ),
                                       ),
                                     24.verticalSpace,
                                     Container(
                                         width: 1.sw,
-                                        decoration:
-                                            BoxDecoration(color: Colors.white),
+                                        decoration: const BoxDecoration(
+                                            color: Colors.white),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
                                             32.verticalSpace,
                                             Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 24),
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 24),
                                               child: Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -211,7 +213,7 @@ class _ExploreState extends ConsumerState<Explore> {
                                                 ],
                                               ),
                                             ),
-                                            // 14.verticalSpace,
+                                            30.verticalSpace,
                                             if (matchingPeople
                                                 .sortedByUserScore.isEmpty) ...[
                                               60.verticalSpace,
@@ -226,19 +228,22 @@ class _ExploreState extends ConsumerState<Explore> {
                                               Align(
                                                   alignment: Alignment.center,
                                                   child: SizedBox(
-                                                    height: 500,
-                                                    width: 315.w,
+                                                    // color: Colors.black,
+                                                    // height: 500,
+                                                    height: 0.45.sh,
+                                                    // width: 315.w,
+                                                    width: 0.75.sw,
                                                     child: CardSwiper(
+                                                      padding: EdgeInsets.zero,
                                                       allowedSwipeDirection: matchingPeople
                                                                   .sortedByUserScore
                                                                   .length ==
                                                               1
-                                                          ? AllowedSwipeDirection
+                                                          ? const AllowedSwipeDirection
                                                               .none()
-                                                          : AllowedSwipeDirection
+                                                          : const AllowedSwipeDirection
                                                               .symmetric(
-                                                                  horizontal:
-                                                                      true),
+                                                              horizontal: true),
                                                       numberOfCardsDisplayed:
                                                           (matchingPeople
                                                                       .sortedByUserScore
@@ -249,7 +254,7 @@ class _ExploreState extends ConsumerState<Explore> {
                                                       controller:
                                                           CardSwiperController(),
                                                       backCardOffset:
-                                                          Offset(45, 0),
+                                                          const Offset(45, 0),
                                                       cardBuilder: (
                                                         context,
                                                         index,
@@ -298,7 +303,6 @@ class _ExploreState extends ConsumerState<Explore> {
                                                       },
                                                     ),
                                                   )),
-
                                             70.verticalSpace,
                                           ],
                                         )),
@@ -308,7 +312,7 @@ class _ExploreState extends ConsumerState<Explore> {
                             );
                           });
                     }))),
-        if (connectionState.isLoading) PageLoadingWidget()
+        if (connectionState.isLoading) const PageLoadingWidget()
       ],
     );
   }
@@ -324,7 +328,7 @@ class _ExploreState extends ConsumerState<Explore> {
       constraints: BoxConstraints.tight(Size(MediaQuery.of(context).size.width,
           MediaQuery.of(context).size.height * .93)),
       builder: (ctx) {
-        return FilterBottomSheet();
+        return const FilterBottomSheet();
       },
     );
   }
@@ -361,20 +365,20 @@ class _ExploreAppBarState extends State<ExploreAppBar> {
                       data: (data) {
                         return Text(
                           data.address,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Color(0xFF22172A),
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                           ),
                         );
                       }),
-                  Icon(
+                  const Icon(
                     Icons.arrow_drop_down_outlined,
                     color: Color(0xFF005FF2),
                   )
                 ],
               ),
-              Text(
+              const Text(
                 'Explore',
                 style: TextStyle(
                   color: Colors.black,
@@ -385,7 +389,7 @@ class _ExploreAppBarState extends State<ExploreAppBar> {
               ),
             ],
           ),
-          actions: [5.horizontalSpace, notification()]),
+          actions: [5.horizontalSpace, const notification()]),
     );
   }
 }
@@ -432,8 +436,8 @@ class _ExploreContainerState extends State<ExploreContainer> {
             height: 160,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: Color(0xFFF4FCFF),
-                border: GradientBoxBorder(
+                color: const Color(0xFFF4FCFF),
+                border: const GradientBoxBorder(
                     width: 1,
                     gradient: LinearGradient(colors: [
                       Color(0xFF3EBDE5),
@@ -450,9 +454,9 @@ class _ExploreContainerState extends State<ExploreContainer> {
                       width: 48,
                       height: 24,
                       decoration: BoxDecoration(
-                          color: Color(0xFF57C05C),
+                          color: const Color(0xFF57C05C),
                           borderRadius: BorderRadius.circular(20)),
-                      child: Center(
+                      child: const Center(
                           child: Text(
                         'New',
                         style: TextStyle(
@@ -490,7 +494,7 @@ class _ExploreContainerState extends State<ExploreContainer> {
                   ),
                   child: Text(
                     widget.subtitle,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w400,
                       color: Color(0xFF1A1819),
@@ -508,13 +512,13 @@ class _ExploreContainerState extends State<ExploreContainer> {
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             widget.userModel.fullName,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 11, fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),
                       2.horizontalSpace,
-                      Icon(
+                      const Icon(
                         size: 9,
                         Icons.circle,
                         color: Color(0xFF12E398),
@@ -539,7 +543,7 @@ class _ExploreContainerState extends State<ExploreContainer> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       color: Colors.white,
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black12,
                           blurRadius: 10,
@@ -563,7 +567,7 @@ class _ExploreContainerState extends State<ExploreContainer> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       color: Colors.white,
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                           color: Colors.black12,
                           blurRadius: 10,
@@ -599,8 +603,8 @@ class _ExploreBoxState extends ConsumerState<ExploreBox> {
       // height: 343,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: Color(0xFFF4FCFF),
-          border: GradientBoxBorder(
+          color: const Color(0xFFF4FCFF),
+          border: const GradientBoxBorder(
               width: 1,
               gradient: LinearGradient(colors: [
                 Color(0xFF3EBDE5),
@@ -612,7 +616,7 @@ class _ExploreBoxState extends ConsumerState<ExploreBox> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 left: 7,
               ),
               width: 90,
@@ -620,7 +624,7 @@ class _ExploreBoxState extends ConsumerState<ExploreBox> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40),
                   color: Colors.white,
-                  border: GradientBoxBorder(
+                  border: const GradientBoxBorder(
                       width: 1,
                       gradient: LinearGradient(colors: [
                         Color(0xFF3EBDE5),
@@ -639,7 +643,7 @@ class _ExploreBoxState extends ConsumerState<ExploreBox> {
                   height: 126,
                   width: 126,
                 )),
-            Text(
+            const Text(
               'If you could live\nanywhere in the world, where would you pick?',
               style: TextStyle(
                 fontSize: 20,
@@ -663,14 +667,14 @@ class _ExploreBoxState extends ConsumerState<ExploreBox> {
                       style: TextStyle(
                           fontSize: 13.sp,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF1A1819)),
+                          color: const Color(0xFF1A1819)),
                     ),
                     Text(
                       'STUTTGART',
                       style: TextStyle(
                         fontSize: 9.sp,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xFF1A1819),
+                        color: const Color(0xFF1A1819),
                       ),
                     )
                   ],
@@ -707,7 +711,6 @@ class _CardContainer2State extends ConsumerState<CardContainer2> {
   Widget build(BuildContext context) {
     return Stack(
       clipBehavior: Clip.none,
-      alignment: Alignment.center,
       children: [
         InkWell(
           onTap: () {
@@ -717,11 +720,12 @@ class _CardContainer2State extends ConsumerState<CardContainer2> {
             ));
           },
           child: Container(
-            height: 400,
+            // height: 400,
+            height: 0.41.sh,
             decoration: BoxDecoration(
-                color: Color(0xFFF4FCFF),
+                color: const Color(0xFFF4FCFF),
                 borderRadius: BorderRadius.circular(20),
-                border: GradientBoxBorder(
+                border: const GradientBoxBorder(
                     width: 1,
                     gradient: LinearGradient(colors: [
                       Color(0xFF3EBDE5),
@@ -791,13 +795,13 @@ class _CardContainer2State extends ConsumerState<CardContainer2> {
                 8.verticalSpace,
                 Center(
                   child: Container(
-                    padding: EdgeInsets.only(right: 8),
+                    padding: const EdgeInsets.only(right: 8),
                     height: 50.h,
                     width: 102.w,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       color: Colors.white,
-                      border: GradientBoxBorder(
+                      border: const GradientBoxBorder(
                         width: 2,
                         gradient: LinearGradient(
                           colors: [
@@ -815,9 +819,8 @@ class _CardContainer2State extends ConsumerState<CardContainer2> {
                         CircularPercentIndicator(
                           radius: 20.0,
                           lineWidth: 3.0,
-                          percent: 0.6,
-                          // (widget.userModel.roundedAverageScore / 100)
-                          //     .clamp(0.0, 1.0),
+                          percent: (widget.userModel.roundedAverageScore / 100)
+                              .clamp(0.0, 1.0),
                           center: Text(
                             '${widget.userModel.roundedAverageScore}%',
                             style: TextStyle(
@@ -827,8 +830,8 @@ class _CardContainer2State extends ConsumerState<CardContainer2> {
                             textAlign: TextAlign.center,
                           ),
                           circularStrokeCap: CircularStrokeCap.round,
-                          progressColor: Color(0xFF57C05C),
-                          backgroundColor: Color(0xFFDDE5DC),
+                          progressColor: const Color(0xFF57C05C),
+                          backgroundColor: const Color(0xFFDDE5DC),
                           animation: true,
                           animationDuration: 500,
                         ),
@@ -868,7 +871,7 @@ class _CardContainer2State extends ConsumerState<CardContainer2> {
                             height: 16,
                             width: 16,
                           ),
-                          Text(
+                          const Text(
                             ' 2.4 miles',
                             style: TextStyle(
                               color: Color(0xFF1A1819),
@@ -887,12 +890,13 @@ class _CardContainer2State extends ConsumerState<CardContainer2> {
         ),
         if (widget.isShowing == true)
           Positioned(
-            bottom: -10,
+            bottom: -0.01.sh,
             child: Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 36,
               ),
               child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   InkWell(
                     onTap: widget.onCrossTap,
@@ -904,28 +908,14 @@ class _CardContainer2State extends ConsumerState<CardContainer2> {
                       ),
                     ),
                   ),
-                  // 14.horizontalSpace,
-                  // InkWell(
-                  //   onTap: () {
-                  //     context.navigateTo(Chatscreen());
-                  //   },
-                  //   child: stackContainer(
-                  //     image: Image.asset(
-                  //       'asset/images/messageicon.png',
-                  //       height: 26,
-                  //       width: 26,
-                  //     ),
-                  //     onTap: () {},
-                  //   ),
-                  // ),
                   14.horizontalSpace,
                   Container(
                     height: 84.h,
                     width: 84.w,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        color: Color(0xFF005FF2),
-                        boxShadow: [
+                        color: const Color(0xFF005FF2),
+                        boxShadow: const [
                           BoxShadow(
                             color: Color(0x33005FF2),
                             blurRadius: 10,
@@ -950,7 +940,7 @@ class _CardContainer2State extends ConsumerState<CardContainer2> {
                       child: stackContainer(
                         image: Image.asset(
                           height: 70,
-                          color: Color(0xFF005FF2),
+                          color: const Color(0xFF005FF2),
                           'asset/images/like.png',
                         ),
                       )),

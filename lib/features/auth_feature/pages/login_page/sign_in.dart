@@ -24,7 +24,7 @@ class _SignInState extends ConsumerState<SignIn> {
   Widget build(BuildContext context) {
     final validator = ref.watch(validatorsProvider);
     return Scaffold(
-      backgroundColor: Color(0XFFF4FCFF),
+      backgroundColor: const Color(0XFFF4FCFF),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Form(
@@ -44,13 +44,13 @@ class _SignInState extends ConsumerState<SignIn> {
                   ),
                   InkWell(
                       onTap: () {
-                        context.navigateTo(WelcomeScreen());
+                        context.navigateTo(const WelcomeScreen());
                       },
-                      child: CrossIcon())
+                      child: const CrossIcon())
                 ],
               ),
               32.verticalSpace,
-              CustomText(
+              const CustomText(
                   text: "Sign-In",
                   text2: "Enter your email and passcode to sign in."),
               32.verticalSpace,
@@ -65,9 +65,9 @@ class _SignInState extends ConsumerState<SignIn> {
                   hintStyle: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF777777)),
+                      color: const Color(0xFF777777)),
                   hintText: "Please enter your email address...",
-                  fillColor: Color(0xFFFFFFFF),
+                  fillColor: const Color(0xFFFFFFFF),
                 ),
                 autofocus: false,
                 cursorColor: Colors.black,
@@ -95,9 +95,9 @@ class _SignInState extends ConsumerState<SignIn> {
                     hintStyle: TextStyle(
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w500,
-                        color: Color(0xFF777777)),
+                        color: const Color(0xFF777777)),
                     hintText: "Please enter your password...",
-                    fillColor: Color(0xFFFFFFFF),
+                    fillColor: const Color(0xFFFFFFFF),
                     suffixIcon: InkWell(
                       onTap: () {
                         setState(() {
@@ -125,12 +125,12 @@ class _SignInState extends ConsumerState<SignIn> {
                 alignment: Alignment.centerRight,
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(context, CreateRoute(Email()));
+                    Navigator.push(context, CreateRoute(const Email()));
                   },
                   child: Text(
                     'Forgot Password?',
                     style: TextStyle(
-                      color: Color(0xFF005FF2),
+                      color: const Color(0xFF005FF2),
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w800,
                       decoration: TextDecoration.underline,
@@ -155,7 +155,7 @@ class _SignInState extends ConsumerState<SignIn> {
                     text: TextSpan(
                         text: 'Need help?',
                         style: TextStyle(
-                            color: Color(0xFF005FF2),
+                            color: const Color(0xFF005FF2),
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w800,
                             decoration: TextDecoration.underline))),
@@ -163,7 +163,7 @@ class _SignInState extends ConsumerState<SignIn> {
               31.verticalSpace,
               Row(
                 children: [
-                  Expanded(
+                  const Expanded(
                     child: Divider(color: Color(0xFFE8E6EA), thickness: 1),
                   ),
                   15.horizontalSpace,
@@ -171,13 +171,13 @@ class _SignInState extends ConsumerState<SignIn> {
                     'Today',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Color(0xFF6C727F),
+                      color: const Color(0xFF6C727F),
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
                   15.horizontalSpace,
-                  Expanded(
+                  const Expanded(
                     child: Divider(color: Color(0xFFE8E6EA), thickness: 1),
                   ),
                 ],
@@ -200,7 +200,7 @@ class _SignInState extends ConsumerState<SignIn> {
                 title: 'Continue with Google',
                 boxcolor: Colors.white,
                 textcolor: Colors.black,
-                circularcontainercolor: Color(0xFFF1F1F1),
+                circularcontainercolor: const Color(0xFFF1F1F1),
                 image: Image.asset('asset/images/google.png'),
                 onTap: () {},
               ),
@@ -209,7 +209,7 @@ class _SignInState extends ConsumerState<SignIn> {
                 title: 'Continue with Facebook',
                 boxcolor: Colors.white,
                 textcolor: Colors.black,
-                circularcontainercolor: Color(0xFFF1F1F1),
+                circularcontainercolor: const Color(0xFFF1F1F1),
                 image: Image.asset('asset/images/facebook.png'),
                 onTap: () {},
               ),

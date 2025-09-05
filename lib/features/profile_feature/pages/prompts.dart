@@ -38,9 +38,9 @@ class _PromptsState extends ConsumerState<Prompts> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -49,22 +49,22 @@ class _PromptsState extends ConsumerState<Prompts> {
                   onPressed: () {
                     context.pop();
                   },
-                  icon: BackIcon()),
-              CustomText(
+                  icon: const BackIcon()),
+              const CustomText(
                   text: 'Tell Your Story – Your Way!',
                   text2:
                       "Who you are—and who your family is—can’t be summed up in a checkbox. That’s where these prompts come in!"),
               Text(
                 'Pick the ones that speak to you, have fun with them, and let your personality (or your family’s personality) shine. Feeling a change? No problem! You can swap them out anytime to keep things fresh.',
                 style: TextStyle(
-                  color: Color(0xFF777777),
+                  color: const Color(0xFF777777),
                   fontSize: 14.sp,
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.w500,
                 ),
               ),
               24.verticalSpace,
-              Divider(
+              const Divider(
                 thickness: 1,
                 color: Color(0xFFE6E6E6),
               ),
@@ -74,7 +74,7 @@ class _PromptsState extends ConsumerState<Prompts> {
                     TextSpan(
                       text: 'Go ahead',
                       style: TextStyle(
-                        color: Color(0xFF333333),
+                        color: const Color(0xFF333333),
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w800,
                       ),
@@ -82,7 +82,7 @@ class _PromptsState extends ConsumerState<Prompts> {
                     TextSpan(
                       text: '-make your profile 😎 as unique as you are!',
                       style: TextStyle(
-                        color: Color(0xFF333333),
+                        color: const Color(0xFF333333),
                         fontSize: 16.sp,
                         fontWeight: FontWeight.w500,
                       ),
@@ -91,16 +91,16 @@ class _PromptsState extends ConsumerState<Prompts> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              Divider(
+              const Divider(
                 thickness: 1,
                 color: Color(0xFFE6E6E6),
               ),
               ListView.separated(
                 physics:
-                NeverScrollableScrollPhysics(),
+                const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 itemCount: prompts.length,
-                separatorBuilder: (context, index) => SizedBox(height: 10),
+                separatorBuilder: (context, index) => const SizedBox(height: 10),
                 itemBuilder: (context, index) {
                   return PromptContainer(
                     text2: helperTexts[prompts[index]],

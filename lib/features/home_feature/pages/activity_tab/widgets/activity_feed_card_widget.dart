@@ -23,7 +23,7 @@ class _FeedCardWidgetState extends State<FeedCardWidget> {
   Widget build(BuildContext context) {
     return Stack(
       clipBehavior: Clip.none,
-      alignment: Alignment.center,
+      alignment: Alignment.topCenter,
       children: [
         InkWell(
           onTap: () {
@@ -34,11 +34,11 @@ class _FeedCardWidgetState extends State<FeedCardWidget> {
             ));
           },
           child: Container(
-            height: 400,
+            height: 0.41.sh,
             decoration: BoxDecoration(
-                color: Color(0xFFF4FCFF),
+                color: const Color(0xFFF4FCFF),
                 borderRadius: BorderRadius.circular(20),
-                border: GradientBoxBorder(
+                border: const GradientBoxBorder(
                     width: 1,
                     gradient: LinearGradient(colors: [
                       Color(0xFF3EBDE5),
@@ -64,13 +64,13 @@ class _FeedCardWidgetState extends State<FeedCardWidget> {
                 15.verticalSpace,
                 8.verticalSpace,
                 Container(
-                  padding: EdgeInsets.only(right: 8),
+                  padding: const EdgeInsets.only(right: 8),
                   height: 50.h,
                   width: 102.w,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: Colors.white,
-                    border: GradientBoxBorder(
+                    border: const GradientBoxBorder(
                       width: 2,
                       gradient: LinearGradient(
                         colors: [
@@ -88,20 +88,20 @@ class _FeedCardWidgetState extends State<FeedCardWidget> {
                       CircularPercentIndicator(
                         radius: 20.0,
                         lineWidth: 3.0,
-                        percent: 0.6,
-                        // (widget.userModel.roundedAverageScore / 100)
-                        //     .clamp(0.0, 1.0),
+                        percent:
+                        (widget.userModel.roundedAverageScore / 100)
+                            .clamp(0.0, 1.0),
                         center: Text(
                           '${widget.userModel.roundedAverageScore}%',
                           style: TextStyle(
                             fontSize: 8.sp,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w900,
                           ),
                           textAlign: TextAlign.center,
                         ),
                         circularStrokeCap: CircularStrokeCap.round,
-                        progressColor: Color(0xFF57C05C),
-                        backgroundColor: Color(0xFFDDE5DC),
+                        progressColor: const Color(0xFF57C05C),
+                        backgroundColor: const Color(0xFFDDE5DC),
                         animation: true,
                         animationDuration: 500,
                       ),
@@ -140,7 +140,7 @@ class _FeedCardWidgetState extends State<FeedCardWidget> {
                             height: 16,
                             width: 16,
                           ),
-                          Text(
+                          const Text(
                             ' 2.4 miles',
                             style: TextStyle(
                               color: Color(0xFF1A1819),
@@ -159,31 +159,22 @@ class _FeedCardWidgetState extends State<FeedCardWidget> {
         ),
         if (widget.isShowing == true)
           Positioned(
-            bottom: -7,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Center(
-                  child: InkWell(
-                    onTap: () {
-                      context.navigateTo(ChatScreen(
-                        userName: widget.userModel.fullName,
-                        userImage: widget.userModel.image,
-                        userId: widget.userModel.id ?? 0,
-                      ));
-                    },
-                    child: stackContainer(
-                      height: 80,
-                      width: 80,
-                      image: Image.asset(
-                        'asset/images/messageicon.png',
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+            bottom: 0.01.sh,
+            child: InkWell(
+              onTap: () {
+                context.navigateTo(ChatScreen(
+                  userName: widget.userModel.fullName,
+                  userImage: widget.userModel.image,
+                  userId: widget.userModel.id ?? 0,
+                ));
+              },
+              child: stackContainer(
+                height: 80.h, // responsive size
+                width: 80.h,
+                image: Image.asset('asset/images/messageicon.png'),
+              ),
             ),
-          )
+          ),
       ],
     );
   }
@@ -209,7 +200,7 @@ class _stackContainerState extends State<stackContainer> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
           color: Colors.white,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black12,
               blurRadius: 10,

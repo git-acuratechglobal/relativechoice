@@ -43,7 +43,7 @@ class AuthNotifier extends _$AuthNotifier {
   }
 
   Future<void> loginUser() async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       UserModel? userModel;
       final response = await ref.watch(authServiceProvider).loginUser(
@@ -80,7 +80,7 @@ class AuthNotifier extends _$AuthNotifier {
       await ref
           .watch(authServiceProvider)
           .sendOtp(email: _signUpParam['email']);
-      return AuthState(authEvent: AuthEvent.otpSent);
+      return const AuthState(authEvent: AuthEvent.otpSent);
     });
   }
 
@@ -127,7 +127,7 @@ class AuthNotifier extends _$AuthNotifier {
   }
 
   Future<void> updateFamilyStructure() async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final familyStructure = ref.watch(familyStructureParamsProvider);
 

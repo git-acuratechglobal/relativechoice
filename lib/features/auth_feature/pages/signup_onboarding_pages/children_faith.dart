@@ -16,12 +16,12 @@ class _ChildrenFaithState extends ConsumerState<ChildrenFaith> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.only(left: 24, right: 24),
+      padding: const EdgeInsets.only(left: 24, right: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: "Children's Faith",
               text2:
                   "For families with children of various faith backgrounds, please select all that apply. You may add additional details in the text box if you wish."),
@@ -32,7 +32,7 @@ class _ChildrenFaithState extends ConsumerState<ChildrenFaith> {
           17.verticalSpace,
           FaithOptions(onChanged: (String selectedFaiths) {  },),
           24.verticalSpace,
-          Divider(
+          const Divider(
             color: Color(0xFFF7F7F7),
             thickness: 8,
           ),
@@ -47,7 +47,7 @@ class _ChildrenFaithState extends ConsumerState<ChildrenFaith> {
               onPressed: () {
                 ref.read(progressBarValueProvider.notifier).state++;
                 ref.read(pageControllerProvider.notifier).state.nextPage(
-                    duration: Duration(microseconds: 500),
+                    duration: const Duration(microseconds: 500),
                     curve: Curves.bounceIn);
               },
               child: Text(

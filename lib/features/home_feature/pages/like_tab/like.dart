@@ -32,10 +32,10 @@ class _LikeState extends ConsumerState<Like>
       children: [
         Scaffold(
           body: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24),
+            padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Column(
               children: [
-                appbar2(),
+                const appbar2(),
                 _LikePageTabBar(
                   tabController: tabController,
                   label: 'Liked By Me',
@@ -53,12 +53,12 @@ class _LikeState extends ConsumerState<Like>
                             onRefresh: () async =>
                                 ref.refresh(getLikedUserListProvider),
                             child: TabBarView(
-                                physics: NeverScrollableScrollPhysics(),
+                                physics: const NeverScrollableScrollPhysics(),
                                 controller: tabController,
                                 children: [
                                   /// LikedByMe Tab
                                   RefreshIndicator(
-                                    color: Color(0xFFCFEB65),
+                                    color: const Color(0xFFCFEB65),
                                     onRefresh: () async {
                                       ref.invalidate(getLikedUserListProvider);
                                     },
@@ -74,7 +74,7 @@ class _LikeState extends ConsumerState<Like>
 
                                   /// LikedMe Tab
                                   RefreshIndicator(
-                                    color: Color(0xFFCFEB65),
+                                    color: const Color(0xFFCFEB65),
                                     onRefresh: () async {
                                       ref.invalidate(getLikedUserListProvider);
                                     },
@@ -89,7 +89,7 @@ class _LikeState extends ConsumerState<Like>
 
                                   /// Maybe Tab
                                   RefreshIndicator(
-                                    color: Color(0xFFCFEB65),
+                                    color: const Color(0xFFCFEB65),
                                     onRefresh: () async {
                                       ref.invalidate(getLikedUserListProvider);
                                     },
@@ -108,7 +108,7 @@ class _LikeState extends ConsumerState<Like>
             ),
           ),
         ),
-        if (connectionState.isLoading) PageLoadingWidget()
+        if (connectionState.isLoading) const PageLoadingWidget()
       ],
     );
   }
@@ -128,7 +128,7 @@ class _appbar2State extends State<appbar2> {
         padding: const EdgeInsets.symmetric(vertical: 24),
         child: AppBar(
             automaticallyImplyLeading: false,
-            title: Align(
+            title: const Align(
               alignment: Alignment.topLeft,
               child: Text(
                 'Likes',
@@ -140,7 +140,7 @@ class _appbar2State extends State<appbar2> {
                 textAlign: TextAlign.left,
               ),
             ),
-            actions: [notification()]));
+            actions: const [notification()]));
   }
 }
 
@@ -168,27 +168,27 @@ class _LikePageTabBarState extends State<_LikePageTabBar> {
       width: 343.0.sp,
       height: 44.0.sp,
       decoration: ShapeDecoration(
-        color: Color(0xFFF4FCFF),
+        color: const Color(0xFFF4FCFF),
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Color(0xFFDEDEDE)),
+          side: const BorderSide(width: 1, color: Color(0xFFDEDEDE)),
           borderRadius: BorderRadius.circular(46),
         ),
       ),
       child: TabBar(
         indicatorWeight: 1,
-        padding: EdgeInsets.symmetric(vertical: 2),
+        padding: const EdgeInsets.symmetric(vertical: 2),
         indicatorColor: Colors.transparent,
         controller: widget.tabController,
         tabAlignment: TabAlignment.fill,
         indicator: const BoxDecoration(),
         indicatorSize: TabBarIndicatorSize.tab,
-        labelPadding: EdgeInsets.symmetric(horizontal: 5),
+        labelPadding: const EdgeInsets.symmetric(horizontal: 5),
         tabs: [
           Padding(
             padding: const EdgeInsets.only(top: 1),
             child: TabContainer(
               title: widget.label,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
               ),
               isSelected: selectedTab == 0,
@@ -196,12 +196,12 @@ class _LikePageTabBarState extends State<_LikePageTabBar> {
           ),
           TabContainer(
             title: widget.label2,
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black),
             isSelected: selectedTab == 1,
           ),
           TabContainer(
             title: widget.label3,
-            style: TextStyle(color: Colors.black),
+            style: const TextStyle(color: Colors.black),
             isSelected: selectedTab == 2,
           ),
         ],

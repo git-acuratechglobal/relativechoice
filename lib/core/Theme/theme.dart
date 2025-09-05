@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:relative_choice/core/extensions/extensions.dart';
 
@@ -10,12 +8,12 @@ class Themes {
       brightness: Brightness.light,
       fontFamily: 'Montserrat',
       // scaffoldBackgroundColor: Color(0xFFD7ED5D),
-      colorScheme: ColorScheme.light(primary: Colors.white),
+      colorScheme: const ColorScheme.light(primary: Colors.white),
       textTheme: _textTheme.apply(
         bodyColor: Colors.black,
         displayColor: Colors.black,
       ),
-      inputDecorationTheme: InputDecorationTheme(
+      inputDecorationTheme: const InputDecorationTheme(
         border: OutlineInputBorder(
           borderSide: BorderSide(color: Color(0xFFDFDFDF)),
           borderRadius: BorderRadius.all(Radius.circular(16)),
@@ -41,11 +39,11 @@ class Themes {
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-        minimumSize: Size.fromHeight(56),
-        shape: StadiumBorder(),
-        backgroundColor: Color(0xFF005FF2),
+        minimumSize: const Size.fromHeight(56),
+        shape: const StadiumBorder(),
+        backgroundColor: const Color(0xFF005FF2),
         foregroundColor: Colors.white,
-        textStyle: TextStyle(
+        textStyle: const TextStyle(
           color: Colors.white,
           fontSize: 20,
           fontFamily: 'Montserrat',
@@ -57,8 +55,8 @@ class Themes {
           style: OutlinedButton.styleFrom(
         backgroundColor: Colors.white,
             foregroundColor: Colors.black,
-        fixedSize: Size(200, 50),
-        textStyle: TextStyle(
+        fixedSize: const Size(200, 50),
+        textStyle: const TextStyle(
           color: Colors.black,
           fontSize: 20,
           fontFamily: 'Montserrat',
@@ -95,12 +93,12 @@ class Themes {
           }
           return Colors.transparent;
         }),
-        backgroundColor: Color(0xFFF6FFF4),
-        dayStyle: TextStyle(
+        backgroundColor: const Color(0xFFF6FFF4),
+        dayStyle: const TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.w500,
         ),
-        yearStyle: TextStyle(
+        yearStyle: const TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.bold,
         ),
@@ -109,7 +107,7 @@ class Themes {
           fontWeight: FontWeight.w600,
         ),
         todayForegroundColor: WidgetStateProperty.all(
-          Color(0xFFF6FFF4),
+          const Color(0xFFF6FFF4),
         ),
         todayBackgroundColor: WidgetStateProperty.all(Colors.green),
       ),
@@ -117,7 +115,7 @@ class Themes {
         fillColor:
             WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
           if (states.contains(WidgetState.selected)) {
-            return Color(0xFF57C05C);
+            return const Color(0xFF57C05C);
           }
           return Colors.white;
         }),
@@ -150,7 +148,7 @@ class Themes {
           fontFamily: "Montserrat",
           fontSize: 16.0,
           fontVariations: FontVariations.w500,
-          color: Color(0xFF333333)),
+          color: const Color(0xFF333333)),
       bodyLarge: const TextStyle(
         fontFamily: "Montserrat",
         fontSize: 15,
@@ -159,7 +157,7 @@ class Themes {
           fontFamily: "Montserrat",
           fontSize: 14,
           fontVariations: FontVariations.w500,
-          color: Color(0xFF777777)),
+          color: const Color(0xFF777777)),
       bodySmall: const TextStyle(
         fontFamily: "Montserrat",
         fontSize: 12,

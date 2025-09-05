@@ -21,9 +21,9 @@ class _EmailState extends ConsumerState<Email> {
   Widget build(BuildContext context) {
     final validator=ref.watch(validatorsProvider);
     return Scaffold(
-      backgroundColor: Color(0XFFF4FCFF),
+      backgroundColor: const Color(0XFFF4FCFF),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,18 +37,18 @@ class _EmailState extends ConsumerState<Email> {
                       onPressed: () {
                         context.pop();
                       },
-                      icon: BackIcon()),
-                  Center(child: topImage()),
+                      icon: const BackIcon()),
+                  const Center(child: topImage()),
                   50.horizontalSpace
                 ],
               ),
             ),
             32.verticalSpace,
-            CustomText(
+            const CustomText(
                 text: "Enter Your Email!",
                 text2: "Please enter the email We'll \nemail you a code to verify your account."),
             32.verticalSpace,
-            Text(
+            const Text(
               "Enter your email",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
@@ -56,7 +56,7 @@ class _EmailState extends ConsumerState<Email> {
             TextFormField(
               validator: (email)=>validator.validateEmail(email),
               autofocus: false,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Please enter the email.',
                 hintStyle: TextStyle(color: Color(0xFF777777),)
               ),
@@ -69,11 +69,11 @@ class _EmailState extends ConsumerState<Email> {
             24.verticalSpace,
             ElevatedButton(
                 onPressed: () {
-                   Navigator.push(context, CreateRoute(VerifyCode()));
+                   Navigator.push(context, CreateRoute(const VerifyCode()));
                 },
-                child: Text('Submit')),
+                child: const Text('Submit')),
             16.verticalSpace,
-            Center(
+            const Center(
               child: Text.rich(
                 TextSpan(
                   children: [

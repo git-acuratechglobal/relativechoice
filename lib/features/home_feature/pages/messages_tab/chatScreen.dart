@@ -8,9 +8,7 @@ import 'package:relative_choice/core/utils/appsnackbar.dart';
 import 'package:relative_choice/core/widgets/asyncwidget.dart';
 import 'package:relative_choice/core/widgets/backicon.dart';
 import 'package:relative_choice/core/widgets/network_image_widget.dart';
-import 'package:relative_choice/features/home_feature/models/blocking_status.dart';
 import 'package:relative_choice/features/home_feature/models/message_model.dart';
-import 'package:relative_choice/features/home_feature/models/user_data_model.dart';
 import 'package:relative_choice/features/home_feature/pages/messages_tab/widgets/message_text_field.dart';
 import 'package:relative_choice/features/home_feature/pages/messages_tab/widgets/message_bubble_widget.dart';
 import 'package:relative_choice/features/profile_feature/providers/user_provider.dart';
@@ -99,8 +97,8 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                           ),
                           Expanded(
                             child: ListView.separated(
-                              padding: EdgeInsets.only(bottom: 10),
-                              physics: AlwaysScrollableScrollPhysics(),
+                              padding: const EdgeInsets.only(bottom: 10),
+                              physics: const AlwaysScrollableScrollPhysics(),
                               reverse: true,
                               itemBuilder: (BuildContext context, int index) {
                                 final data = messages[index];
@@ -126,10 +124,10 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                           ),
                           Container(
                             decoration:
-                                BoxDecoration(color: Colors.white, boxShadow: [
+                                const BoxDecoration(color: Colors.white, boxShadow: [
                               BoxShadow(
                                 color: Color.fromRGBO(0, 0, 0, 0.1),
-                                offset: const Offset(0, -4),
+                                offset: Offset(0, -4),
                                 blurRadius: 8,
                                 spreadRadius: 2,
                               ),
@@ -140,10 +138,10 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                                   ? SizedBox(
                                       width: 1.sw,
                                       height: 0.06.sh,
-                                      child: Center(
+                                      child: const Center(
                                           child: Text("You blocked this user")))
                                   : chatRoomData.blockingStatus.theyBlockedMe
-                                      ? SizedBox.shrink()
+                                      ? const SizedBox.shrink()
                                       : MessageTextField(
                                           onTapOutSide: (val) {
                                             ref
@@ -197,18 +195,18 @@ Widget _buildTodayDivider() {
     padding: const EdgeInsets.symmetric(horizontal: 24),
     child: Row(
       children: [
-        Expanded(child: Divider(color: Color(0xFFE8E6EA), thickness: 1)),
+        const Expanded(child: Divider(color: Color(0xFFE8E6EA), thickness: 1)),
         15.horizontalSpace,
         Text(
           'Today',
           style: TextStyle(
-            color: Color(0xFF6C727F),
+            color: const Color(0xFF6C727F),
             fontSize: 12.sp,
             fontWeight: FontWeight.w400,
           ),
         ),
         15.horizontalSpace,
-        Expanded(child: Divider(color: Color(0xFFE8E6EA), thickness: 1)),
+        const Expanded(child: Divider(color: Color(0xFFE8E6EA), thickness: 1)),
       ],
     ),
   );
@@ -234,7 +232,7 @@ class _ChatAppBarState extends ConsumerState<_ChatAppBar> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         InkWell(
-          child: BackIcon(),
+          child: const BackIcon(),
           onTap: () {
             context.pop();
           },
@@ -266,15 +264,15 @@ class _ChatAppBarState extends ConsumerState<_ChatAppBar> {
                 Text(
                   'typing....',
                   style: TextStyle(
-                      color: Color(0xFF1A1819),
+                      color: const Color(0xFF1A1819),
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400),
                 )
               else if (otherUser.isOnline == 0)
                 Text(
-                  'Last seen At ${otherUser.formateLastSeen}',
+                  'Last seen At ${otherUser.formatLastSeen}',
                   style: TextStyle(
-                      color: Color(0xFF1A1819),
+                      color: const Color(0xFF1A1819),
                       fontSize: 12.sp,
                       fontWeight: FontWeight.w400),
                 )
@@ -290,7 +288,7 @@ class _ChatAppBarState extends ConsumerState<_ChatAppBar> {
                     Text(
                       'Onilne',
                       style: TextStyle(
-                          color: Color(0xFF1A1819),
+                          color: const Color(0xFF1A1819),
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400),
                     )
@@ -343,7 +341,7 @@ class _PopUpMenuWidget extends StatelessWidget {
           value: ChatMenuAction.blockUnblock,
           child: Text(
             isBlocked ? 'Unblock' : 'Block',
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
+            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w400),
           ),
         ),
         const PopupMenuItem(

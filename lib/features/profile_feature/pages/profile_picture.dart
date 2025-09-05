@@ -31,9 +31,9 @@ class _ProfilePictureState extends ConsumerState<ProfilePicture>
   File? selectedImage;
   Future<void> pickImage() async {
     showModalBottomSheet(
-      backgroundColor: Color(0xFFF6FFF4),
+      backgroundColor: const Color(0xFFF6FFF4),
       context: context,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (context) => Padding(
@@ -41,7 +41,7 @@ class _ProfilePictureState extends ConsumerState<ProfilePicture>
         child: Wrap(
           children: [
             ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.camera_alt,
                 color: Color(0xFF333333),
               ),
@@ -51,7 +51,7 @@ class _ProfilePictureState extends ConsumerState<ProfilePicture>
                   fontSize: 14.sp,
                   fontStyle: FontStyle.italic,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF333333),
+                  color: const Color(0xFF333333),
                 ),
               ),
               onTap: () async {
@@ -60,13 +60,13 @@ class _ProfilePictureState extends ConsumerState<ProfilePicture>
               },
             ),
             ListTile(
-              leading: Icon(Icons.photo, color: Color(0xFF333333)),
+              leading: const Icon(Icons.photo, color: Color(0xFF333333)),
               title: Text(
                 'Choose from Gallery',
                 style: TextStyle(
                   fontSize: 14.sp,
                   fontStyle: FontStyle.italic,
-                  color: Color(0xFF333333),
+                  color: const Color(0xFF333333),
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -106,14 +106,14 @@ class _ProfilePictureState extends ConsumerState<ProfilePicture>
             Utils.showSnackBar(context, data.value!.response.toString());
             ref.read(progressBarValueProvider3.notifier).state++;
             ref.read(pageControllerProvider3.notifier).state.nextPage(
-                duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+                duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
             return;
           }
           if (event == ProfileEvent.addShowcaseImages) {
             final user = data.value?.userModel;
             Utils.showSnackBar(context, data.value!.response.toString());
             ref.read(userProvider.notifier).update((e) => user!);
-            context.navigateTo(TransationPrompt());
+            context.navigateTo(const TransationPrompt());
             return;
           }
 
@@ -125,7 +125,7 @@ class _ProfilePictureState extends ConsumerState<ProfilePicture>
             ref
                 .read(updateProfileStepsProvider.notifier)
                 .updateProfileSteps(steps: null);
-            context.navigateAndRemoveUntil(HomeScreen());
+            context.navigateAndRemoveUntil(const HomeScreen());
             return;
           }
 
@@ -139,17 +139,17 @@ class _ProfilePictureState extends ConsumerState<ProfilePicture>
   Widget build(BuildContext context) {
     super.build(context);
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: 'Profile Picture',
               text2:
                   'Your profile picture helps others connect with you. Make it count!'),
           32.verticalSpace,
-          ProfileCard(),
+          const ProfileCard(),
           32.verticalSpace,
           Center(
             child: SizedBox(
@@ -176,7 +176,7 @@ class _ProfilePictureState extends ConsumerState<ProfilePicture>
                     ? 'Change Profile Picture'
                     : 'Add Profile Picture',
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color(0xFF005FF2),
                   fontSize: 16,
                   fontWeight: FontWeight.w800,
@@ -187,7 +187,7 @@ class _ProfilePictureState extends ConsumerState<ProfilePicture>
             ),
           ),
           24.verticalSpace,
-          Guidelines(),
+          const Guidelines(),
           32.verticalSpace,
           PrimaryButton(
             isLoading: ref.watch(profileOnBoardingProvider).isLoading,
@@ -226,7 +226,7 @@ class Guidelines extends StatelessWidget {
           child: Text(
             'Photo Guidelines.',
             style: TextStyle(
-                color: Color(0xFF005FF2),
+                color: const Color(0xFF005FF2),
                 fontSize: 12.sp,
                 fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.w700,

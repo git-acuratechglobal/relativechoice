@@ -35,16 +35,16 @@ class _SplashscreenState extends ConsumerState<Splashscreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {});
+    Timer(const Duration(seconds: 3), () {});
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      Future.delayed(Duration(seconds: 3), () {
+      Future.delayed(const Duration(seconds: 3), () {
         final user = ref.watch(localStorageServiceProvider).getUserModel();
         final isOnboardingComplete =
             ref.watch(localStorageServiceProvider).getOnboarding();
         final formProgress =
             ref.watch(localStorageServiceProvider).getFormStep();
         if (!isOnboardingComplete) {
-          context.navigateTo(SplashScreen2());
+          context.navigateTo(const SplashScreen2());
           return;
         }
         if (formProgress != null) {
@@ -76,7 +76,7 @@ class _SplashscreenState extends ConsumerState<Splashscreen> {
             return;
           } else if (step.phase == 3) {
             if (step.pageIndex == 3) {
-              context.navigateTo(TransationPrompt());
+              context.navigateTo(const TransationPrompt());
               return;
             }
             context.navigateTo(sign_up_steps3(
@@ -86,11 +86,11 @@ class _SplashscreenState extends ConsumerState<Splashscreen> {
           }
         }
         if (user == null) {
-          context.navigateAndRemoveUntil(WelcomeScreen());
+          context.navigateAndRemoveUntil(const WelcomeScreen());
           return;
         }
         ref.read(userProvider.notifier).update((e) => user);
-        context.navigateAndRemoveUntil(HomeScreen());
+        context.navigateAndRemoveUntil(const HomeScreen());
       });
     });
   }
@@ -103,8 +103,8 @@ class _SplashscreenState extends ConsumerState<Splashscreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           44.verticalSpace,
-          Padding(
-            padding: const EdgeInsets.all(44),
+          const Padding(
+            padding: EdgeInsets.all(44),
             child: Image(
               image: AssetImage(
                 'asset/images/g10.png',
@@ -157,7 +157,7 @@ void handleEvent(AuthEvent event, BuildContext context,
         return;
       } else if (step.phase == 3) {
         if (step.pageIndex == 3) {
-          context.navigateTo(TransationPrompt());
+          context.navigateTo(const TransationPrompt());
           return;
         }
         context.navigateTo(sign_up_steps3(
@@ -166,22 +166,22 @@ void handleEvent(AuthEvent event, BuildContext context,
         return;
       }
     }
-    context.navigateTo(HomeScreen());
+    context.navigateAndRemoveUntil(const HomeScreen());
   }
 
   if (event == AuthEvent.otpSent) {
-    context.navigateTo(Code());
+    context.navigateTo(const Code());
     return;
   }
 
   if (event == AuthEvent.otpVerified) {
-    Navigator.push(context, CreateRoute(Passcode()));
+    Navigator.push(context, CreateRoute(const Passcode()));
     Utils.showSnackBar(context, data.value!.response.toString());
     return;
   }
 
   if (event == AuthEvent.register) {
-    context.navigateTo(OnBoarding1());
+    context.navigateTo(const OnBoarding1());
     Utils.showSnackBar(context, data.value!.response.toString());
     return;
   }
@@ -189,117 +189,117 @@ void handleEvent(AuthEvent event, BuildContext context,
   if (event == AuthEvent.personalInformation) {
     ref.read(progressBarValueProvider.notifier).state++;
     ref.read(pageControllerProvider.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
 
   if (event == AuthEvent.updateFamilyStructure) {
     ref.read(progressBarValueProvider.notifier).state++;
     ref.read(pageControllerProvider.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.additionalInformation) {
     ref.read(progressBarValueProvider.notifier).state++;
     ref.read(pageControllerProvider.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.educationLevel) {
     ref.read(progressBarValueProvider.notifier).state++;
     ref.read(pageControllerProvider.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.accountHolderFaith) {
     ref.read(progressBarValueProvider.notifier).state++;
     ref.read(pageControllerProvider.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.partnerFaith) {
     ref.read(progressBarValueProvider.notifier).state++;
     ref.read(pageControllerProvider.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.accountHolderRaceAndEthnicity) {
     ref.read(progressBarValueProvider.notifier).state++;
     ref.read(pageControllerProvider.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.partnerRaceAndEthnicity) {
     ref.read(progressBarValueProvider.notifier).state++;
     ref.read(pageControllerProvider.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.accountHolderPolitics) {
     ref.read(progressBarValueProvider.notifier).state++;
     ref.read(pageControllerProvider.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.partnerPolitics) {
     ref.read(progressBarValueProvider.notifier).state++;
     ref.read(pageControllerProvider.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.personalLifeStyle) {
     ref.read(progressBarValueProvider.notifier).state++;
     ref.read(pageControllerProvider.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.pets) {
-    context.navigateTo(OnBoardingTransiation());
+    context.navigateTo(const OnBoardingTransiation());
   }
   if (event == AuthEvent.roleSought) {
     ref.read(progressBarValueProvider2.notifier).state++;
     ref.read(pageControllerProvider2.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.roleToFulfill) {
     ref.read(progressBarValueProvider2.notifier).state++;
     ref.read(pageControllerProvider2.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.involvement) {
     ref.read(progressBarValueProvider2.notifier).state++;
     ref.read(pageControllerProvider2.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.distance) {
     ref.read(progressBarValueProvider2.notifier).state++;
     ref.read(pageControllerProvider2.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.faithPreferences) {
     ref.read(progressBarValueProvider2.notifier).state++;
     ref.read(pageControllerProvider2.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.raceAndEthnicity) {
     ref.read(progressBarValueProvider2.notifier).state++;
     ref.read(pageControllerProvider2.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.politicalPreferences) {
     ref.read(progressBarValueProvider2.notifier).state++;
     ref.read(pageControllerProvider2.notifier).state.nextPage(
-        duration: Duration(microseconds: 500), curve: Curves.bounceIn);
+        duration: const Duration(microseconds: 500), curve: Curves.bounceIn);
     return;
   }
   if (event == AuthEvent.lifeStylePreferences) {
-    context.navigateTo(OnBoardingTransaction3());
+    context.navigateTo(const OnBoardingTransaction3());
     return;
   }
 }

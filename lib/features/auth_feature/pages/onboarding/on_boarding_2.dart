@@ -28,7 +28,7 @@ class _OnBoarding2State extends ConsumerState<OnBoarding2> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: IconButton(
-                  icon: BackIcon(),
+                  icon: const BackIcon(),
                   onPressed: () {
                     // backicon
                     context.pop();
@@ -37,7 +37,7 @@ class _OnBoarding2State extends ConsumerState<OnBoarding2> {
               ),
             ),
             10.verticalSpace,
-            SizedBox(height: 360.56, child: RelativeTree()),
+            const SizedBox(height: 360.56, child: RelativeTree()),
             20.verticalSpace,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -54,7 +54,7 @@ class _OnBoarding2State extends ConsumerState<OnBoarding2> {
             Text(
               "Family Tree!",
               style: TextStyle(
-                color: Color(0xFF005FF2),
+                color: const Color(0xFF005FF2),
                 fontSize: 40.sp,
                 fontWeight: FontWeight.w800,
                 height: 1.2,
@@ -65,7 +65,7 @@ class _OnBoarding2State extends ConsumerState<OnBoarding2> {
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 64.h),
               child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, CreateRoute(OnBoarding1()));
+                    Navigator.push(context, CreateRoute(const OnBoarding1()));
                   },
                   child: Text(
                     'Next',

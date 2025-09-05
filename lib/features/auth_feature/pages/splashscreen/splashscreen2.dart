@@ -28,7 +28,7 @@ class _SplashScreen2State extends ConsumerState<SplashScreen2>
     );
     sizeAnimation = Tween<double>(begin: 200.0, end: 80.0).animate(controller);
 
-    Timer(Duration(seconds: 1), () {
+    Timer(const Duration(seconds: 1), () {
       setState(() {
         _isStartAnimation = true;
       });
@@ -40,11 +40,11 @@ class _SplashScreen2State extends ConsumerState<SplashScreen2>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor:
-          _isStartAnimation ? Color(0xFFF4FCFF) : Color(0xFFF6FFF4),
+          _isStartAnimation ? const Color(0xFFF4FCFF) : const Color(0xFFF6FFF4),
       body: Column(
         children: [
           60.verticalSpace,
-          topImage(),
+          const topImage(),
           48.verticalSpace,
           Text(" Where you choose \nthe family that feels \n just right.  ",
               textAlign: TextAlign.center,
@@ -97,9 +97,9 @@ class _SplashScreen2State extends ConsumerState<SplashScreen2>
                 child: ElevatedButton(
                     onPressed: () {
                       ref.read(localStorageServiceProvider).setOnboarding();
-                      context.navigateTo((WelcomeScreen()));
+                      context.navigateTo((const WelcomeScreen()));
                     },
-                    child: Text("Let's Go!")),
+                    child: const Text("Let's Go!")),
               ),
             ),
           ),

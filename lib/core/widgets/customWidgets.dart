@@ -34,7 +34,7 @@ class CustomButton extends StatelessWidget {
           color: boxcolor,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(32),
-              side: BorderSide(width: 0.5, color: Color(0xFFDEDEDE))),
+              side: const BorderSide(width: 0.5, color: Color(0xFFDEDEDE))),
         ),
         child: Row(
           children: [
@@ -85,7 +85,7 @@ class CustomText extends StatelessWidget {
             style: TextStyle(
               fontSize: 16.sp,
               fontWeight: FontWeight.w500,
-              color: Color(0xFF333333),
+              color: const Color(0xFF333333),
             ))
       ],
     );
@@ -118,14 +118,14 @@ class _familybuttonState extends State<familybutton> {
         decoration: ShapeDecoration(
           color: widget.color,
           shape: RoundedRectangleBorder(
-            side: BorderSide(color: Color(0xFFDEDEDE)),
+            side: const BorderSide(color: Color(0xFFDEDEDE)),
             borderRadius: BorderRadius.circular(16),
           ),
         ),
         child: Center(
           child: Text(
             widget.name,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontSize: 16,
               fontWeight: FontWeight.w700,
@@ -175,8 +175,8 @@ class _CheckboxCoustmizeState extends ConsumerState<CheckboxCoustmize> {
       scale: 1.5,
       child: Checkbox(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-          side: BorderSide(color: Color(0xFFDEDEDE)),
-          activeColor: Color(0xFF57C05C),
+          side: const BorderSide(color: Color(0xFFDEDEDE)),
+          activeColor: const Color(0xFF57C05C),
           value: ischecked,
           onChanged: (value) {
             setState(() {
@@ -275,15 +275,15 @@ class _TopBarState extends ConsumerState<TopBar> {
                         .read(pageControllerProvider.notifier)
                         .state
                         .previousPage(
-                            duration: Duration(microseconds: 500),
+                            duration: const Duration(microseconds: 500),
                             curve: Curves.bounceIn);
                     ref.read(progressBarValueProvider.notifier).state--;
                   }
                 },
-                icon: BackIcon()),
-        Expanded(
+                icon: const BackIcon()),
+        const Expanded(
             child: Padding(
-          padding: const EdgeInsets.only(left: 15, right: 24),
+          padding: EdgeInsets.only(left: 15, right: 24),
           child: progressBar(),
         ))
       ]),
@@ -311,8 +311,8 @@ class _customrangeState extends State<customrange> {
           child: Checkbox(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(6)),
-              side: BorderSide(color: Color(0xFFDEDEDE)),
-              activeColor: Color(0xFF57C05C),
+              side: const BorderSide(color: Color(0xFFDEDEDE)),
+              activeColor: const Color(0xFF57C05C),
               value: ischecked,
               onChanged: (value) {
                 setState(() {
@@ -366,8 +366,8 @@ class _CustomCheckBoxState extends State<CustomCheckBox> {
               child: Checkbox(
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6)),
-                  side: BorderSide(color: Color(0xFFDEDEDE)),
-                  activeColor: Color(0xFF57C05C),
+                  side: const BorderSide(color: Color(0xFFDEDEDE)),
+                  activeColor: const Color(0xFF57C05C),
                   value: ischecked,
                   onChanged: (value) {
                     setState(() {
@@ -418,15 +418,15 @@ class _TopBar2State extends ConsumerState<TopBar2> {
                         .read(pageControllerProvider2.notifier)
                         .state
                         .previousPage(
-                            duration: Duration(microseconds: 500),
+                            duration: const Duration(microseconds: 500),
                             curve: Curves.bounceIn);
                     ref.read(progressBarValueProvider2.notifier).state--;
                   }
                 },
-                icon: BackIcon()),
-        Expanded(
+                icon: const BackIcon()),
+        const Expanded(
             child: Padding(
-          padding: const EdgeInsets.only(left: 15, right: 24),
+          padding: EdgeInsets.only(left: 15, right: 24),
           child: progressBar2(),
         ))
       ]),
@@ -447,7 +447,7 @@ class _TopBar3State extends ConsumerState<TopBar3> {
     final currentIndex3 = ref.watch(pageControllerProvider3);
 
     return Padding(
-      padding: EdgeInsets.only(right: 24, left: 24),
+      padding: const EdgeInsets.only(right: 24, left: 24),
       child: Row(children: [
         // currentIndex3.page?.toInt() == 0
         //     ? SizedBox(
@@ -465,15 +465,15 @@ class _TopBar3State extends ConsumerState<TopBar3> {
                         .read(pageControllerProvider3.notifier)
                         .state
                         .previousPage(
-                            duration: Duration(microseconds: 500),
+                            duration: const Duration(microseconds: 500),
                             curve: Curves.bounceIn);
                     ref.read(progressBarValueProvider3.notifier).state--;
                   }
                 },
-                icon: BackIcon()),
-        Expanded(
+                icon: const BackIcon()),
+        const Expanded(
             child: Padding(
-          padding: const EdgeInsets.only(left: 15, right: 24),
+          padding: EdgeInsets.only(left: 15, right: 24),
           child: progressBar3(),
         ))
       ]),

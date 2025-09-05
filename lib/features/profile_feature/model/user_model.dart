@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:relative_choice/core/extensions/extensions.dart';
 
+import '../../../core/network/apiend_points.dart';
+
 part 'user_model.freezed.dart';
 part 'user_model.g.dart';
 
@@ -74,6 +76,7 @@ abstract class User with _$User {
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
 }
 
 extension UserMatchingListExtension on List<User> {
@@ -115,6 +118,10 @@ extension UserX on User {
       return null;
     final rand = Random();
     return user_show_case_images![rand.nextInt(user_show_case_images!.length)];
+  }
+  String get userImage {
+    return ApiEndPoints.imageBaseUrl+image;
+
   }
 }
 

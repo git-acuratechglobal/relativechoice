@@ -32,9 +32,24 @@ class UserDataModel {
       blockedUsers: Map<String, bool>.from(map['blockedUsers'] ?? {}),
     );
   }
-  String? get formateLastSeen {
+  String? get formatLastSeen {
     if (lastSeen == null) return "";
-    return DateFormat('h:mm a').format(lastSeen!);
+
+    final now = DateTime.now();
+    final difference = now.difference(lastSeen!);
+    final lastSeenDate = DateTime(lastSeen!.year, lastSeen!.month, lastSeen!.day);
+    final today = DateTime(now.year, now.month, now.day);
+    final yesterday = today.subtract(const Duration(days: 1));
+
+    if (lastSeenDate == today) {
+      return 'Today at ${DateFormat('h:mm a').format(lastSeen!)}';
+    } else if (lastSeenDate == yesterday) {
+      return 'Yesterday at ${DateFormat('h:mm a').format(lastSeen!)}';
+    } else if (difference.inDays < 7) {
+      return '${difference.inDays} days ago';
+    } else {
+      return DateFormat('MMM d, yyyy').format(lastSeen!); // fallback to full date
+    }
   }
 }
 

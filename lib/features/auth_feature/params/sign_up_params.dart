@@ -24,7 +24,7 @@ class SignupParams with _$SignupParams {
 class SignUpParamsData extends _$SignUpParamsData {
   @override
   SignupParams build() {
-    return SignupParams();
+    return const SignupParams();
   }
 
   void update(SignupParams Function(SignupParams? p) updateParam) {

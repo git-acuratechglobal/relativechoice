@@ -16,7 +16,7 @@ class ProfileOnBoarding extends _$ProfileOnBoarding {
   }
 
   Future<void> updateProfileImage() async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final response = await ref
           .watch(profileServiceProvider)
@@ -27,7 +27,7 @@ class ProfileOnBoarding extends _$ProfileOnBoarding {
   }
 
   Future<void> addShowcaseImages(List<Map<String, dynamic>> imageData) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       final response = await ref
           .watch(profileServiceProvider)
@@ -42,7 +42,7 @@ class ProfileOnBoarding extends _$ProfileOnBoarding {
   }
 
   Future<void> updatePrompt(List<String> prompts) async {
-    state = AsyncLoading();
+    state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       for (var prompt in prompts) {
         ref.read(profileServiceProvider).updatePrompt(prompt: prompt);

@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:relative_choice/features/home_feature/pages/explore_tab/widgets/explorepopup.dart';
 import 'package:relative_choice/features/home_feature/pages/Like_tab/like.dart';

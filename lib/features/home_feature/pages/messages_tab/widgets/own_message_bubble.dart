@@ -62,9 +62,9 @@ final MessageModel message;
               switch(message.isSeen){
 
 
-                true => Icon(Icons.done_all,color: Color(0xff57C05C),size: 16.sp,),
+                true => Icon(Icons.done_all,color: const Color(0xff57C05C),size: 16.sp,),
 
-                false => Icon(Icons.done,color: Color(0xff57C05C),size: 16.sp,),
+                false => Icon(Icons.done,color: const Color(0xff57C05C),size: 16.sp,),
               }
 
             ],

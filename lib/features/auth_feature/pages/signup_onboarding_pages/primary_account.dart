@@ -22,14 +22,14 @@ class _PrimaryAccountState extends ConsumerState<PrimaryAccount> with AutomaticK
   Widget build(BuildContext context) {
     super.build(context);
     return SingleChildScrollView(
-      padding: EdgeInsets.only(left: 24, right: 24),
+      padding: const EdgeInsets.only(left: 24, right: 24),
       child: Form(
         key: _fKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             16.verticalSpace,
-            CustomText(
+            const CustomText(
                 text: "Primary Account Holder's Faith",
                 text2:
                     "Faith can be a significant part of life. Please select the belief system that best describes you, along with your level of connection to that faith."),
@@ -47,7 +47,7 @@ class _PrimaryAccountState extends ConsumerState<PrimaryAccount> with AutomaticK
               },
             ),
             24.verticalSpace,
-            Divider(
+            const Divider(
               color: Color(0xFFF7F7F7),
               thickness: 8,
             ),
@@ -65,7 +65,7 @@ class _PrimaryAccountState extends ConsumerState<PrimaryAccount> with AutomaticK
               },
             ),
             32.verticalSpace,
-            CommonText(),
+            const CommonText(),
             32.verticalSpace,
             PrimaryButton(
                 isLoading: ref.watch(authNotifierProvider).isLoading,

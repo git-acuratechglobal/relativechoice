@@ -20,12 +20,12 @@ class _DistanceState extends ConsumerState<Distance> with AutomaticKeepAliveClie
   Widget build(BuildContext context) {
     super.build(context);
     return SingleChildScrollView(
-      padding: EdgeInsets.only(left: 24, right: 24),
+      padding: const EdgeInsets.only(left: 24, right: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: 'Distance',
               text2:
                   "How far are you willing to travel to connect with your chosen family? Select a distance range that feels comfortable."),
@@ -41,7 +41,7 @@ class _DistanceState extends ConsumerState<Distance> with AutomaticKeepAliveClie
             },
           ),
           24.verticalSpace,
-          Divider(
+          const Divider(
             color: Color(0xFFF7F7F7),
             thickness: 8,
           ),
@@ -61,7 +61,7 @@ class _DistanceState extends ConsumerState<Distance> with AutomaticKeepAliveClie
             decoration: InputDecoration(
               hintText: "Let us know any additional areas you're open to....",
               hintStyle: TextStyle(
-                color: Color(0xFF777777),
+                color: const Color(0xFF777777),
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
               ),
@@ -77,7 +77,7 @@ class _DistanceState extends ConsumerState<Distance> with AutomaticKeepAliveClie
             },
           ),
           32.verticalSpace,
-          CommonText(),
+          const CommonText(),
           32.verticalSpace,
           PrimaryButton(
               isLoading: ref.watch(authNotifierProvider).isLoading,

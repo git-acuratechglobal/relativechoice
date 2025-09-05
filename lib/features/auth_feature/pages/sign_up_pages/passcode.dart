@@ -25,9 +25,9 @@ class _PasscodeState extends ConsumerState<Passcode> {
   Widget build(BuildContext context) {
     final validator = ref.watch(validatorsProvider);
     return Scaffold(
-      backgroundColor: Color(0XFFF4FCFF),
+      backgroundColor: const Color(0XFFF4FCFF),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Form(
           key: _key,
           child: Column(
@@ -43,18 +43,18 @@ class _PasscodeState extends ConsumerState<Passcode> {
                         onPressed: () {
                           context.pop();
                         },
-                        icon: BackIcon()),
-                    Center(child: topImage()),
+                        icon: const BackIcon()),
+                    const Center(child: topImage()),
                     50.horizontalSpace
                   ],
                 ),
               ),
               32.verticalSpace,
-              CustomText(
+              const CustomText(
                   text: "Create Your Passcode!",
                   text2: "Please Create a Passcode."),
               32.verticalSpace,
-              Text(
+              const Text(
                 "Enter your Password",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
@@ -68,7 +68,7 @@ class _PasscodeState extends ConsumerState<Passcode> {
                   hintStyle: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF777777)),
+                      color: const Color(0xFF777777)),
                     suffixIcon: InkWell(
                       onTap: (){
                         setState(() {
@@ -95,7 +95,7 @@ class _PasscodeState extends ConsumerState<Passcode> {
                 },
               ),
               32.verticalSpace,
-              Text(
+              const Text(
                 "Confirm your Password",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
@@ -109,7 +109,7 @@ class _PasscodeState extends ConsumerState<Passcode> {
                   hintStyle: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF777777)),
+                      color: const Color(0xFF777777)),
                     suffixIcon: InkWell(
                       onTap: (){
                         setState(() {
@@ -143,7 +143,7 @@ class _PasscodeState extends ConsumerState<Passcode> {
                 title: "Submit",
               ),
               16.verticalSpace,
-              Center(
+              const Center(
                 child: Text.rich(
                   TextSpan(
                     children: [

@@ -6,10 +6,12 @@ import 'package:relative_choice/core/widgets/asyncwidget.dart';
 import 'package:relative_choice/core/widgets/network_image_widget.dart';
 import 'package:relative_choice/features/home_feature/models/chat_room_model.dart';
 import 'package:relative_choice/features/home_feature/models/user_data_model.dart';
+import 'package:relative_choice/features/profile_feature/model/user_model.dart';
 import 'package:relative_choice/features/profile_feature/providers/user_provider.dart';
 
 import '../../../../core/network/apiend_points.dart';
-import '../../../profile_feature/model/user_model.dart';
+import '../../../../core/widgets/empty_widget.dart';
+import '../../providers/activity_provider/activity_provider.dart';
 import '../../providers/chat_provider/chat_provider.dart';
 import '../../widgets/bottomsheet_notification.dart';
 import 'chatScreen.dart';
@@ -32,125 +34,148 @@ class _MessagesState extends ConsumerState<Messages> {
       extendBody: true,
       appBar: PreferredSize(
         preferredSize: Size(1.w, 50.h),
-        child: _appbar3(),
+        child: const _appbar3(),
       ),
       body: Container(
-        height: 1.sh,
-        width: 1.sw,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight,
-                colors: [
-              Color(0xFFF5FAE7),
-              Color(0xFFDCF1FD),
-              // Color(0xFFEDFEFF),
-            ])),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            120.verticalSpace,
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Text(
-                'Recent Matches',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-            16.verticalSpace,
-            Padding(
-              padding: const EdgeInsets.only(left: 24),
-              child: SizedBox(
-                height: 92.h,
-                child: Row(
+          height: 1.sh,
+          width: 1.sw,
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                Color(0xFFF5FAE7),
+                Color(0xFFDCF1FD),
+                // Color(0xFFEDFEFF),
+              ])),
+          child: AsyncWidget(
+              value: ref.watch(activityTabDataProvider),
+              data: (activeFeed) {
+                final matches = activeFeed.matchedPeoplesList;
+                if (matches.isEmpty) {
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 40),
+                    child: Center(
+                      child: EmptyWidget(
+                          message: "No Peoples Found!",
+                          onPressed: () =>
+                              ref.refresh(activityTabDataProvider)),
+                    ),
+                  );
+                }
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    MatchesContainer(),
-                    Expanded(
-                      child: CustomScrollView(
-                        scrollDirection: Axis.horizontal,
-                        slivers: [
-                          SliverPadding(
-                            padding: EdgeInsets.symmetric(horizontal: 15),
-                            sliver: SliverList.separated(
-                              itemBuilder: (BuildContext context, int index) {
-                                return MatchesContainer2();
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return 15.horizontalSpace;
-                              },
-                              itemCount: 10,
-                            ),
-                          ),
-                        ],
+                    120.verticalSpace,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: Text(
+                        'Recent Matches',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
                       ),
                     ),
-                  ],
-                ),
-              ),
-            ),
-            26.verticalSpace,
-            Expanded(
-              child: Container(
-                  width: 1.sw,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(50),
-                        topRight: Radius.circular(50),
-                      ),
-                      color: Colors.white),
-                  child: AsyncWidget(
-                      onRetry: () => ref.refresh(chatRoomsProvider),
-                      value: chatRooms,
-                      data: (chatRoomsData) {
-                        return CustomScrollView(
-                          slivers: [
-                            SliverList.separated(
-                              itemCount: chatRoomsData.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                final room = chatRoomsData[index];
-                                final otherUserId =
-                                    room.participants.firstWhere(
-                                  (id) => id != currentUserId,
-                                );
-                                final userAsync = ref.watch(
-                                    getUserModelDataProvider(
-                                        userId: otherUserId));
-
-                                return AsyncWidget(
-                                    onRetry: () => ref.refresh(
-                                        getUserModelDataProvider(
-                                            userId: otherUserId)),
-                                    value: userAsync,
-                                    data: (userData) {
-                                      return MessageWidget(
-                                        key: ValueKey(userData),
-                                        user: userData,
-                                        chatRoom: room,
-                                      );
-                                    });
-                              },
-                              separatorBuilder:
-                                  (BuildContext context, int index) {
-                                return Divider(
-                                  height: 1,
-                                  color: Color(0xFFDEDEDE),
-                                  indent: 24,
-                                  endIndent: 24,
-                                );
-                              },
+                    16.verticalSpace,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 24),
+                      child: SizedBox(
+                        height: 92.h,
+                        child: Row(
+                          children: [
+                            MatchesContainer(
+                              matchesCount: matches.length,
+                            ),
+                            Expanded(
+                              child: CustomScrollView(
+                                scrollDirection: Axis.horizontal,
+                                slivers: [
+                                  SliverPadding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 15),
+                                    sliver: SliverList.separated(
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        final match = matches[index];
+                                        return MatchesContainer2(
+                                          userModel: match,
+                                        );
+                                      },
+                                      separatorBuilder:
+                                          (BuildContext context, int index) {
+                                        return 15.horizontalSpace;
+                                      },
+                                      itemCount: matches.length,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
-                        );
-                      })),
-            )
-          ],
-        ),
-      ),
+                        ),
+                      ),
+                    ),
+                    26.verticalSpace,
+                    Expanded(
+                      child: Container(
+                          width: 1.sw,
+                          decoration: const BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(50),
+                                topRight: Radius.circular(50),
+                              ),
+                              color: Colors.white),
+                          child: AsyncWidget(
+                              onRetry: () => ref.refresh(chatRoomsProvider),
+                              value: chatRooms,
+                              data: (chatRoomsData) {
+                                return CustomScrollView(
+                                  slivers: [
+                                    SliverList.separated(
+                                      itemCount: chatRoomsData.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        final room = chatRoomsData[index];
+                                        final otherUserId =
+                                            room.participants.firstWhere(
+                                          (id) => id != currentUserId,
+                                        );
+                                        final userAsync = ref.watch(
+                                            getUserModelDataProvider(
+                                                userId: otherUserId));
+
+                                        return AsyncWidget(
+                                            onRetry: () => ref.refresh(
+                                                getUserModelDataProvider(
+                                                    userId: otherUserId)),
+                                            value: userAsync,
+                                            data: (userData) {
+                                              return MessageWidget(
+                                                key: ValueKey(userData),
+                                                user: userData,
+                                                chatRoom: room,
+                                              );
+                                            });
+                                      },
+                                      separatorBuilder:
+                                          (BuildContext context, int index) {
+                                        return const Divider(
+                                          height: 1,
+                                          color: Color(0xFFDEDEDE),
+                                          indent: 24,
+                                          endIndent: 24,
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                );
+                              })),
+                    )
+                  ],
+                );
+              })),
     );
   }
 }
@@ -165,7 +190,7 @@ class _appbar3 extends StatelessWidget {
       child: AppBar(
           automaticallyImplyLeading: false,
           backgroundColor: Colors.transparent,
-          title: Align(
+          title: const Align(
             alignment: Alignment.topLeft,
             child: Text(
               'Messages',
@@ -177,7 +202,7 @@ class _appbar3 extends StatelessWidget {
               textAlign: TextAlign.left,
             ),
           ),
-          actions: [notification()]),
+          actions: const [notification()]),
     );
   }
 }
@@ -205,7 +230,7 @@ class _MessageWidgetState extends ConsumerState<MessageWidget> {
           userImage: widget.user.image,
         ));
       },
-      contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
       leading: SizedBox(
         height: 56,
         width: 56,
@@ -223,7 +248,7 @@ class _MessageWidgetState extends ConsumerState<MessageWidget> {
         overflow: TextOverflow.ellipsis,
         lastMessage?.text ?? "",
         style: TextStyle(
-            color: Color(0xFF1A1819),
+            color: const Color(0xFF1A1819),
             fontSize: 12.sp,
             fontWeight: isUnread ? FontWeight.w700 : FontWeight.w400),
       ),
@@ -239,7 +264,7 @@ class _MessageWidgetState extends ConsumerState<MessageWidget> {
           12.verticalSpace,
           Text(
             widget.chatRoom.formattedTime,
-            style: TextStyle(color: Color(0xFF6C727F), fontSize: 12),
+            style: const TextStyle(color: Color(0xFF6C727F), fontSize: 12),
           )
         ],
       ),
@@ -248,8 +273,8 @@ class _MessageWidgetState extends ConsumerState<MessageWidget> {
 }
 
 class MatchesContainer extends StatefulWidget {
-  const MatchesContainer({super.key});
-
+  const MatchesContainer({super.key, required this.matchesCount});
+  final int matchesCount;
   @override
   State<MatchesContainer> createState() => _MatchesContainerState();
 }
@@ -263,7 +288,7 @@ class _MatchesContainerState extends State<MatchesContainer> {
         width: 80.w,
         height: 92.h,
         decoration: ShapeDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
             colors: [Color(0xFF43BEE1), Color(0xFFCEEB66)],
@@ -292,7 +317,7 @@ class _MatchesContainerState extends State<MatchesContainer> {
                 Align(
                   alignment: Alignment.center,
                   child: Text(
-                    '32',
+                    widget.matchesCount.toString(),
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 14.sp,
@@ -311,8 +336,8 @@ class _MatchesContainerState extends State<MatchesContainer> {
 }
 
 class MatchesContainer2 extends StatefulWidget {
-  const MatchesContainer2({super.key});
-
+  const MatchesContainer2({super.key, required this.userModel});
+  final User userModel;
   @override
   State<MatchesContainer2> createState() => _MatchesContainer2State();
 }
@@ -320,22 +345,20 @@ class MatchesContainer2 extends StatefulWidget {
 class _MatchesContainer2State extends State<MatchesContainer2> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 80.w,
-      height: 92.h,
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-        child: Stack(children: [
-          Image.asset(
-            'asset/images/person.png',
-          ),
-        ]),
+    return InkWell(
+      onTap: () {
+        context.navigateTo(ChatScreen(
+          userName: widget.userModel.fullName,
+          userImage: widget.userModel.image,
+          userId: widget.userModel.id ?? 0,
+        ));
+      },
+      child: SizedBox(
+        width: 80.w,
+        height: 92.h,
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: NetworkImageWidget(imageUrl: widget.userModel.userImage)),
       ),
     );
   }

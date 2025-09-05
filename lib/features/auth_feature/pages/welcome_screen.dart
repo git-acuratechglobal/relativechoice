@@ -36,13 +36,13 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF6FFF4),
+      backgroundColor: const Color(0xFFF6FFF4),
       body: SingleChildScrollView(
         child: Column(
           children: [
             60.verticalSpace,
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -64,14 +64,14 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
                 Opacity(
                   opacity: 0.1,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 52),
+                    padding: const EdgeInsets.symmetric(horizontal: 52),
                     child: Image.asset(
                       'asset/images/path.png',
                       fit: BoxFit.contain,
                     ),
                   ),
                 ),
-                Positioned(
+                const Positioned(
                   top: 100,
                   child: Text(
                     'Welcome \nHome, Family!',
@@ -87,24 +87,24 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
             ),
             10.verticalSpace,
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, CreateRoute(BetaCodeScreen()));
+                    Navigator.push(context, CreateRoute(const BetaCodeScreen()));
                   },
-                  child: Text("Sign-Up")),
+                  child: const Text("Sign-Up")),
             ),
             16.verticalSpace,
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
+              padding: const EdgeInsets.symmetric(horizontal: 24),
               child: ElevatedButton(
                   onPressed: () {
-                    context.navigateTo(SignIn());
+                    context.navigateTo(const SignIn());
                   },
-                  child: Text("Sign-In")),
+                  child: const Text("Sign-In")),
             ),
             20.verticalSpace,
-            Padding(
+            const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 24),
                 child: Text.rich(
                   TextSpan(
@@ -139,7 +139,7 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
                   textAlign: TextAlign.center,
                 )),
             50.verticalSpace,
-            Divider(
+            const Divider(
               color: Color(0xFFDEDEDE),
             ),
             24.verticalSpace,
@@ -147,21 +147,21 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
               children: [
                 Text('Terms of Service',
                     style: TextStyle(
-                        color: Color(0xFF005FF2),
+                        color: const Color(0xFF005FF2),
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w800,
                         height: 1.30.sp,
                         decoration: TextDecoration.underline)),
                 Text('Privacy and Cookies Policy',
                     style: TextStyle(
-                        color: Color(0xFF005FF2),
+                        color: const Color(0xFF005FF2),
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w800,
                         height: 1.30.sp,
                         decoration: TextDecoration.underline)),
                 Text('Consumer Health Data Policy',
                     style: TextStyle(
-                        color: Color(0xFF005FF2),
+                        color: const Color(0xFF005FF2),
                         fontSize: 14.sp,
                         fontWeight: FontWeight.w800,
                         height: 1.30.sp,

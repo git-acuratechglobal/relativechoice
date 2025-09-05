@@ -24,14 +24,14 @@ class _AdditionalScreen2State extends ConsumerState<AdditionalScreen2>
   Widget build(BuildContext context) {
     super.build(context);
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Form(
         key: _fKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             16.verticalSpace,
-            CustomText(
+            const CustomText(
                 text: 'Additional Information',
                 text2: 'Please add your additional information below'),
             CoustomText(
@@ -62,7 +62,7 @@ class _AdditionalScreen2State extends ConsumerState<AdditionalScreen2>
               style: TextStyle(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w500,
-                color: Color(0xFF777777),
+                color: const Color(0xFF777777),
                 fontStyle: FontStyle.italic,
               ),
             ),
@@ -84,10 +84,10 @@ class _AdditionalScreen2State extends ConsumerState<AdditionalScreen2>
                 style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF777777),
+                    color: const Color(0xFF777777),
                     fontStyle: FontStyle.italic)),
             32.verticalSpace,
-            CommonText(),
+            const CommonText(),
             32.verticalSpace,
             Align(
               alignment: Alignment.bottomCenter,

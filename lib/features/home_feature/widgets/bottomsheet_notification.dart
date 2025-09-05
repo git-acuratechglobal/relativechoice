@@ -24,7 +24,7 @@ class _notificationState extends State<notification> {
       constraints: BoxConstraints.tight(Size(MediaQuery.of(context).size.width,
           MediaQuery.of(context).size.height * .93)),
       builder: (ctx) {
-        return BellIcon();
+        return const BellIcon();
       },
     );
   }
@@ -44,7 +44,7 @@ class _notificationState extends State<notification> {
         5.horizontalSpace,
         InkWell(
             onTap: () {
-              context.navigateTo(Setting());
+              context.navigateTo(const Setting());
             },
             child: Image.asset(
               'asset/images/menu.png',

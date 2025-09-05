@@ -21,7 +21,7 @@ class PrimaryButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
           fixedSize: fixedSize,
-          disabledBackgroundColor: Color.fromARGB(255, 60, 132, 241)),
+          disabledBackgroundColor: const Color.fromARGB(255, 60, 132, 241)),
       onPressed: switch (isLoading) {
         true => null,
         false => onClick,
@@ -34,8 +34,8 @@ class PrimaryButton extends StatelessWidget {
           )),
         true => LoadingAnimationWidget.twistingDots(
             size: 28,
-            rightDotColor: Color(0xFF005FF2),
-            leftDotColor: Color(0xFFD7ED5D)),
+            rightDotColor: const Color(0xFF005FF2),
+            leftDotColor: const Color(0xFFD7ED5D)),
       },
     );
   }

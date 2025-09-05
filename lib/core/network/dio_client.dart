@@ -40,7 +40,7 @@ final dioProvider = Provider<Dio>((ref) {
           final context = navigatorKey.currentContext;
           if (context == null) return;
           ref.read(localStorageServiceProvider).clearSession();
-          context.navigateAndRemoveUntil(WelcomeScreen());
+          context.navigateAndRemoveUntil(const WelcomeScreen());
           Utils.showSnackBar(context, "Session expired. Please login again.");
         }
         final message = DioExceptions.fromDioError(e);

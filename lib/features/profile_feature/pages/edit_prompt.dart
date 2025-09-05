@@ -29,7 +29,7 @@ class _EditPromptState extends ConsumerState<EditPrompt> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -48,10 +48,10 @@ class _EditPromptState extends ConsumerState<EditPrompt> {
             decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(width: 1, color: Color(0xFFDFDFDF)),
+                  side: const BorderSide(width: 1, color: Color(0xFFDFDFDF)),
                 ),
-                color: Color(0xFFFFFFFF),
-                shadows: [
+                color: const Color(0xFFFFFFFF),
+                shadows: const [
                   BoxShadow(
                     color: Color.fromARGB(255, 239, 237, 237),
                     blurRadius: 14,
@@ -71,7 +71,7 @@ class _EditPromptState extends ConsumerState<EditPrompt> {
                     hintText:
                      "Enter something here...",
                     hintStyle: TextStyle(
-                      color:  Color(0xFF777777),
+                      color:  const Color(0xFF777777),
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w800,
                     ),
@@ -94,12 +94,12 @@ class _EditPromptState extends ConsumerState<EditPrompt> {
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size.fromHeight(56.h),
                     backgroundColor: Colors.white,
-                    foregroundColor: Color(0xFF777777),
+                    foregroundColor: const Color(0xFF777777),
                   ),
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: Text('Cancel'),
+                  child: const Text('Cancel'),
                 ),
               ),
               10.horizontalSpace,
@@ -110,7 +110,7 @@ class _EditPromptState extends ConsumerState<EditPrompt> {
                     widget.onSave(_controller.text);
                     Navigator.pop(context);
                   },
-                  child: Text('Save'),
+                  child: const Text('Save'),
                 ),
               ),
             ],

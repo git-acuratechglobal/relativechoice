@@ -32,7 +32,7 @@ class NetworkImageWidget extends StatelessWidget {
           return errorWidget ??
               Container(
                 color: Colors.white,
-                child: Center(
+                child: const Center(
                   child: Icon(
                     Icons.error,
                     color: Colors.red,
@@ -46,8 +46,8 @@ class NetworkImageWidget extends StatelessWidget {
             child: Center(
               child:LoadingAnimationWidget.twistingDots(
                   size: 38,
-                  rightDotColor: Color(0xFF005FF2),
-                  leftDotColor: Color(0xFFD7ED5D)),
+                  rightDotColor: const Color(0xFF005FF2),
+                  leftDotColor: const Color(0xFFD7ED5D)),
             ),
           );
         },

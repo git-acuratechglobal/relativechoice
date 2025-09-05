@@ -20,21 +20,21 @@ class _ReadyToUploadState extends ConsumerState<ReadyToUpload> {
       child: Column(
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: 'Ready to Upload',
               text2: "You're ready to upload your photos!"),
           32.verticalSpace,
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 31, vertical: 31),
+            padding: const EdgeInsets.symmetric(horizontal: 31, vertical: 31),
             //height: 336.h,
             width: 327.w,
             decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
-                  side: BorderSide(color:  Color(0xFFDFDFDF), width: 2),
+                  side: const BorderSide(color:  Color(0xFFDFDFDF), width: 2),
                 ),
-                color: Color(0xFFF8F8F8),
-                shadows: [
+                color: const Color(0xFFF8F8F8),
+                shadows: const [
                   BoxShadow(
                     color: Color(0xFFDFDFDF),
                     blurRadius: 10,
@@ -46,35 +46,35 @@ class _ReadyToUploadState extends ConsumerState<ReadyToUpload> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 //24.verticalSpace,
-                Text(
+                const Text(
                   '📁',
                   style: TextStyle(
                     fontSize: 32,
                   ),
                 ),
-                UploadContainer(
+                const UploadContainer(
                     text1: 'Choose up to ',
                     text2: 'six photos ',
                     text3: 'from your device.'),
                 24.verticalSpace,
-                Text(
+                const Text(
                   '✏️ ',
                   style: TextStyle(
                     fontSize: 32,
                   ),
                 ),
-                UploadContainer(
+                const UploadContainer(
                     text1: 'Add optional ',
                     text2: 'captions',
                     text3: ' for each photo.'),
                 24.verticalSpace,
-                Text(
+                const Text(
                   '🙌  ',
                   style: TextStyle(
                     fontSize: 32,
                   ),
                 ),
-                UploadContainer(
+                const UploadContainer(
                     text1: 'Blur faces for ',
                     text2: 'privacy',
                     text3: ' if needed.')
@@ -82,7 +82,7 @@ class _ReadyToUploadState extends ConsumerState<ReadyToUpload> {
             ),
           ),
           32.verticalSpace,
-          Text(
+          const Text(
             'You can update or replace photos later.',
             style: TextStyle(
               color: Color(0xFF777777),
@@ -92,7 +92,7 @@ class _ReadyToUploadState extends ConsumerState<ReadyToUpload> {
             ),
           ),
           32.verticalSpace,
-          Guidelines(), 
+          const Guidelines(), 
           24.verticalSpace,
                Align(
                 alignment: Alignment.bottomCenter,
@@ -100,7 +100,7 @@ class _ReadyToUploadState extends ConsumerState<ReadyToUpload> {
                   onPressed: () {
                     ref.read(progressBarValueProvider3.notifier).state++;
                     ref.read(pageControllerProvider3.notifier).state.nextPage(
-                        duration: Duration(microseconds: 500),
+                        duration: const Duration(microseconds: 500),
                         curve: Curves.bounceIn);
                   },
                   child: Text(

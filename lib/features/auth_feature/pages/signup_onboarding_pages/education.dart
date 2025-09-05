@@ -35,7 +35,7 @@ class _EducationState extends ConsumerState<Education>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             16.verticalSpace,
-            CustomText(
+            const CustomText(
                 text: 'Education Level',
                 text2:
                     "Education and training come in many forms. Share your education, trade experience, or current studies if you'd like, or skip if you prefer."),
@@ -94,7 +94,7 @@ class _EducationState extends ConsumerState<Education>
                 ],
               ),
             32.verticalSpace,
-            CommonText(),
+            const CommonText(),
             32.verticalSpace,
             Align(
               alignment: Alignment.bottomCenter,
@@ -114,11 +114,11 @@ class _EducationState extends ConsumerState<Education>
             20.verticalSpace,
             Center(
                 child: TextButton(
-              child: Text("Skip"),
+              child: const Text("Skip"),
               onPressed: () {
                 ref.read(progressBarValueProvider.notifier).state++;
                 ref.read(pageControllerProvider.notifier).state.nextPage(
-                    duration: Duration(microseconds: 500),
+                    duration: const Duration(microseconds: 500),
                     curve: Curves.bounceIn);
               },
             )),

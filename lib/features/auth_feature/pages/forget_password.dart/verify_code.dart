@@ -19,9 +19,9 @@ class _VerifyCodeState extends ConsumerState<VerifyCode> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0XFFF4FCFF),
+      backgroundColor: const Color(0XFFF4FCFF),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -35,18 +35,18 @@ class _VerifyCodeState extends ConsumerState<VerifyCode> {
                       onPressed: () {
                         context.pop();
                       },
-                      icon: BackIcon()),
-                  Center(child: topImage()),
+                      icon: const BackIcon()),
+                  const Center(child: topImage()),
                   50.horizontalSpace
                 ],
               ),
             ),
             32.verticalSpace,
-            CustomText(
+            const CustomText(
                 text: "Enter Your Code!",
                 text2: "Please enter the code we have sent to your email."),
             32.verticalSpace,
-            Text(
+            const Text(
               "Enter your Code",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
@@ -57,7 +57,7 @@ class _VerifyCodeState extends ConsumerState<VerifyCode> {
                 hintText: 'Please enter the code. ',  hintStyle: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF777777)),
+                      color: const Color(0xFF777777)),
               ),
               autofocus: false,
               cursorColor: Colors.black,
@@ -69,11 +69,11 @@ class _VerifyCodeState extends ConsumerState<VerifyCode> {
             24.verticalSpace,
             ElevatedButton(
                 onPressed: () {
-                 Navigator.push(context, CreateRoute(ForgetPassword()));
+                 Navigator.push(context, CreateRoute(const ForgetPassword()));
                 },
-                child: Text('Submit Code')),
+                child: const Text('Submit Code')),
             16.verticalSpace,
-            Center(
+            const Center(
               child: Text.rich(
                 TextSpan(
                   children: [

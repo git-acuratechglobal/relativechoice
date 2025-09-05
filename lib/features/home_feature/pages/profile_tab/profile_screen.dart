@@ -41,7 +41,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
@@ -60,8 +60,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   Column(
                     children: [
                       50.verticalSpace,
-                      Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 24),
+                      const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 24),
                           child: Align(
                               alignment: Alignment.centerRight,
                               child: notification())),
@@ -103,7 +103,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                               data: (data) {
                                 return Text(
                                   data.address,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Color(0xFF22172A),
                                     fontSize: 12,
                                     fontWeight: FontWeight.w500,
@@ -127,13 +127,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                         child: Container(
                           decoration: BoxDecoration(
                             color: Theme.of(context).canvasColor,
-                            borderRadius: BorderRadius.only(
+                            borderRadius: const BorderRadius.only(
                               topLeft: Radius.circular(25),
                               topRight: Radius.circular(25),
                             ),
                           ),
                           child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 0),
+                            padding: const EdgeInsets.symmetric(horizontal: 0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -146,7 +146,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                 )),
                                 Padding(
                                     padding:
-                                        EdgeInsets.symmetric(horizontal: 24),
+                                        const EdgeInsets.symmetric(horizontal: 24),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -172,7 +172,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                       ],
                                     )),
                                 Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 24),
+                                  padding: const EdgeInsets.symmetric(horizontal: 24),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -206,7 +206,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                           style: TextStyle(
                                             fontSize: 14.sp,
                                             fontWeight: FontWeight.w500,
-                                            color: Color(0xFF777777),
+                                            color: const Color(0xFF777777),
                                           ),
                                         ),
                                     ],
@@ -214,7 +214,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                 ),
                                 32.verticalSpace,
                                 Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 24),
+                                  padding: const EdgeInsets.symmetric(horizontal: 24),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -233,13 +233,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                   ),
                                 ),
                                 10.verticalSpace,
-                                Divider(
+                                const Divider(
                                   thickness: 8,
                                   color: Color(0xffF8F8F8),
                                 ),
                                 20.verticalSpace,
                                 Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 24),
+                                  padding: const EdgeInsets.symmetric(horizontal: 24),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -290,7 +290,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                           user.userOnboarding
                                                   ?.partnerPolitics !=
                                               null) ...[
-                                        Divider(
+                                        const Divider(
                                           thickness: 8,
                                           color: Color(0xffF8F8F8),
                                         ),
@@ -300,7 +300,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 24),
+                                  padding: const EdgeInsets.symmetric(horizontal: 24),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -318,7 +318,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                         ListView.separated(
                                           padding: EdgeInsets.zero,
                                           physics:
-                                              NeverScrollableScrollPhysics(),
+                                              const NeverScrollableScrollPhysics(),
                                           shrinkWrap: true,
                                           itemCount:
                                               user.userShowcaseImages?.length ??
@@ -348,7 +348,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                                   style: TextStyle(
                                                     fontSize: 14.sp,
                                                     fontWeight: FontWeight.w500,
-                                                    color: Color(0xFF777777),
+                                                    color: const Color(0xFF777777),
                                                   ),
                                                 ),
                                               ],
@@ -365,13 +365,13 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                   ),
                                 ),
                                 24.verticalSpace,
-                                Divider(
+                                const Divider(
                                   thickness: 8,
                                   color: Color(0xffF8F8F8),
                                 ),
                                 22.verticalSpace,
                                 Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 24),
+                                  padding: const EdgeInsets.symmetric(horizontal: 24),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -529,7 +529,7 @@ class _ProfilebottombarState extends State<Profilebottombar> {
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(40),
-        side: BorderSide(
+        side: const BorderSide(
           color: Color(0xFFDEDEDE),
         ),
       ),

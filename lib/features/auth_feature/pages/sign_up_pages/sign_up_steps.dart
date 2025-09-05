@@ -51,10 +51,10 @@ class _SignUpStepsState extends ConsumerState<SignUpSteps> {
       body: Column(
         children: [
           60.verticalSpace,
-          TopBar(),
+          const TopBar(),
           Expanded(
             child: PageView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Common.stepPageList(userType)[index].$1;
               },
@@ -127,10 +127,10 @@ class _sign_up_steps2State extends ConsumerState<sign_up_steps2> {
       body: Column(
         children: [
           60.verticalSpace,
-          TopBar2(),
+          const TopBar2(),
           Expanded(
             child: PageView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Common.stepPageList2[index].$1;
               },
@@ -207,10 +207,10 @@ class _sign_up_steps3State extends ConsumerState<sign_up_steps3> {
       body: Column(
         children: [
           60.verticalSpace,
-          TopBar3(),
+          const TopBar3(),
           Expanded(
             child: PageView.builder(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return Common.stepPageList3[index].$1;
               },

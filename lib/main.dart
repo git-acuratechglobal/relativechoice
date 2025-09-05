@@ -1,6 +1,7 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:relative_choice/core/services/local_storage_service/local_storage_service.dart';
@@ -16,14 +17,23 @@ void main() async {
   await Firebase.initializeApp();
   await ScreenUtil.ensureScreenSize();
   final prefs = await SharedPreferences.getInstance();
+  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+  //   statusBarIconBrightness: Brightness.dark,
+  //   statusBarBrightness: Brightness.dark,
+  //   statusBarColor: Color(0xff3C0203),
+  //   systemNavigationBarColor: Color(0xff3C0203),
+  //   systemNavigationBarIconBrightness: Brightness.light,
+  // ));
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  // runApp( DevicePreview(
+  //   enabled: !kReleaseMode,
+  //   builder: (context) => ProviderScope(
+  //       overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+  //       child: const MyApp()), // Wrap your app
+  // ),);
   runApp(ProviderScope(
       overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
-      child:
-          //   DevicePreview(
-          //   enabled: !kReleaseMode,
-          //   builder: (context) => MyApp(), // Wrap your app
-          // ),
-          MyApp()));
+      child: const MyApp()));
 }
 
 class MyApp extends ConsumerWidget {
@@ -31,26 +41,21 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // final themeMode = ref.watch(themeModeProvider);
-    SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(
-        statusBarColor: Colors.white,
-        statusBarIconBrightness: Brightness.dark,
-        statusBarBrightness: Brightness.light,
-      ),
-    );
+
     return ScreenUtilInit(
-        designSize: Size(375, 812),
+        designSize: const Size(375, 812),
         builder: (context, child) {
           return GestureDetector(
             onTap: () {
               FocusScope.of(context).unfocus();
             },
             child: MaterialApp(
+              builder: DevicePreview.appBuilder,
               navigatorKey: navigatorKey,
               title: 'Relative Choice',
               theme: Themes.lightTheme,
               // themeMode: themeMode,
-              home: Splashscreen(),
+              home: const Splashscreen(),
               debugShowCheckedModeBanner: false,
             ),
           );

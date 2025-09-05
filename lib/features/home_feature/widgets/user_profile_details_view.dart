@@ -45,7 +45,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                   return Container(
                     //  height: 1.sh,
                     //width: 1.sw,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.centerLeft,
                         end: Alignment.centerRight,
@@ -58,7 +58,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                     child: Stack(
                       children: [
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 24),
+                          padding: const EdgeInsets.symmetric(horizontal: 24),
                           child: Column(
                             children: [
                               50.verticalSpace,
@@ -68,12 +68,12 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                       onTap: () {
                                         context.pop();
                                       },
-                                      child: BackIcon()),
+                                      child: const BackIcon()),
                                   Expanded(
                                     child: Align(
                                       alignment: Alignment.topRight,
                                       child: Container(
-                                        padding: EdgeInsets.symmetric(
+                                        padding: const EdgeInsets.symmetric(
                                             horizontal: 10, vertical: 8),
                                         width: 94.w,
                                         // height: 40.h,
@@ -92,7 +92,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                               width: 16.w,
                                             ),
                                             6.horizontalSpace,
-                                            Text(
+                                            const Text(
                                               '2.5 Km',
                                               style: TextStyle(
                                                 fontSize: 15,
@@ -146,7 +146,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                       data: (data) {
                                         return Text(
                                           data.address,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             color: Color(0xFF22172A),
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500,
@@ -157,14 +157,14 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                               ),
                               12.verticalSpace,
                               Container(
-                                padding: EdgeInsets.symmetric(
+                                padding: const EdgeInsets.symmetric(
                                     horizontal: 5, vertical: 5),
                                 height: 66.h,
                                 width: 133.w,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
                                   color: Colors.white,
-                                  border: GradientBoxBorder(
+                                  border: const GradientBoxBorder(
                                     width: 2,
                                     gradient: LinearGradient(
                                       colors: [
@@ -193,8 +193,8 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                       ),
                                       circularStrokeCap:
                                           CircularStrokeCap.round,
-                                      progressColor: Color(0xFF57C05C),
-                                      backgroundColor: Color(0xFFDDE5DC),
+                                      progressColor: const Color(0xFF57C05C),
+                                      backgroundColor: const Color(0xFFDDE5DC),
                                       animation: true,
                                       animationDuration: 500,
                                     ),
@@ -215,7 +215,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                         12.verticalSpace,
                         DraggableScrollableSheet(
                           controller: sheetController,
-                          initialChildSize: 0.30,
+                          initialChildSize: 0.40,
                           minChildSize: 0.15,
                           maxChildSize: 1,
                           builder: (BuildContext context, scrollController) {
@@ -224,7 +224,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                               child: Container(
                                 decoration: BoxDecoration(
                                   color: Theme.of(context).canvasColor,
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                     topLeft: Radius.circular(25),
                                     topRight: Radius.circular(25),
                                   ),
@@ -241,7 +241,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                     )),
                                     Padding(
                                       padding:
-                                          EdgeInsets.symmetric(horizontal: 24),
+                                          const EdgeInsets.symmetric(horizontal: 24),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -288,7 +288,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                               style: TextStyle(
                                                 fontSize: 14.sp,
                                                 fontWeight: FontWeight.w500,
-                                                color: Color(0xFF777777),
+                                                color: const Color(0xFF777777),
                                               ),
                                             ),
                                           32.verticalSpace,
@@ -306,14 +306,14 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                         ],
                                       ),
                                     ),
-                                    Divider(
+                                    const Divider(
                                       thickness: 8,
                                       color: Color(0xffF8F8F8),
                                     ),
                                     32.verticalSpace,
                                     Padding(
                                       padding:
-                                          EdgeInsets.symmetric(horizontal: 24),
+                                          const EdgeInsets.symmetric(horizontal: 24),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -364,7 +364,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                                         ?.partnerPolitics ??
                                                     ""),
                                             32.verticalSpace,
-                                            Divider(
+                                            const Divider(
                                               thickness: 8,
                                               color: Color(0xffF8F8F8),
                                             ),
@@ -374,7 +374,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                     ),
                                     Padding(
                                       padding:
-                                          EdgeInsets.symmetric(horizontal: 24),
+                                          const EdgeInsets.symmetric(horizontal: 24),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -393,7 +393,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                             ListView.separated(
                                               padding: EdgeInsets.zero,
                                               physics:
-                                                  NeverScrollableScrollPhysics(),
+                                                  const NeverScrollableScrollPhysics(),
                                               shrinkWrap: true,
                                               itemCount: userModel
                                                   .userShowcaseImages!.length,
@@ -426,7 +426,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                                         fontWeight:
                                                             FontWeight.w500,
                                                         color:
-                                                            Color(0xFF777777),
+                                                            const Color(0xFF777777),
                                                       ),
                                                     ),
                                                   ],
@@ -443,14 +443,14 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                         ],
                                       ),
                                     ),
-                                    Divider(
+                                    const Divider(
                                       thickness: 8,
                                       color: Color(0xffF8F8F8),
                                     ),
                                     20.verticalSpace,
                                     Padding(
                                       padding:
-                                          EdgeInsets.symmetric(horizontal: 24),
+                                          const EdgeInsets.symmetric(horizontal: 24),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -579,7 +579,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                         ],
                                       ),
                                     ),
-                                    Divider(
+                                    const Divider(
                                       thickness: 8,
                                       color: Color(0xffF8F8F8),
                                     ),
@@ -622,8 +622,8 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             50),
-                                                    color: Color(0xFF005FF2),
-                                                    boxShadow: [
+                                                    color: const Color(0xFF005FF2),
+                                                    boxShadow: const [
                                                       BoxShadow(
                                                         color:
                                                             Color(0x33005FF2),
@@ -653,7 +653,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                                               child: stackContainer(
                                                 image: Image.asset(
                                                   height: 70,
-                                                  color: Color(0xFF005FF2),
+                                                  color: const Color(0xFF005FF2),
                                                   'asset/images/like.png',
                                                 ),
                                               ),
@@ -672,7 +672,7 @@ class _UserProfileState extends ConsumerState<UserProfile> {
                     ),
                   );
                 })),
-        if (connectionState.isLoading) PageLoadingWidget()
+        if (connectionState.isLoading) const PageLoadingWidget()
       ],
     );
   }
@@ -699,7 +699,7 @@ class _ProfilebottombarState extends State<Profilebottombar> {
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(40),
-        side: BorderSide(
+        side: const BorderSide(
           color: Color(0xFFDEDEDE),
         ),
       ),

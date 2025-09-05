@@ -69,10 +69,10 @@ class _CustomToggleState extends State<CustomToggle> {
                     });
                   },
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Text(
                   widget.toggletitle ?? 'Open to All',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.black,
                     fontSize: 14,
                     fontFamily: 'Montserrat',
@@ -114,8 +114,8 @@ class _CustomToggleState extends State<CustomToggle> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(6),
                         ),
-                        side: BorderSide(color: Color(0xFFDEDEDE)),
-                        activeColor: Color(0xFF57C05C),
+                        side: const BorderSide(color: Color(0xFFDEDEDE)),
+                        activeColor: const Color(0xFF57C05C),
                         value: isSelected,
                         onChanged: (value) {
                           setState(() {
@@ -131,11 +131,11 @@ class _CustomToggleState extends State<CustomToggle> {
                         },
                       ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: Text(
                         option,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 14,
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
@@ -215,7 +215,7 @@ class _CustomToggle2State extends State<CustomToggle2> {
               },
             ),
             10.horizontalSpace,
-            Text(
+            const Text(
               "This is a deal breaker for me",
               style: TextStyle(
                 color: Colors.black,
@@ -244,7 +244,7 @@ class _CustomToggle2State extends State<CustomToggle2> {
             decoration: InputDecoration(
               hintText: "Any specific details you want to add...",
               hintStyle: TextStyle(
-                color: Color(0xFF777777),
+                color: const Color(0xFF777777),
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
               ),
@@ -430,7 +430,7 @@ class _InvolvementToggleState extends State<InvolvementToggle> {
               },
             ),
             10.verticalSpace,
-            Text(
+            const Text(
               'Open to All',
               style: TextStyle(
                 color: Colors.black,
@@ -448,7 +448,7 @@ class _InvolvementToggleState extends State<InvolvementToggle> {
             child: ListView.separated(
               separatorBuilder: (context, index) => 15.verticalSpace,
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               padding: EdgeInsets.zero,
               itemCount: involvement.length,
               itemBuilder: (context, index) {
@@ -459,7 +459,7 @@ class _InvolvementToggleState extends State<InvolvementToggle> {
                   decoration: ShapeDecoration(
                     color: ischecked ? const Color(0xFFD7ED5D) : Colors.white,
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 1, color: Color(0xFFDEDEDE)),
+                      side: const BorderSide(width: 1, color: Color(0xFFDEDEDE)),
                       borderRadius: BorderRadius.circular(16),
                     ),
                   ),
@@ -469,8 +469,8 @@ class _InvolvementToggleState extends State<InvolvementToggle> {
                     checkboxShape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6),
                       side: ischecked
-                          ? BorderSide(width: 1, color: Colors.black)
-                          : BorderSide(width: 1, color: Color(0xFFDEDEDE)),
+                          ? const BorderSide(width: 1, color: Colors.black)
+                          : const BorderSide(width: 1, color: Color(0xFFDEDEDE)),
                     ),
                     value: ischecked,
                     onChanged: (value) {
@@ -497,7 +497,7 @@ class _InvolvementToggleState extends State<InvolvementToggle> {
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 12.sp,
-                        color: Color(0xFF333333),
+                        color: const Color(0xFF333333),
                       ),
                     ),
                   ),
@@ -587,7 +587,7 @@ class _CustomToggle3State extends State<CustomToggle3> {
               onChanged: _handleToggle,
             ),
             10.horizontalSpace,
-            Text(
+            const Text(
               "This is a deal breaker for me",
               style: TextStyle(
                 color: Colors.black,
@@ -616,7 +616,7 @@ class _CustomToggle3State extends State<CustomToggle3> {
               hintText:
                   'Have specific pet allergies, fears, or preferences? Let us know here! \n(e.g., "Allergic to cats," "Dogs only, no snakes!")',
               hintStyle: TextStyle(
-                color: Color(0xFF777777),
+                color: const Color(0xFF777777),
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
               ),

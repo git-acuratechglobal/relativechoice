@@ -20,12 +20,12 @@ class _RaceEthnicityChildrenState extends ConsumerState<RaceEthnicityChildren> w
   Widget build(BuildContext context) {
     super.build(context);
     return SingleChildScrollView(
-      padding: EdgeInsets.only(left: 24, right: 24),
+      padding: const EdgeInsets.only(left: 24, right: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: "Race and Ethnicity ",
               text2:
                   "Please select all that apply to describe your children's race and ethnicity."),

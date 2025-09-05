@@ -20,14 +20,14 @@ class _PetsState extends ConsumerState<Pets> with AutomaticKeepAliveClientMixin{
   Widget build(BuildContext context) {
     super.build(context);
     return SingleChildScrollView(
-      padding: EdgeInsets.only(right: 24, left: 24),
+      padding: const EdgeInsets.only(right: 24, left: 24),
       child: Form(
         key: _fKey,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             16.verticalSpace,
-            CustomText(
+            const CustomText(
                 text: "Pets",
                 text2: "Does Your Family Include Paws, Fins, or Feathers?"),
             32.verticalSpace,
@@ -63,7 +63,7 @@ class _PetsState extends ConsumerState<Pets> with AutomaticKeepAliveClientMixin{
                 hintText:
                     "Feel free to tell us how many and what kind of pets you have!",
                 hintStyle: TextStyle(
-                  color: Color(0xFF777777),
+                  color: const Color(0xFF777777),
                   fontSize: 14.sp,
                   fontWeight: FontWeight.w500,
                 ),
@@ -86,7 +86,7 @@ class _PetsState extends ConsumerState<Pets> with AutomaticKeepAliveClientMixin{
               },
             ),
             32.verticalSpace,
-            CommonText(),
+            const CommonText(),
             32.verticalSpace,
             PrimaryButton(
                 isLoading: ref.watch(authNotifierProvider).isLoading,

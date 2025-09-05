@@ -49,7 +49,7 @@ class _OnBoarding1State extends ConsumerState<OnBoarding1> {
       body: Stack(
         children: [
           PageView.builder(
-            physics: BouncingScrollPhysics(),
+            physics: const BouncingScrollPhysics(),
             controller: pageController,
             itemCount: onBoardindPages.length,
             itemBuilder: (BuildContext context, int index) {
@@ -64,14 +64,14 @@ class _OnBoarding1State extends ConsumerState<OnBoarding1> {
                         onTap: () {
                           context.pop();
                         },
-                        child: BackIcon()),
+                        child: const BackIcon()),
                   ),
                   //10.verticalSpace,
-                  SizedBox(height: 360.56, child: RelativeTree()),
+                  const SizedBox(height: 360.56, child: RelativeTree()),
 
                   Center(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Text(
                           softWrap: true,
                           maxLines: 2,
@@ -91,7 +91,7 @@ class _OnBoarding1State extends ConsumerState<OnBoarding1> {
                     child: Text(
                       page['subtitle'],
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                           color: Color(0xFF333333)),
@@ -175,20 +175,20 @@ class _OnBoarding1State extends ConsumerState<OnBoarding1> {
                 child: Row(
                   children: [
                     ListView.separated(
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       shrinkWrap: true,
                       itemCount: onBoardindPages.length,
                       itemBuilder: (BuildContext context, int index) {
                         final bool isSelected = currentPageIndex == index;
                         return AnimatedContainer(
-                            duration: Duration(microseconds: 500),
+                            duration: const Duration(microseconds: 500),
                             height: 6.h,
                             width: isSelected ? 26.w : 16.w,
                             decoration: ShapeDecoration(
                               color: isSelected
-                                  ? Color(0xFF005FF2)
-                                  : Color(0xFFDEDEDE),
+                                  ? const Color(0xFF005FF2)
+                                  : const Color(0xFFDEDEDE),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
@@ -211,7 +211,7 @@ class _OnBoarding1State extends ConsumerState<OnBoarding1> {
               child: ElevatedButton(
                   onPressed: () {
                     if (currentPageIndex == 2) {
-                      final formStep = FormStepModel(
+                      final formStep = const FormStepModel(
                         phase: 1,
                         subStep: 0,
                         pageIndex: 0,
@@ -224,12 +224,12 @@ class _OnBoarding1State extends ConsumerState<OnBoarding1> {
                       ref
                           .read(localStorageServiceProvider)
                           .setFormStep(formStep: formStep.stepAsString);
-                      Navigator.push(context, CreateRoute(SignUpSteps()));
+                      Navigator.push(context, CreateRoute(const SignUpSteps()));
                     } else {
                       setState(() {
                         currentPageIndex++;
                         pageController.nextPage(
-                            duration: Duration(milliseconds: 500),
+                            duration: const Duration(milliseconds: 500),
                             curve: Curves.easeInOut);
                       });
                     }
@@ -248,5 +248,5 @@ class _OnBoarding1State extends ConsumerState<OnBoarding1> {
     );
   }
 
-  List<Widget> onBoardindPages = [OnBoarding1(), OnBoarding1(), OnBoarding1()];
+  List<Widget> onBoardindPages = [const OnBoarding1(), const OnBoarding1(), const OnBoarding1()];
 }

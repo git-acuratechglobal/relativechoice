@@ -17,10 +17,10 @@ class _ExplorepopupState extends State<Explorepopup> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          padding: EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(top: 10),
           height: 164,
           width: 1.sw,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               gradient: LinearGradient(
@@ -51,7 +51,7 @@ class _ExplorepopupState extends State<Explorepopup> {
                 TextSpan(
                   text: 'lead',
                   style: TextStyle(
-                    color: Color(0xFF005FF2),
+                    color: const Color(0xFF005FF2),
                     fontSize: 28.sp,
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w800,
@@ -71,7 +71,7 @@ class _ExplorepopupState extends State<Explorepopup> {
             'Search beyond your matches to find family members with specific interests, locations, or roles.',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Color(0xFF333333),
+              color: const Color(0xFF333333),
               fontSize: 14.sp,
               fontWeight: FontWeight.w500,
             ),

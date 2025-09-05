@@ -555,7 +555,7 @@ class _PetsOptionState extends State<PetsOption> {
     return ListView.builder(
       itemCount: pets.length,
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.zero,
       itemBuilder: (context, index) {
         final label = pets[index];

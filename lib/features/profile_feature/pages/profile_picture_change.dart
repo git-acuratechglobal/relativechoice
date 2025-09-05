@@ -32,17 +32,17 @@ class _ProfilePictureChangeState extends ConsumerState<ProfilePictureChange> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: 'Profile Picture',
               text2:
                   'Your profile picture helps others connect with you. Make it count!'),
           32.verticalSpace,
-          ProfileCard(),
+          const ProfileCard(),
           32.verticalSpace,
             Center(
             child: SizedBox(
@@ -64,7 +64,7 @@ class _ProfilePictureChangeState extends ConsumerState<ProfilePictureChange> {
           Center(
             child: InkWell(
               onTap: pickImage,
-              child: Text(
+              child: const Text(
                 'Add Profile Picture',
                 style: TextStyle(
                   color: Color(0xFF005FF2),
@@ -76,13 +76,13 @@ class _ProfilePictureChangeState extends ConsumerState<ProfilePictureChange> {
             ),
           ),
                24.verticalSpace,
-        Guidelines(),
+        const Guidelines(),
           24.verticalSpace,
           ElevatedButton(
               onPressed: () {
                 ref.read(progressBarValueProvider3.notifier).state++;
                 ref.read(pageControllerProvider3.notifier).state.nextPage(
-                    duration: Duration(microseconds: 500),
+                    duration: const Duration(microseconds: 500),
                     curve: Curves.bounceIn);
               },
               child: Text('Next',  style: TextStyle(

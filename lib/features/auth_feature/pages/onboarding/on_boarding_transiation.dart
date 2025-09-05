@@ -21,7 +21,7 @@ class _OnBoardingTransiationState extends ConsumerState<OnBoardingTransiation> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: _isStartAnimation ? Colors.white : Color(0xFFF4FCFF),
+      backgroundColor: _isStartAnimation ? Colors.white : const Color(0xFFF4FCFF),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,14 +30,14 @@ class _OnBoardingTransiationState extends ConsumerState<OnBoardingTransiation> {
             60.verticalSpace,
             if (_isStartAnimation)
               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: IconButton(
                       onPressed: () {
                         context.pop();
                       },
-                      icon: BackIcon())),
+                      icon: const BackIcon())),
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 left: 41,
                 right: 41,
               ),
@@ -48,7 +48,7 @@ class _OnBoardingTransiationState extends ConsumerState<OnBoardingTransiation> {
             ),
             16.verticalSpace,
             Padding(
-              padding: EdgeInsets.only(left: 32, right: 32),
+              padding: const EdgeInsets.only(left: 32, right: 32),
               child: Text(
                 _isStartAnimation
                     ? "Whether it's the role you're open to \noffering or the role you're hoping others \ncan fill, "
@@ -63,7 +63,7 @@ class _OnBoardingTransiationState extends ConsumerState<OnBoardingTransiation> {
             ),
             16.verticalSpace,
             Padding(
-              padding: EdgeInsets.only(left: 32, right: 32),
+              padding: const EdgeInsets.only(left: 32, right: 32),
               child: Text(
                 _isStartAnimation
                     ? "we're here to make it happen! Ready? "
@@ -71,19 +71,19 @@ class _OnBoardingTransiationState extends ConsumerState<OnBoardingTransiation> {
                 style: TextStyle(
                     fontSize: 19.sp,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF333333)),
+                    color: const Color(0xFF333333)),
                 textAlign: TextAlign.center,
               ),
             ),
             32.verticalSpace,
             Padding(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 24,
               ),
               child: ElevatedButton(
                   onPressed: () {
                     if(_isStartAnimation){
-                      final formStep = FormStepModel(
+                      final formStep = const FormStepModel(
                         phase: 2,
                         subStep: 0 ,
                         pageIndex: 0,
@@ -96,7 +96,7 @@ class _OnBoardingTransiationState extends ConsumerState<OnBoardingTransiation> {
                           .read(updateProfileStepsProvider.notifier)
                           .updateProfileSteps(steps: formStep.stepAsString);
 
-                      context.navigateTo(sign_up_steps2());
+                      context.navigateTo(const sign_up_steps2());
                     }else{
                       setState(() {
                         _isStartAnimation = true;

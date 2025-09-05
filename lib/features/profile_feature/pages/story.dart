@@ -23,12 +23,12 @@ class _StoryState extends ConsumerState<Story> with AutomaticKeepAliveClientMixi
     super.build(context);
     final imageList=ref.watch(imageListProvider);
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: 'Showcase Your Story',
               text2: 'Add up to six photos to share your story.'),
           24.verticalSpace,
@@ -38,21 +38,21 @@ class _StoryState extends ConsumerState<Story> with AutomaticKeepAliveClientMixi
               fontSize: 16.sp,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.italic,
-              color: Color(0xFF333333),
+              color: const Color(0xFF333333),
             ),
           ),
           Column(
             children: [
               Row(
                 children: [
-                  Profilebottombar(label: '🐶 Pets'),
+                  const Profilebottombar(label: '🐶 Pets'),
                   // Example(title: '🐶 Pets'),
                   8.horizontalSpace,
-                  Profilebottombar(label: '🎉 Traditions'),
+                  const Profilebottombar(label: '🎉 Traditions'),
                 ],
               ),
               8.verticalSpace,
-              Row(
+              const Row(
                 children: [
                   Profilebottombar(label: '🥗 Favorite Activities'),
                 ],
@@ -65,9 +65,9 @@ class _StoryState extends ConsumerState<Story> with AutomaticKeepAliveClientMixi
             style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w800),
           ),
           16.verticalSpace,
-          Addicon(),
+          const Addicon(),
           32.verticalSpace,
-          Guidelines(),
+          const Guidelines(),
           32.verticalSpace,
           ElevatedButton(
               onPressed: () {
@@ -78,7 +78,7 @@ class _StoryState extends ConsumerState<Story> with AutomaticKeepAliveClientMixi
                 //  context.navigateTo(HomeScreen());
                 ref.read(progressBarValueProvider3.notifier).state++;
                 ref.read(pageControllerProvider3.notifier).state.nextPage(
-                    duration: Duration(microseconds: 500),
+                    duration: const Duration(microseconds: 500),
                     curve: Curves.bounceIn);
               },
               child: Text(

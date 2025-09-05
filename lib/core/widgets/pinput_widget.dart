@@ -21,9 +21,9 @@ class _PinPutWidgetState extends State<PinPutWidget> {
     defaultPinTheme = PinTheme(
       width: 56,
       height: 56,
-      textStyle: TextStyle(
+      textStyle: const TextStyle(
         fontSize: 20,
-        color: const Color.fromRGBO(30, 60, 87, 1),
+        color: Color.fromRGBO(30, 60, 87, 1),
         fontWeight: FontWeight.w600,
       ),
       decoration: BoxDecoration(
@@ -33,13 +33,13 @@ class _PinPutWidgetState extends State<PinPutWidget> {
     );
 
     focusedPinTheme = defaultPinTheme.copyDecorationWith(
-      border: Border.all(color: Color(0xFF005FF2)),
+      border: Border.all(color: const Color(0xFF005FF2)),
       borderRadius: BorderRadius.circular(8),
     );
 
     submittedPinTheme = defaultPinTheme.copyWith(
       decoration: defaultPinTheme.decoration?.copyWith(
-        border: Border.all(color: Color(0xFF005FF2)),
+        border: Border.all(color: const Color(0xFF005FF2)),
       ),
       textStyle: defaultPinTheme.textStyle?.copyWith(color: Colors.black)
     );

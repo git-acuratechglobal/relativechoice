@@ -41,7 +41,7 @@ class _BetaCodeScreenState extends ConsumerState<BetaCodeScreen> {
     final betaCode = ref.read(betaCodeProvider.notifier);
     return Scaffold(
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -55,19 +55,19 @@ class _BetaCodeScreenState extends ConsumerState<BetaCodeScreen> {
                       onPressed: () {
                         context.pop();
                       },
-                      icon: BackIcon()),
-                  Center(child: topImage()),
+                      icon: const BackIcon()),
+                  const Center(child: topImage()),
                   50.horizontalSpace
                 ],
               ),
             ),
             32.verticalSpace,
-            CustomText(
+            const CustomText(
                 text: "Hello Beta Tester!",
                 text2:
                     "Please enter the unique Beta code we  \nsent to your email."),
             32.verticalSpace,
-            Text(
+            const Text(
               "Beta Code",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
@@ -77,7 +77,7 @@ class _BetaCodeScreenState extends ConsumerState<BetaCodeScreen> {
               focusNode: _betaCodeFiled,
               autofocus: false,
               cursorColor: Colors.black,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Please enter your beta code.',
                 hintStyle: TextStyle(
                   color: Color(0xFF777777),
@@ -103,7 +103,7 @@ class _BetaCodeScreenState extends ConsumerState<BetaCodeScreen> {
               },
             ),
             16.verticalSpace,
-            Center(
+            const Center(
               child: Text.rich(
                 TextSpan(
                   children: [
@@ -147,7 +147,7 @@ class _BetaCodeScreenState extends ConsumerState<BetaCodeScreen> {
       context: context,
       barrierDismissible: true,
       barrierLabel: "Dismiss",
-      transitionDuration: Duration(milliseconds: 300),
+      transitionDuration: const Duration(milliseconds: 300),
       pageBuilder: (context, animation, secondaryAnimation) {
         return Padding(
           padding: const EdgeInsets.only(left: 24, right: 24),
@@ -160,7 +160,7 @@ class _BetaCodeScreenState extends ConsumerState<BetaCodeScreen> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: WelcomeDialog(),
+                child: const WelcomeDialog(),
               ),
             ),
           ),
@@ -194,10 +194,10 @@ class _WelcomeDialogState extends State<WelcomeDialog> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          padding: EdgeInsets.only(top: 10),
+          padding: const EdgeInsets.only(top: 10),
           height: 164,
           width: 1.sw,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               gradient: LinearGradient(
@@ -228,7 +228,7 @@ class _WelcomeDialogState extends State<WelcomeDialog> {
                 TextSpan(
                   text: 'Family!',
                   style: TextStyle(
-                    color: Color(0xFF005FF2),
+                    color: const Color(0xFF005FF2),
                     fontSize: 28.sp,
                     fontFamily: 'Montserrat',
                     fontWeight: FontWeight.w800,
@@ -248,7 +248,7 @@ class _WelcomeDialogState extends State<WelcomeDialog> {
             'Your input will shape RelativeChoice into the best experience possible. We wish you - and all of us - much success!',
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: Color(0xFF333333),
+              color: const Color(0xFF333333),
               fontSize: 14.sp,
               fontWeight: FontWeight.w500,
             ),
@@ -259,7 +259,7 @@ class _WelcomeDialogState extends State<WelcomeDialog> {
           padding: const EdgeInsets.only(right: 24, left: 24),
           child: ElevatedButton(
               onPressed: () {
-                context.navigateTo(SignUpScreen());
+                context.navigateTo(const SignUpScreen());
               },
               child: Text(
                 'Continue',

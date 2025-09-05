@@ -26,7 +26,7 @@ class _PartnerPoliticsState extends ConsumerState<PartnerPolitics> with Automati
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: "Partner's Politics",
               text2:
                   "Let's talk politics—just a bit! People seek family connections in many ways, and for some, sharing similar political views helps with finding common ground. Let us know if this matters to you."),
@@ -41,7 +41,7 @@ class _PartnerPoliticsState extends ConsumerState<PartnerPolitics> with Automati
             },
           ),
           32.verticalSpace,
-          CommonText(),
+          const CommonText(),
           32.verticalSpace,
           PrimaryButton(
             isLoading: ref.watch(authNotifierProvider).isLoading,

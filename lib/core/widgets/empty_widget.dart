@@ -27,7 +27,7 @@ class EmptyWidget extends StatelessWidget {
         children: [
           Text(
             message,
-            style: TextStyle(fontSize: 15),
+            style: const TextStyle(fontSize: 15),
           ),
           10.verticalSpace,
 
@@ -37,16 +37,16 @@ class EmptyWidget extends StatelessWidget {
               height: 50,
               width: 200,
               decoration: BoxDecoration(
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   colors: [
                     Color(0xFF43BEE1),
                     Color(0xFFCEEB66)
                   ], // Your gradient colors
                 ),
-                border: Border.all(color: Color(0xff005695)),
+                border: Border.all(color: const Color(0xff005695)),
                 borderRadius: BorderRadius.circular(30),
               ),
-              child: Center(
+              child: const Center(
                 child: Text("Retry",
                     style: TextStyle(
                         fontSize: 18,

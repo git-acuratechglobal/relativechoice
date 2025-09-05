@@ -18,9 +18,9 @@ class _ForgetPasswordState extends ConsumerState<ForgetPassword> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0XFFF4FCFF),
+      backgroundColor: const Color(0XFFF4FCFF),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,18 +34,18 @@ class _ForgetPasswordState extends ConsumerState<ForgetPassword> {
                       onPressed: () {
                         context.pop();
                       },
-                      icon: BackIcon()),
-                  Center(child: topImage()),
+                      icon: const BackIcon()),
+                  const Center(child: topImage()),
                   50.horizontalSpace
                 ],
               ),
             ),
             32.verticalSpace,
-            CustomText(
+            const CustomText(
                 text: "Enter Your Passcode!",
                 text2: "Please enter the new Passcode."),
             32.verticalSpace,
-            Text(
+            const Text(
               "Enter your New Passcode",
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
@@ -55,7 +55,7 @@ class _ForgetPasswordState extends ConsumerState<ForgetPassword> {
                 hintText: 'Please enter the new Password.',  hintStyle: TextStyle(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w500,
-                      color: Color(0xFF777777)),
+                      color: const Color(0xFF777777)),
               ),
               //  controller: _editingController,
               autofocus: false,
@@ -68,11 +68,11 @@ class _ForgetPasswordState extends ConsumerState<ForgetPassword> {
             24.verticalSpace,
             ElevatedButton(
                 onPressed: () {
-                  context.navigateTo(HomeScreen());
+                  context.navigateTo(const HomeScreen());
                 },
-                child: Text('Submit')),
+                child: const Text('Submit')),
             16.verticalSpace,
-            Center(
+            const Center(
               child: Text.rich(
                 TextSpan(
                   children: [

@@ -29,7 +29,7 @@ class _OnBoardingTransaction3State extends ConsumerState<OnBoardingTransaction3>
               children: [
                 IconButton(
                   onPressed: context.pop,
-                  icon: BackIcon()),
+                  icon: const BackIcon()),
               ],
             ),
             Image.asset(
@@ -38,7 +38,7 @@ class _OnBoardingTransaction3State extends ConsumerState<OnBoardingTransaction3>
             ),
             16.verticalSpace,
             Padding(
-              padding: EdgeInsets.only(left: 24, right: 24),
+              padding: const EdgeInsets.only(left: 24, right: 24),
               child: Text(
                 "You did it! 🎉 Now, let's move on to the fun part: putting all this together to finalize your profile!  ",
                 style: TextStyle(
@@ -51,13 +51,13 @@ class _OnBoardingTransaction3State extends ConsumerState<OnBoardingTransaction3>
             ),
             16.verticalSpace,
             Padding(
-              padding: EdgeInsets.only(left: 24, right: 24),
+              padding: const EdgeInsets.only(left: 24, right: 24),
               child: Text(
                 "This is where you can share some photos and let your personality shine. Everyone's excited to see the real you!",
                 style: TextStyle(
                     fontSize: 19.sp,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF333333)),
+                    color: const Color(0xFF333333)),
                 textAlign: TextAlign.center,
               ),
             ), 
@@ -66,7 +66,7 @@ class _OnBoardingTransaction3State extends ConsumerState<OnBoardingTransaction3>
                     alignment: Alignment.bottomCenter,
                      child: ElevatedButton(
                                  onPressed: () {
-                                   final formStep = FormStepModel(
+                                   final formStep = const FormStepModel(
                                      phase: 3,
                                      subStep: 0 ,
                                      pageIndex: 0,
@@ -78,7 +78,7 @@ class _OnBoardingTransaction3State extends ConsumerState<OnBoardingTransaction3>
                                    ref
                                        .read(updateProfileStepsProvider.notifier)
                                        .updateProfileSteps(steps: formStep.stepAsString);
-                                   context.navigateTo(sign_up_steps3());
+                                   context.navigateTo(const sign_up_steps3());
                                  },
                                  child: Text(
                                    "Let's GO",

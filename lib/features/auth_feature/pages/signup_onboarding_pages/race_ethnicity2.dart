@@ -29,7 +29,7 @@ class _RaceEthnicity2State extends ConsumerState<RaceEthnicity2>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: 'Race and Ethnicity ',
               text2:
                   "You're on a roll! Now, let's get into a bit more detail. If certain racial or ethnic backgrounds feel especially important in your search, you can let us know here. Choose 'Open to All' if you're flexible or handpick any that matter most."),
@@ -50,7 +50,7 @@ class _RaceEthnicity2State extends ConsumerState<RaceEthnicity2>
             },
           ),
           24.verticalSpace,
-          Divider(
+          const Divider(
             color: Color(0xFFF7F7F7),
             thickness: 8,
           ),

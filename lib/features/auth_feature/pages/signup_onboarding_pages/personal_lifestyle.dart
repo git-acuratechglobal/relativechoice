@@ -21,12 +21,12 @@ class _PersonalLifestyleState extends ConsumerState<PersonalLifestyle>with Autom
   Widget build(BuildContext context) {
     super.build(context);
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: "Personal Lifestyle Choices",
               text2:
                   "Your vibe attracts your tribe! These details help us find connections that feel like home"),
@@ -54,7 +54,7 @@ class _PersonalLifestyleState extends ConsumerState<PersonalLifestyle>with Autom
                 .updatePersonalLifeStyleParam("smoking_options", commaSeparated);
           }),
           24.verticalSpace,
-          Divider(
+          const Divider(
             color: Color(0xFFF7F7F7),
             thickness: 8,
           ),
@@ -80,7 +80,7 @@ class _PersonalLifestyleState extends ConsumerState<PersonalLifestyle>with Autom
             },
           ),
           32.verticalSpace,
-          CommonText(),
+          const CommonText(),
           32.verticalSpace,
           PrimaryButton(
               isLoading: ref.watch(authNotifierProvider).isLoading,

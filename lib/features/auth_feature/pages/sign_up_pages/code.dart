@@ -21,9 +21,9 @@ class _CodeState extends ConsumerState<Code> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0XFFF4FCFF),
+      backgroundColor: const Color(0XFFF4FCFF),
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Form(
           key: _fKey,
           child: Column(
@@ -39,14 +39,14 @@ class _CodeState extends ConsumerState<Code> {
                         onPressed: () {
                           context.pop();
                         },
-                        icon: BackIcon()),
-                    Center(child: topImage()),
+                        icon: const BackIcon()),
+                    const Center(child: topImage()),
                     50.horizontalSpace
                   ],
                 ),
               ),
               32.verticalSpace,
-              CustomText(
+              const CustomText(
                   text: "Enter Your Code!",
                   text2: "Please enter the code we have sent to your email."),
               32.verticalSpace,
@@ -100,7 +100,7 @@ class _CodeState extends ConsumerState<Code> {
                 child: Text.rich(
                   TextSpan(
                     children: [
-                      TextSpan(
+                      const TextSpan(
                         text: 'Having trouble? \n',
                         style: TextStyle(
                           color: Color(0xFF777777),
@@ -111,7 +111,7 @@ class _CodeState extends ConsumerState<Code> {
                       TextSpan(
                         text: 'Contact us',
                         style: TextStyle(
-                            color: Color(0xFF005FF2),
+                            color: const Color(0xFF005FF2),
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w900,
                             decoration: TextDecoration.underline),
@@ -119,7 +119,7 @@ class _CodeState extends ConsumerState<Code> {
                       TextSpan(
                         text: ' for assistance.',
                         style: TextStyle(
-                          color: Color(0xFF777777),
+                          color: const Color(0xFF777777),
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w500,
                         ),

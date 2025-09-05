@@ -66,7 +66,7 @@ class _SettingState extends ConsumerState<Setting> {
       // ),
 
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -78,7 +78,7 @@ class _SettingState extends ConsumerState<Setting> {
                       onPressed: () {
                         context.pop();
                       },
-                      icon: BackIcon()),
+                      icon: const BackIcon()),
                   70.horizontalSpace,
                   Text(
                     'Settings',
@@ -89,11 +89,11 @@ class _SettingState extends ConsumerState<Setting> {
               ),
               32.verticalSpace,
               Container(
-                padding: EdgeInsets.symmetric(vertical: 23, horizontal: 5),
+                padding: const EdgeInsets.symmetric(vertical: 23, horizontal: 5),
                 // height: 122.h,
                 //width: 327.w,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
+                  gradient: const LinearGradient(
                       begin: Alignment.centerRight,
                       end: Alignment.centerLeft,
                       colors: [
@@ -102,7 +102,7 @@ class _SettingState extends ConsumerState<Setting> {
                         Color(0xFFF5FAE7),
                       ]),
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(width: 1, color: Color(0xFF57C05C)),
+                  border: Border.all(width: 1, color: const Color(0xFF57C05C)),
                 ),
                 child: Row(
                   children: [
@@ -116,12 +116,12 @@ class _SettingState extends ConsumerState<Setting> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         10.verticalSpace,
-                        Text(
+                        const Text(
                           'Upgrade Membership Now!',
                           style: TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w800),
                         ),
-                        Text(
+                        const Text(
                           'Enjoy all the benefits and explore \nmore possibilities.',
                           style: TextStyle(
                               color: Color(0xFF777777),
@@ -135,7 +135,7 @@ class _SettingState extends ConsumerState<Setting> {
               ),
               32.verticalSpace,
               ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 itemBuilder: (BuildContext context, index) {
@@ -146,13 +146,13 @@ class _SettingState extends ConsumerState<Setting> {
                 },
                 itemCount: setting.length,
               ),
-              Divider(
+              const Divider(
                 color: Color(0xFFDEDEDE),
               ),
               ListTile(
                 onTap: () async {
                   ref.read(localStorageServiceProvider).clearSession();
-                  context.navigateAndRemoveUntil(WelcomeScreen());
+                  context.navigateAndRemoveUntil(const WelcomeScreen());
                 },
                 leading: Image.asset(
                   'asset/images/logout.png',
@@ -162,7 +162,7 @@ class _SettingState extends ConsumerState<Setting> {
                 title: Text(
                   'Logout',
                   style: TextStyle(
-                    color: Color(0xFFFF5A5A),
+                    color: const Color(0xFFFF5A5A),
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
                   ),
@@ -203,7 +203,7 @@ class _settingListState extends State<settingList> {
         style: TextStyle(
           fontSize: 14.sp,
           fontWeight: FontWeight.w500,
-          color: Color(0xFF1A1B28),
+          color: const Color(0xFF1A1B28),
         ),
       ),
     );

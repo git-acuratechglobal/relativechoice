@@ -28,6 +28,8 @@ class LocalStorageService {
   static const String _userModelKey = "userModel";
   static const String _formStep = "form_step";
   static const String _userType="userType";
+  static const String _isTutorialSeen="isTutorialSeen";
+
 
 
 
@@ -51,7 +53,14 @@ class LocalStorageService {
     return userType;
   }
 
+  Future<void> setTutorialSeen()async{
+    await _preferences.setBool(_isTutorialSeen, true);
 
+  }
+
+  bool getTutorialSeen(){
+    return _preferences.getBool(_isTutorialSeen) ?? false;
+  }
 
   Future<void> setUserModel(UserModel user) async {
     await _preferences.setString(_userModelKey, jsonEncode(user.toJson()));

@@ -35,7 +35,7 @@ class _TransationPromptState extends ConsumerState<TransationPrompt> {
             ref.read(userProvider.notifier).update((e) => user);
             Utils.showSnackBar(context, data.value!.response.toString());
             ref.read(localStorageServiceProvider).clearFormSession();
-            context.navigateTo(HomeScreen());
+            context.navigateTo(const HomeScreen());
           }
 
         case AsyncError error:
@@ -58,7 +58,7 @@ class _TransationPromptState extends ConsumerState<TransationPrompt> {
                 onPressed: () {
                   context.pop();
                 },
-                icon: BackIcon(),
+                icon: const BackIcon(),
               ),
               Center(
                 child: Text(
@@ -82,8 +82,8 @@ class _TransationPromptState extends ConsumerState<TransationPrompt> {
                         width: 1, color: Color(0xFFDFDFDF)),
                   ),
                   color: const Color(0xFFFFFFFF),
-                  shadows: [
-                    const BoxShadow(
+                  shadows: const [
+                    BoxShadow(
                       color: Color(0xFFDFDFDF),
                       blurRadius: 14,
                       offset: Offset(0, 8),
@@ -94,35 +94,35 @@ class _TransationPromptState extends ConsumerState<TransationPrompt> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       '📝',
                       style: TextStyle(
                         fontSize: 32,
                       ),
                     ),
-                    UploadContainer(
+                    const UploadContainer(
                         text1: 'Share your story through  ',
                         text2: 'writing prompts. ',
                         text3: ''),
                     24.verticalSpace,
-                    Text(
+                    const Text(
                       '💬 ',
                       style: TextStyle(
                         fontSize: 32,
                       ),
                     ),
-                    UploadContainer(
+                    const UploadContainer(
                         text1: 'Choose up to ',
                         text2: '5 prompts ',
                         text3: ' to showcase who you are.'),
                     24.verticalSpace,
-                    Text(
+                    const Text(
                       '🔁  ',
                       style: TextStyle(
                         fontSize: 32,
                       ),
                     ),
-                    UploadContainer(
+                    const UploadContainer(
                         text1: 'You can  ',
                         text2: 'edit or swap',
                         text3: ' them anytime!')
@@ -132,7 +132,7 @@ class _TransationPromptState extends ConsumerState<TransationPrompt> {
               32.verticalSpace,
               ElevatedButton(
                 onPressed: () {
-                  context.navigateTo(Prompts());
+                  context.navigateTo(const Prompts());
                 },
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size(double.infinity, 56.h),

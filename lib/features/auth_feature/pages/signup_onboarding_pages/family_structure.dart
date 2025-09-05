@@ -29,12 +29,12 @@ class _FamilyStructureScreenState extends ConsumerState<FamilyStructureScreen>wi
     super.build(context);
     final familyStructure = ref.read(familyStructureParamsProvider.notifier);
     return SingleChildScrollView(
-      padding: EdgeInsets.only(left: 24, right: 24),
+      padding: const EdgeInsets.only(left: 24, right: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: 'Family Structure',
               text2:
                   'Please select your family structure. You can update this later if your situation changes.'),
@@ -45,7 +45,7 @@ class _FamilyStructureScreenState extends ConsumerState<FamilyStructureScreen>wi
               return familybutton(
                 name: userTypeButtons[index],
                 color: selectedFamilyType == userTypeButtons[index]
-                    ? Color(0xFFD7ED5D)
+                    ? const Color(0xFFD7ED5D)
                     : Colors.white,
                 onTap: () {
                   setState(() {
@@ -68,7 +68,7 @@ class _FamilyStructureScreenState extends ConsumerState<FamilyStructureScreen>wi
             shrinkWrap: true,
           ),
           24.verticalSpace,
-          Divider(
+          const Divider(
             color: Color(0xFFF7F7F7),
             thickness: 8,
           ),
@@ -81,7 +81,7 @@ class _FamilyStructureScreenState extends ConsumerState<FamilyStructureScreen>wi
               style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w800)),
           16.verticalSpace,
           LivingWithSelector(
-            options: ['Parent(s)', 'Sibling(s)', 'Roommate(s)'],
+            options: const ['Parent(s)', 'Sibling(s)', 'Roommate(s)'],
             onChanged: (selected) {
               familyStructure
                   .update((val) => val!.copyWith(household: selected));
@@ -100,7 +100,7 @@ class _FamilyStructureScreenState extends ConsumerState<FamilyStructureScreen>wi
               hintText:
                   "Tell us more about the people sharing your home if you'd like....",
               hintStyle: TextStyle(
-                color: Color(0xFF777777),
+                color: const Color(0xFF777777),
                 fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
               ),
@@ -115,7 +115,7 @@ class _FamilyStructureScreenState extends ConsumerState<FamilyStructureScreen>wi
             },
           ),
           24.verticalSpace,
-          Divider(
+          const Divider(
             color: Color(0xFFF7F7F7),
             thickness: 8,
           ),
@@ -125,15 +125,15 @@ class _FamilyStructureScreenState extends ConsumerState<FamilyStructureScreen>wi
               style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w800)),
           16.verticalSpace,
           Container(
-            padding: EdgeInsets.symmetric(vertical: 18, horizontal: 18),
+            padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 18),
             height: 179.h,
             //width: 327.w,
             decoration: ShapeDecoration(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
-                color: Color(0xFFFFFFFF),
-                shadows: [
+                color: const Color(0xFFFFFFFF),
+                shadows: const [
                   BoxShadow(
                     color: Color.fromARGB(255, 239, 237, 237),
                     blurRadius: 14,
@@ -149,7 +149,7 @@ class _FamilyStructureScreenState extends ConsumerState<FamilyStructureScreen>wi
                   style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w800,
-                    color: Color(0xFF57C05C),
+                    color: const Color(0xFF57C05C),
                   ),
                 ),
                 10.verticalSpace,
@@ -158,7 +158,7 @@ class _FamilyStructureScreenState extends ConsumerState<FamilyStructureScreen>wi
                   style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF777777),
+                    color: const Color(0xFF777777),
                   ),
                 ),
                 10.verticalSpace,
@@ -167,14 +167,14 @@ class _FamilyStructureScreenState extends ConsumerState<FamilyStructureScreen>wi
                   style: TextStyle(
                     fontSize: 12.sp,
                     fontWeight: FontWeight.w500,
-                    color: Color(0xFF777777),
+                    color: const Color(0xFF777777),
                   ),
                 ),
               ],
             ),
           ),
           32.verticalSpace,
-          CommonText(),
+          const CommonText(),
           32.verticalSpace,
           PrimaryButton(
             isLoading: ref.watch(authNotifierProvider).isLoading,
@@ -237,7 +237,7 @@ class _LivingWithSelectorState extends ConsumerState<LivingWithSelector> {
               label: label,
               onChanged: (checked) => _onCheckboxTapped(label, checked),
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Text(
               label,
               style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500),

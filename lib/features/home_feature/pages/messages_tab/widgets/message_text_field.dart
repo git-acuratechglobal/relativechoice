@@ -24,12 +24,12 @@ class MessageTextField extends StatelessWidget {
           hintStyle: TextStyle(
             fontSize: 14.sp,
             fontWeight: FontWeight.w500,
-            color: Color(0xFF777777),
+            color: const Color(0xFF777777),
           ),
           hintText: " Type your message...",
-          fillColor: Color(0xFFFFFFFF),
+          fillColor: const Color(0xFFFFFFFF),
           suffixIcon: Padding(
-            padding: EdgeInsets.only(right: 4),
+            padding: const EdgeInsets.only(right: 4),
             child: SizedBox(
               width: 83,
               height: 48,
@@ -39,7 +39,7 @@ class MessageTextField extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 ),
                 child: Text(
                   'Send',

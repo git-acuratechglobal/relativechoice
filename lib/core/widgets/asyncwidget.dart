@@ -77,7 +77,7 @@ class AsyncWidgetB<T> extends ConsumerWidget {
                 key: UniqueKey(),
                 height: height,
               )
-            : SizedBox.shrink(),
+            : const SizedBox.shrink(),
         error: (e, st) => ErrorCustomWidget(
           key: UniqueKey(),
           error: e,
@@ -113,7 +113,7 @@ class ErrorCustomWidget extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.error,
               color: Colors.red,
             ),
@@ -123,15 +123,15 @@ class ErrorCustomWidget extends ConsumerWidget {
               maxLines: 6,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
             ),
             const SizedBox(height: 16),
             OutlinedButton(
               style: OutlinedButton.styleFrom(
-                side: BorderSide(color: Colors.grey),
+                side: const BorderSide(color: Colors.grey),
               ),
               onPressed: onRetry,
-              child: Text(
+              child: const Text(
                 "Retry",
                 style: TextStyle(color: Colors.black),
               ),
@@ -161,10 +161,10 @@ class LoadingWidget extends StatelessWidget {
         children: [
           LoadingAnimationWidget.twistingDots(
               size: 38,
-              rightDotColor: Color(0xFF005FF2),
-              leftDotColor: Color(0xFFD7ED5D)),
+              rightDotColor: const Color(0xFF005FF2),
+              leftDotColor: const Color(0xFFD7ED5D)),
           const SizedBox(height: 8),
-          Text(
+          const Text(
             "Please wait",
             textAlign: TextAlign.center,
             style: TextStyle(color: Colors.black),
@@ -187,8 +187,8 @@ class InButtonLoadingWidget extends StatelessWidget {
       key: UniqueKey(),
       child: LoadingAnimationWidget.twistingDots(
           size: 38,
-          rightDotColor: loadingColor ?? Color(0xFF005FF2),
-          leftDotColor: loadingColor ?? Color(0xFFD7ED5D)),
+          rightDotColor: loadingColor ?? const Color(0xFF005FF2),
+          leftDotColor: loadingColor ?? const Color(0xFFD7ED5D)),
     );
   }
 }
@@ -209,8 +209,8 @@ class PageLoadingWidget extends StatelessWidget {
             child: Center(
               child: LoadingAnimationWidget.twistingDots(
                   size: 38,
-                  rightDotColor: Color(0xFF005FF2),
-                  leftDotColor: Color(0xFFD7ED5D)),
+                  rightDotColor: const Color(0xFF005FF2),
+                  leftDotColor: const Color(0xFFD7ED5D)),
             )),
       ),
     );

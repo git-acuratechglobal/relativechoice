@@ -30,7 +30,7 @@ class _AdditionalScreenState extends ConsumerState<AdditionalScreen>with Automat
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             16.verticalSpace,
-            CustomText(
+            const CustomText(
                 text: 'Additional Information',
                 text2: 'Please add your additional information below'),
             32.verticalSpace,
@@ -61,12 +61,12 @@ class _AdditionalScreenState extends ConsumerState<AdditionalScreen>with Automat
               style: TextStyle(
                 fontSize: 12.sp,
                 fontWeight: FontWeight.w500,
-                color: Color(0xFF777777),
+                color: const Color(0xFF777777),
                 fontStyle: FontStyle.italic,
               ),
             ),
             32.verticalSpace,
-            Expanded(
+            const Expanded(
               child:
                   Align(alignment: Alignment.bottomCenter, child: CommonText()),
             ),

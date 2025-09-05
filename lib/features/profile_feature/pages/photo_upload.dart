@@ -28,14 +28,14 @@ class _PhotoUploadState extends ConsumerState<PhotoUpload>
       padding: const EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
-          CustomText(
+          const CustomText(
               text: 'Photo Upload',
               text2:
                   "Upload your photos below and add captions if you'd like."),
           32.verticalSpace,
-          Caption(),
+          const Caption(),
           32.verticalSpace,
-          Guidelines(),
+          const Guidelines(),
           32.verticalSpace,
           PrimaryButton(
             isLoading: ref.watch(profileOnBoardingProvider).isLoading,
@@ -138,7 +138,7 @@ class _CaptionState extends ConsumerState<Caption> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       'Add Caption',
                       style:
                           TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
@@ -149,7 +149,7 @@ class _CaptionState extends ConsumerState<Caption> {
                       width: 170.w,
                       child: TextField(
                         controller: imageInfo['caption'],
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintStyle: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,

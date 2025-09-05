@@ -16,7 +16,7 @@ class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
      // height: 226.h,
       width: 327.w,
       child: Card(
@@ -43,7 +43,7 @@ class _ProfileCardState extends State<ProfileCard> {
                 style: TextStyle(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF333333),
+                  color: const Color(0xFF333333),
                 ),
               ),
             ),
@@ -62,7 +62,7 @@ class _ProfileCardState extends State<ProfileCard> {
                 style: TextStyle(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF333333),
+                  color: const Color(0xFF333333),
                 ),
               ),
             ),
@@ -81,7 +81,7 @@ class _ProfileCardState extends State<ProfileCard> {
                 style: TextStyle(
                   fontSize: 12.sp,
                   fontWeight: FontWeight.w500,
-                  color: Color(0xFF333333),
+                  color: const Color(0xFF333333),
                 ),
               ),
             ),

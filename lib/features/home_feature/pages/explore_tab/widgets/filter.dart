@@ -36,14 +36,14 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet>
   Widget build(BuildContext context) {
     
     return ClipRRect(
-      borderRadius: BorderRadius.only(
+      borderRadius: const BorderRadius.only(
         topLeft: Radius.circular(20),
         topRight: Radius.circular(20),
       ),
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(158),
+          preferredSize: const Size.fromHeight(158),
           child: Column(
             children: [
               AppBar(
@@ -62,7 +62,7 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet>
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: BackIcon(),
+                  icon: const BackIcon(),
                 ),
               ),
               10.verticalSpace,
@@ -76,8 +76,8 @@ class _FilterBottomSheetState extends ConsumerState<FilterBottomSheet>
         ),
         body: TabBarView(
           controller: tabController,
-          physics: NeverScrollableScrollPhysics(),
-          children: [AdvanceFilter(), SortBy()],
+          physics: const NeverScrollableScrollPhysics(),
+          children: const [AdvanceFilter(), SortBy()],
         ),
       ),
     );
@@ -110,7 +110,7 @@ class _AdvanceFilterState extends ConsumerState<AdvanceFilter> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 24,
       ),
       child: Column(
@@ -135,8 +135,8 @@ class _AdvanceFilterState extends ConsumerState<AdvanceFilter> {
             value: _currentValue,
             min: 0,
             max: 100,
-            activeColor: Color(0xFF005FF2),
-            inactiveColor: Color(0xFFDEDEDE),
+            activeColor: const Color(0xFF005FF2),
+            inactiveColor: const Color(0xFFDEDEDE),
             onChanged: (double value) {
               setState(() {
                 _currentValue = value;
@@ -167,7 +167,7 @@ class _AdvanceFilterState extends ConsumerState<AdvanceFilter> {
             ],
           ),
           24.verticalSpace,
-          Divider(
+          const Divider(
             height: 1,
             color: Color(0xFFDEDEDE),
           ),
@@ -179,9 +179,9 @@ class _AdvanceFilterState extends ConsumerState<AdvanceFilter> {
               fontWeight: FontWeight.w800,
             ),
           ),
-          RoleOptionsFilter(),
+          const RoleOptionsFilter(),
           24.verticalSpace,
-          Divider(
+          const Divider(
             height: 1,
             color: Color(0xFFDEDEDE),
           ),
@@ -195,7 +195,7 @@ class _AdvanceFilterState extends ConsumerState<AdvanceFilter> {
           ),
           PetsOption(onChanged: ( selectedPets) {  },),
           24.verticalSpace,
-          Divider(
+          const Divider(
             height: 1,
             color: Color(0xFFDEDEDE),
           ),
@@ -209,7 +209,7 @@ class _AdvanceFilterState extends ConsumerState<AdvanceFilter> {
           ),
           PoliticsOption(onChanged: (String value) {  },),
           24.verticalSpace,
-          Divider(
+          const Divider(
             height: 1,
             color: Color(0xFFDEDEDE),
           ),
@@ -242,8 +242,8 @@ class _AdvanceFilterState extends ConsumerState<AdvanceFilter> {
       value: _currentValue,
       min: 0,
       max: 100,
-      activeColor: Color(0xFF005FF2),
-      inactiveColor: Color(0xFFDEDEDE),
+      activeColor: const Color(0xFF005FF2),
+      inactiveColor: const Color(0xFFDEDEDE),
       onChanged: (double value) {
         setState(() {
           _currentValue = value;
@@ -251,7 +251,7 @@ class _AdvanceFilterState extends ConsumerState<AdvanceFilter> {
       },
     ),
           24.verticalSpace,
-          Divider(
+          const Divider(
             height: 1,
             color: Color(0xFFDEDEDE),
           ),
@@ -263,10 +263,10 @@ class _AdvanceFilterState extends ConsumerState<AdvanceFilter> {
               fontWeight: FontWeight.w800,
             ),
           ),
-          customrange(
+          const customrange(
             label: 'No smokers',
           ),
-          customrange(
+          const customrange(
             label: 'Must like cats',
           ),
           40.verticalSpace,
@@ -280,10 +280,10 @@ class _AdvanceFilterState extends ConsumerState<AdvanceFilter> {
                   style: ElevatedButton.styleFrom(
                     minimumSize: Size.fromHeight(56.h),
                     backgroundColor: Colors.white,
-                    foregroundColor: Color(0xFF777777),
+                    foregroundColor: const Color(0xFF777777),
                   ),
                   onPressed: () {},
-                  child: Text('Reset'),
+                  child: const Text('Reset'),
                 ),
               ),
               10.horizontalSpace,
@@ -291,7 +291,7 @@ class _AdvanceFilterState extends ConsumerState<AdvanceFilter> {
                 width: (MediaQuery.of(context).size.width - 40.w - 40.w) / 2,
                 child: ElevatedButton(
                   onPressed: () {},
-                  child: Text('Apply'),
+                  child: const Text('Apply'),
                 ),
               ),
             ],
@@ -314,7 +314,7 @@ class _SortByState extends ConsumerState<SortBy> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -326,9 +326,9 @@ class _SortByState extends ConsumerState<SortBy> {
                 fontWeight: FontWeight.w800,
               ),
             ),
-            CompatibilityScore(),
+            const CompatibilityScore(),
             24.verticalSpace,
-            Divider(
+            const Divider(
               height: 1,
               color: Color(0xFFDEDEDE),
             ),
@@ -340,9 +340,9 @@ class _SortByState extends ConsumerState<SortBy> {
                 fontWeight: FontWeight.w800,
               ),
             ),
-            DistanceScore(),
+            const DistanceScore(),
             24.verticalSpace,
-            Divider(
+            const Divider(
               height: 1,
               color: Color(0xFFDEDEDE),
             ),
@@ -354,13 +354,13 @@ class _SortByState extends ConsumerState<SortBy> {
                 fontWeight: FontWeight.w800,
               ),
             ),
-            NewestProfiles(),
+            const NewestProfiles(),
             30.verticalSpace,
           ],
         ),
       ),
       bottomNavigationBar: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -369,17 +369,17 @@ class _SortByState extends ConsumerState<SortBy> {
                 style: ElevatedButton.styleFrom(
                   minimumSize: Size.fromHeight(56.h),
                   backgroundColor: Colors.white,
-                  foregroundColor: Color(0xFF777777),
+                  foregroundColor: const Color(0xFF777777),
                 ),
                 onPressed: () {},
-                child: Text('Reset'),
+                child: const Text('Reset'),
               ),
             ),
             10.horizontalSpace,
             Expanded(
               child: ElevatedButton(
                 onPressed: () {},
-                child: Text('Apply'),
+                child: const Text('Apply'),
               ),
             ),
             10.verticalSpace
@@ -407,7 +407,7 @@ class _CompatibilityScoreState extends State<CompatibilityScore> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         padding: EdgeInsets.zero,
         itemCount: compatibility.length,
@@ -461,7 +461,7 @@ class _DistanceScoreState extends State<DistanceScore> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         padding: EdgeInsets.zero,
         itemCount: distance.length,
@@ -515,7 +515,7 @@ class _NewestProfilesState extends State<NewestProfiles> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         padding: EdgeInsets.zero,
         itemCount: newestProfile.length,

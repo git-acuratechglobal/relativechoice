@@ -38,7 +38,7 @@ class _ActiveFeedState extends ConsumerState<ActiveFeed>
     final user = ref.watch(userProvider);
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(158),
+        preferredSize: const Size.fromHeight(158),
         child: Column(
           children: [
             Padding(
@@ -57,8 +57,8 @@ class _ActiveFeedState extends ConsumerState<ActiveFeed>
       ),
       body: TabBarView(
         controller: tabController,
-        physics: NeverScrollableScrollPhysics(),
-        children: [
+        physics: const NeverScrollableScrollPhysics(),
+        children: const [
           ActivityFeedTab(),
           SuggestedTab(),
         ],
@@ -105,7 +105,7 @@ class appbar extends StatelessWidget {
                 ],
               ),
             )),
-        actions: [
+        actions: const [
           notification(),
         ]);
   }
@@ -147,27 +147,27 @@ class _TabbarState extends State<Tabbar> {
       width: 343.0.sp,
       height: 44.0.sp,
       decoration: ShapeDecoration(
-        color: Color(0xFFF4FCFF),
+        color: const Color(0xFFF4FCFF),
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Color(0xFFDEDEDE)),
+          side: const BorderSide(width: 1, color: Color(0xFFDEDEDE)),
           borderRadius: BorderRadius.circular(46),
         ),
       ),
       child: TabBar(
         indicatorWeight: 1,
-        padding: EdgeInsets.symmetric(vertical: 2),
+        padding: const EdgeInsets.symmetric(vertical: 2),
         indicatorColor: Colors.transparent,
         controller: widget.tabController,
         tabAlignment: TabAlignment.fill,
         indicator: const BoxDecoration(),
         indicatorSize: TabBarIndicatorSize.tab,
-        labelPadding: EdgeInsets.symmetric(horizontal: 5),
+        labelPadding: const EdgeInsets.symmetric(horizontal: 5),
         tabs: [
           Padding(
             padding: const EdgeInsets.only(top: 1),
             child: TabContainer(
               title: widget.label,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
               ),
               isSelected: selectedTab == 0,
@@ -177,7 +177,7 @@ class _TabbarState extends State<Tabbar> {
             padding: const EdgeInsets.only(top: 1),
             child: TabContainer(
               title: widget.label2,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               isSelected: selectedTab == 1,
             ),
           ),
@@ -215,9 +215,9 @@ class TabContainer extends StatelessWidget {
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(56.sp),
             side: isSelected
-                ? BorderSide(
+                ? const BorderSide(
                     width: 1, color: Color.fromARGB(255, 240, 239, 239))
-                : BorderSide(width: 1, color: Colors.transparent)),
+                : const BorderSide(width: 1, color: Colors.transparent)),
       ),
       child: Center(
         child: Text(
@@ -225,7 +225,7 @@ class TabContainer extends StatelessWidget {
           style: TextStyle(
             fontSize: 13,
             fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-            color: isSelected ? Colors.black : Color(0xFF777777),
+            color: isSelected ? Colors.black : const Color(0xFF777777),
           ),
         ),
       ),

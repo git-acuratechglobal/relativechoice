@@ -20,12 +20,12 @@ class _RoleSoughtState extends ConsumerState<RoleSought> with AutomaticKeepAlive
   Widget build(BuildContext context) {
     super.build(context);
     return SingleChildScrollView(
-      padding: EdgeInsets.only(right: 24, left: 24),
+      padding: const EdgeInsets.only(right: 24, left: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           16.verticalSpace,
-          CustomText(
+          const CustomText(
               text: "Role Sought",
               text2:
                   "Select all family roles you're open to connecting with. Check all that apply!"),
@@ -47,8 +47,8 @@ class _RoleSoughtState extends ConsumerState<RoleSought> with AutomaticKeepAlive
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
-                color: Color(0xFFFFFFFF),
-                shadows: [
+                color: const Color(0xFFFFFFFF),
+                shadows: const [
                   BoxShadow(
                     color: Color.fromARGB(255, 239, 237, 237),
                     blurRadius: 14,
@@ -66,14 +66,14 @@ class _RoleSoughtState extends ConsumerState<RoleSought> with AutomaticKeepAlive
                         TextSpan(
                             text: "Please Note: ",
                             style: TextStyle(
-                                color: Color(0xFF57C05C),
+                                color: const Color(0xFF57C05C),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w800)),
                         TextSpan(
                             text:
                                 "Relative Choice does not offer romantic matching. ",
                             style: TextStyle(
-                                color: Color(0xFF777777),
+                                color: const Color(0xFF777777),
                                 fontSize: 12.sp,
                                 fontWeight: FontWeight.w500)),
                       ],

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,9 @@ import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gradient_borders/box_borders/gradient_box_border.dart';
+import 'package:relative_choice/core/services/local_storage_service/local_storage_service.dart';
 import 'package:relative_choice/features/home_feature/models/daily_tip_model.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 import '../../../../../core/network/apiend_points.dart';
 import '../../../../../core/widgets/asyncwidget.dart';
 import '../../../../../core/widgets/empty_widget.dart';
@@ -24,14 +27,28 @@ class ActivityFeedTab extends ConsumerStatefulWidget {
 
 class _ActivityFeedTabState extends ConsumerState<ActivityFeedTab> {
   int currentIndex = 0;
+  GlobalKey keyButton = GlobalKey();
+  late TutorialCoachMark tutorialCoachMark;
+  @override
+  void initState() {
+    super.initState();
+
+    final isTutorialSeen =
+        ref.read(localStorageServiceProvider).getTutorialSeen();
+    if (!isTutorialSeen) {
+      createTutorial();
+      Future.delayed(const Duration(seconds: 4), showTutorial);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: RefreshIndicator(
-        color: Color(0xFFCFEB65),
+        color: const Color(0xFFCFEB65),
         onRefresh: () async => ref.refresh(activityTabDataProvider),
         child: SingleChildScrollView(
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           child: AsyncWidget(
               onRetry: () => ref.invalidate(activityTabDataProvider),
               value: ref.watch(activityTabDataProvider),
@@ -48,50 +65,49 @@ class _ActivityFeedTabState extends ConsumerState<ActivityFeedTab> {
                   );
                 }
                 return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Align(
-                      alignment: Alignment.center,
-                      child: SizedBox(
-                        height: 500,
-                        width: 315.w,
-                        child: CardSwiper(
-                          numberOfCardsDisplayed:
-                              (activeFeed.matchedPeoplesList.length == 1
-                                  ? 1
-                                  : 2),
-                          controller: CardSwiperController(),
-                          backCardOffset: Offset(45, 0),
-                          cardBuilder: (
-                            context,
-                            index,
-                            horizontalThresholdPercentage,
-                            verticalThresholdPercentage,
-                          ) {
-                            bool isShowing = currentIndex == index;
-                            final userModel =
-                                activeFeed.matchedPeoplesList[index];
-                            return FeedCardWidget(
-                              userModel: userModel,
-                              isShowing: isShowing,
-                            );
-                          },
-                          allowedSwipeDirection:
-                              AllowedSwipeDirection.symmetric(
-                            horizontal: true,
-                          ),
-                          cardsCount: activeFeed.matchedPeoplesList.length,
-                          onSwipe: (int a, int? b, c) {
-                            setState(() {
-                              currentIndex = b!;
-                            });
-                            return true;
-                          },
+                    20.verticalSpace,
+                    SizedBox(
+                      height: 0.46.sh,
+                      width: 280.w,
+                      // color: Colors.black,
+                      child: CardSwiper(
+                        padding: EdgeInsets.zero,
+                        key: keyButton,
+                        numberOfCardsDisplayed:
+                            (activeFeed.matchedPeoplesList.length == 1 ? 1 : 2),
+                        controller: CardSwiperController(),
+                        backCardOffset: const Offset(45, 0),
+                        cardBuilder: (
+                          context,
+                          index,
+                          horizontalThresholdPercentage,
+                          verticalThresholdPercentage,
+                        ) {
+                          bool isShowing = currentIndex == index;
+                          final userModel =
+                              activeFeed.matchedPeoplesList[index];
+                          return FeedCardWidget(
+                            userModel: userModel,
+                            isShowing: isShowing,
+                          );
+                        },
+                        allowedSwipeDirection:
+                            const AllowedSwipeDirection.symmetric(
+                          horizontal: true,
                         ),
+                        cardsCount: activeFeed.matchedPeoplesList.length,
+                        onSwipe: (int a, int? b, c) {
+                          setState(() {
+                            currentIndex = b!;
+                          });
+                          return true;
+                        },
                       ),
                     ),
-                    20.verticalSpace,
+                    25.verticalSpace,
 
                     //***DailyTip widget***////
 
@@ -121,7 +137,7 @@ class _ActivityFeedTabState extends ConsumerState<ActivityFeedTab> {
                             itemCount: activeFeed.usersShowcaseImages.length,
                             // Use the length of the list
                             separatorBuilder: (context, index) =>
-                                SizedBox(height: 16),
+                                const SizedBox(height: 16),
                             // Separation between items
                             itemBuilder: (context, index) {
                               final user =
@@ -141,6 +157,75 @@ class _ActivityFeedTabState extends ConsumerState<ActivityFeedTab> {
               }),
         ),
       ),
+    );
+  }
+
+  void showTutorial() {
+    tutorialCoachMark.show(context: context);
+  }
+
+  List<TargetFocus> _createTarget() {
+    List<TargetFocus> targets = [];
+    targets.add(
+      TargetFocus(
+          shape: ShapeLightFocus.RRect,
+          radius: 20,
+          identify: "Target 1",
+          keyTarget: keyButton,
+          enableOverlayTab: true,
+          contents: [
+            TargetContent(
+                align: ContentAlign.custom,
+                customPosition: CustomTargetContentPosition(
+                  bottom: 0.08.sh,
+                ),
+                builder: (context, controller) {
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Card Swipe",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 20.0),
+                      ),
+                      10.horizontalSpace,
+                      Image.asset(
+                        "asset/images/Card Swipe.png",
+                        height: 100.sp,
+                      ),
+                    ],
+                  );
+                }),
+          ]),
+    );
+    return targets;
+  }
+
+  void createTutorial() {
+    tutorialCoachMark = TutorialCoachMark(
+      textStyleSkip:
+          const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+      alignSkip: Alignment.topRight,
+      targets: _createTarget(),
+      colorShadow: const Color(0xFF43BEE1),
+      textSkip: "SKIP",
+      paddingFocus: 10,
+      opacityShadow: 0.5,
+      imageFilter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+      onFinish: () {
+        ref.read(localStorageServiceProvider).setTutorialSeen();
+      },
+      onClickOverlay: (target) {
+        ref.read(localStorageServiceProvider).setTutorialSeen();
+      },
+      onSkip: () {
+        ref.read(localStorageServiceProvider).setTutorialSeen();
+        return true;
+      },
     );
   }
 }
@@ -215,12 +300,12 @@ class _DailyTipsWidgetState extends State<_DailyTipsWidget> {
                   child: Container(
                     height: 28.sp,
                     width: 102.sp,
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.only(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(20),
                         bottomRight: Radius.circular(20),
                       ),
-                      gradient: const LinearGradient(
+                      gradient: LinearGradient(
                         begin: Alignment.bottomLeft,
                         end: Alignment.topRight,
                         colors: [Color(0xFF43BEE1), Color(0xFFCEEB66)],
@@ -270,7 +355,7 @@ class _DailyTipsWidgetState extends State<_DailyTipsWidget> {
             AspectRatio(
               aspectRatio: 2.3,
               child: widget.dailyTips.isEmpty
-                  ? Center(child: Text("No Daily Tips Available"))
+                  ? const Center(child: Text("No Daily Tips Available"))
                   : PageView.builder(
                       controller: _pageController,
                       onPageChanged: (index) {
@@ -329,11 +414,11 @@ class _ActiveFeedContainerState extends ConsumerState<ActiveFeedContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            color: Color(0xFFF4FCFF),
-            border: GradientBoxBorder(
+            color: const Color(0xFFF4FCFF),
+            border: const GradientBoxBorder(
                 width: 1,
                 gradient: LinearGradient(colors: [
                   Color(0xFF3EBDE5),
@@ -352,13 +437,12 @@ class _ActiveFeedContainerState extends ConsumerState<ActiveFeedContainer> {
                 ),
               ),
               8.horizontalSpace,
-
               Text(
                 widget.user.fullName,
                 style: TextStyle(
                     fontSize: 13.sp,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFF1A1819)),
+                    color: const Color(0xFF1A1819)),
               ),
             ],
           ),
