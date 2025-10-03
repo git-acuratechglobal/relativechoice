@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:relative_choice/core/extensions/extensions.dart';
@@ -183,27 +186,29 @@ class _SignInState extends ConsumerState<SignIn> {
                 ],
               ),
               30.verticalSpace,
-              CustomButton(
-                title: 'Continue with Apple',
-                boxcolor: Colors.black,
-                textcolor: Colors.white,
-                circularcontainercolor: Colors.white,
-                image: Image.asset(
-                  'asset/images/applelogo.png',
+              if (Platform.isIOS)
+                CustomButton(
+                  title: 'Continue with Apple',
+                  boxcolor: Colors.black,
+                  textcolor: Colors.white,
+                  circularcontainercolor: Colors.white,
+                  image: Image.asset(
+                    'asset/images/applelogo.png',
+                  ),
+                  onTap: () {
+                    print('hiii');
+                  },
                 ),
-                onTap: () {
-                  print('hiii');
-                },
-              ),
               16.verticalSpace,
-              CustomButton(
-                title: 'Continue with Google',
-                boxcolor: Colors.white,
-                textcolor: Colors.black,
-                circularcontainercolor: const Color(0xFFF1F1F1),
-                image: Image.asset('asset/images/google.png'),
-                onTap: () {},
-              ),
+              if (Platform.isAndroid)
+                CustomButton(
+                  title: 'Continue with Google',
+                  boxcolor: Colors.white,
+                  textcolor: Colors.black,
+                  circularcontainercolor: const Color(0xFFF1F1F1),
+                  image: Image.asset('asset/images/google.png'),
+                  onTap: () {},
+                ),
               16.verticalSpace,
               CustomButton(
                 title: 'Continue with Facebook',
@@ -213,7 +218,7 @@ class _SignInState extends ConsumerState<SignIn> {
                 image: Image.asset('asset/images/facebook.png'),
                 onTap: () {},
               ),
-              24.verticalSpace
+              84.verticalSpace
             ],
           ),
         ),

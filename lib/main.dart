@@ -2,6 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:relative_choice/core/services/local_storage_service/local_storage_service.dart';
@@ -17,13 +18,13 @@ void main() async {
   await Firebase.initializeApp();
   await ScreenUtil.ensureScreenSize();
   final prefs = await SharedPreferences.getInstance();
-  // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-  //   statusBarIconBrightness: Brightness.dark,
-  //   statusBarBrightness: Brightness.dark,
-  //   statusBarColor: Color(0xff3C0203),
-  //   systemNavigationBarColor: Color(0xff3C0203),
-  //   systemNavigationBarIconBrightness: Brightness.light,
-  // ));
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarIconBrightness: Brightness.dark,
+    statusBarBrightness: Brightness.light,
+    statusBarColor: Colors.transparent,
+    systemNavigationBarColor: Color(0XFFF4FCFF),
+    systemNavigationBarIconBrightness: Brightness.dark,
+  ));
   // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   // runApp( DevicePreview(
   //   enabled: !kReleaseMode,
@@ -49,15 +50,21 @@ class MyApp extends ConsumerWidget {
             onTap: () {
               FocusScope.of(context).unfocus();
             },
-            child: MaterialApp(
-              builder: DevicePreview.appBuilder,
-              navigatorKey: navigatorKey,
-              title: 'Relative Choice',
-              theme: Themes.lightTheme,
-              // themeMode: themeMode,
-              home: const Splashscreen(),
-              debugShowCheckedModeBanner: false,
-            ),
+            child: Builder(builder: (context) {
+              return MediaQuery(
+                data: MediaQuery.of(context)
+                    .copyWith(textScaler: const TextScaler.linear(1.0)),
+                child: MaterialApp(
+                  builder: DevicePreview.appBuilder,
+                  navigatorKey: navigatorKey,
+                  title: 'Relative Choice',
+                  theme: Themes.lightTheme,
+                  // themeMode: themeMode,
+                  home: const Splashscreen(),
+                  debugShowCheckedModeBanner: false,
+                ),
+              );
+            }),
           );
         });
   }

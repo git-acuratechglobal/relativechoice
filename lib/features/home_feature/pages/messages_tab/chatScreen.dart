@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:relative_choice/core/extensions/extensions.dart';
@@ -32,7 +33,7 @@ class ChatScreen extends ConsumerStatefulWidget {
 
 class _ChatScreenState extends ConsumerState<ChatScreen> {
   final TextEditingController _messageController = TextEditingController();
-   bool isFlagOpen=false;
+  bool isFlagOpen = false;
   @override
   void initState() {
     super.initState();
@@ -74,8 +75,19 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         ref.read(chatServiceProvider).getChatId(widget.userId.toString());
 
     return Scaffold(
+      // extendBodyBehindAppBar: true,
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   backgroundColor: Colors.transparent,
+      //   systemOverlayStyle: const SystemUiOverlayStyle(
+      //     statusBarIconBrightness: Brightness.dark,
+      //     statusBarBrightness: Brightness.light, // Try this instead
+      //     statusBarColor: Colors.transparent, // Try transparent instead
+      //     systemNavigationBarColor: Color(0XFFF4FCFF),
+      //     systemNavigationBarIconBrightness: Brightness.dark,
+      //   ),
+      // ),
       body: SafeArea(
-        bottom: false,
         child: AsyncWidget(
             value: ref.watch(messageListProvider(chatId)),
             data: (messages) {
@@ -105,9 +117,9 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                                 bool isOwnMessage =
                                     data.senderId == currentUserId;
                                 return MessageBubbleWidget(
-                                  onFlagPopupChanged: (val){
+                                  onFlagPopupChanged: (val) {
                                     setState(() {
-                                      isFlagOpen=val;
+                                      isFlagOpen = val;
                                     });
                                   },
                                   key: ValueKey(data),
@@ -123,17 +135,19 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                             ),
                           ),
                           Container(
-                            decoration:
-                                const BoxDecoration(color: Colors.white, boxShadow: [
-                              BoxShadow(
-                                color: Color.fromRGBO(0, 0, 0, 0.1),
-                                offset: Offset(0, -4),
-                                blurRadius: 8,
-                                spreadRadius: 2,
-                              ),
-                            ]),
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color.fromRGBO(0, 0, 0, 0.1),
+                                    offset: Offset(0, -4),
+                                    blurRadius: 8,
+                                    spreadRadius: 2,
+                                  ),
+                                ]),
                             child: Padding(
-                              padding: const EdgeInsets.only(bottom: 30, top: 10),
+                              padding:
+                                  const EdgeInsets.only(bottom: 30, top: 10),
                               child: chatRoomData.blockingStatus.iBlockedThem
                                   ? SizedBox(
                                       width: 1.sw,
@@ -145,8 +159,8 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                                       : MessageTextField(
                                           onTapOutSide: (val) {
                                             ref
-                                                .read(
-                                                    chatNotifierProvider.notifier)
+                                                .read(chatNotifierProvider
+                                                    .notifier)
                                                 .updateUserTypingStatus(
                                                     receiverId: null);
                                           },
@@ -161,8 +175,8 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                                             }
                                           },
                                           controller: _messageController,
-                                          onSend: () =>
-                                              _sendMessage(currentUserId, chatId),
+                                          onSend: () => _sendMessage(
+                                              currentUserId, chatId),
                                         ),
                             ),
                           )
@@ -367,4 +381,3 @@ class _PopUpMenuWidget extends StatelessWidget {
     );
   }
 }
-
