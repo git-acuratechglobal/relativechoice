@@ -6,6 +6,7 @@ import 'package:relative_choice/core/utils/appsnackbar.dart';
 import 'package:relative_choice/features/auth_feature/pages/login_page/sign_in.dart';
 import 'package:relative_choice/core/widgets/routeanimation.dart';
 import 'package:relative_choice/features/auth_feature/pages/splashscreen/splashScreen.dart';
+import 'package:relative_choice/features/auth_feature/pages/static_pages/privacy_policy_page.dart';
 import '../../../core/widgets/relative_image.dart';
 import '../auth_state/auth_state.dart';
 import 'beta_code_page/beta_code_screen.dart';
@@ -145,20 +146,32 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
             24.verticalSpace,
             Column(
               children: [
-                Text('Terms of Service',
-                    style: TextStyle(
-                        color: const Color(0xFF005FF2),
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w800,
-                        height: 1.30.sp,
-                        decoration: TextDecoration.underline)),
-                Text('Privacy and Cookies Policy',
-                    style: TextStyle(
-                        color: const Color(0xFF005FF2),
-                        fontSize: 14.sp,
-                        fontWeight: FontWeight.w800,
-                        height: 1.30.sp,
-                        decoration: TextDecoration.underline)),
+                InkWell(
+                  onTap: (){
+                    // context.navigateTo(const PrivacyPolicyPage());
+                  },
+                  child: Text('Terms of Service',
+                      style: TextStyle(
+                          color: const Color(0xFF005FF2),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w800,
+                          height: 1.30.sp,
+                          decoration: TextDecoration.underline)),
+                ),
+                10.verticalSpace,
+                InkWell(
+                  onTap: (){
+                    context.navigateTo(const PrivacyPolicyPage());
+                  },
+                  child: Text('Privacy and Cookies Policy',
+                      style: TextStyle(
+                          color: const Color(0xFF005FF2),
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w800,
+                          height: 1.30.sp,
+                          decoration: TextDecoration.underline)),
+                ),
+                10.verticalSpace,
                 Text('Consumer Health Data Policy',
                     style: TextStyle(
                         color: const Color(0xFF005FF2),
